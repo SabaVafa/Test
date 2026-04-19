@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Introduction - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .selector { color: #d73a49; }
+        .property { color: #0066cc; }
+        .value { color: #28a745; }
+        .comment { color: #6c757d; font-style: italic; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+        .demo-box {
+            padding: 20px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+        .inline-style {
+            background: #ffe6e6;
+            border-color: #ff9999;
+        }
+        .internal-style {
+            background: #e6f3ff;
+            border-color: #99ccff;
+        }
+        .external-style {
+            background: #e6ffe6;
+            border-color: #99ff99;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS Introduction</h1>
+        <p>This page demonstrates the basics of CSS (Cascading Style Sheets) and different ways to apply styles to HTML elements.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">What is CSS?</h2>
+            <p>CSS stands for <strong>Cascading Style Sheets</strong>. It's used to style and layout web pages, including colors, fonts, spacing, and positioning.</p>
+            <div class="code-block">
+<span class="comment">/* CSS Rule Structure */</span>
+<span class="selector">selector</span> {
+    <span class="property">property</span>: <span class="value">value</span>;
+    <span class="property">another-property</span>: <span class="value">another-value</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Inline CSS (Style Attribute)</h2>
+            <div class="code-block">
+<span class="tag">&lt;p</span> <span class="attribute">style</span>=<span class="value">"color: red; font-size: 18px; background: yellow;"</span><span class="tag">&gt;</span>
+    This paragraph has inline styles.
+<span class="tag">&lt;/p&gt;</span>
+            </div>
+            <div class="result">
+                <p style="color: red; font-size: 18px; background: yellow; padding: 10px;">
+                    This paragraph has inline styles.
+                </p>
+            </div>
+            <div class="demo-box inline-style">
+                <strong>Pros:</strong> Quick for testing, high specificity<br>
+                <strong>Cons:</strong> Hard to maintain, not reusable
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Internal CSS (Style Tag)</h2>
+            <div class="code-block">
+<span class="tag">&lt;style&gt;</span>
+<span class="selector">.internal-example</span> {
+    <span class="property">color</span>: <span class="value">blue</span>;
+    <span class="property">font-size</span>: <span class="value">16px</span>;
+    <span class="property">background</span>: <span class="value">#e6f3ff</span>;
+    <span class="property">padding</span>: <span class="value">15px</span>;
+    <span class="property">border</span>: <span class="value">2px solid #99ccff</span>;
+    <span class="property">border-radius</span>: <span class="value">5px</span>;
+}
+<span class="tag">&lt;/style&gt;</span>
+
+<span class="tag">&lt;p</span> <span class="attribute">class</span>=<span class="value">"internal-example"</span><span class="tag">&gt;</span>
+    This paragraph uses internal CSS.
+<span class="tag">&lt;/p&gt;</span>
+            </div>
+            <div class="result">
+                <style>
+                    .internal-example {
+                        color: blue;
+                        font-size: 16px;
+                        background: #e6f3ff;
+                        padding: 15px;
+                        border: 2px solid #99ccff;
+                        border-radius: 5px;
+                    }
+                </style>
+                <p class="internal-example">
+                    This paragraph uses internal CSS.
+                </p>
+            </div>
+            <div class="demo-box internal-style">
+                <strong>Pros:</strong> Good for single pages, reusable within page<br>
+                <strong>Cons:</strong> Can't be shared between pages
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">External CSS (Linked Stylesheet)</h2>
+            <div class="code-block">
+<span class="comment">/* In styles.css file */</span>
+<span class="selector">.external-example</span> {
+    <span class="property">color</span>: <span class="value">green</span>;
+    <span class="property">font-size</span>: <span class="value">16px</span>;
+    <span class="property">background</span>: <span class="value">#e6ffe6</span>;
+    <span class="property">padding</span>: <span class="value">15px</span>;
+    <span class="property">border</span>: <span class="value">2px solid #99ff99</span>;
+    <span class="property">border-radius</span>: <span class="value">5px</span>;
+}
+
+<span class="comment">/* In HTML file */</span>
+<span class="tag">&lt;link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">href</span>=<span class="value">"styles.css"</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;p</span> <span class="attribute">class</span>=<span class="value">"external-example"</span><span class="tag">&gt;</span>
+    This paragraph uses external CSS.
+<span class="tag">&lt;/p&gt;</span>
+            </div>
+            <div class="result">
+                <p class="external-example" style="color: green; font-size: 16px; background: #e6ffe6; padding: 15px; border: 2px solid #99ff99; border-radius: 5px;">
+                    This paragraph uses external CSS.
+                </p>
+            </div>
+            <div class="demo-box external-style">
+                <strong>Pros:</strong> Best practice, reusable across pages, easy maintenance<br>
+                <strong>Cons:</strong> Requires separate file, HTTP request
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">CSS Comments</h2>
+            <div class="code-block">
+<span class="comment">/* This is a CSS comment */</span>
+<span class="comment">/* Comments can span multiple lines
+   and are ignored by the browser */</span>
+
+<span class="selector">p</span> {
+    <span class="property">color</span>: <span class="value">black</span>; <span class="comment">/* Set text color to black */</span>
+    <span class="property">font-size</span>: <span class="value">14px</span>; <span class="comment">/* Set font size */</span>
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Basic CSS Properties</h2>
+            <div class="code-block">
+<span class="selector">.properties-demo</span> {
+    <span class="comment">/* Text properties */</span>
+    <span class="property">color</span>: <span class="value">#333</span>;
+    <span class="property">font-family</span>: <span class="value">Arial, sans-serif</span>;
+    <span class="property">font-size</span>: <span class="value">16px</span>;
+    <span class="property">font-weight</span>: <span class="value">bold</span>;
+    <span class="property">text-align</span>: <span class="value">center</span>;
+    <span class="property">text-decoration</span>: <span class="value">underline</span>;
+    
+    <span class="comment">/* Background properties */</span>
+    <span class="property">background-color</span>: <span class="value">#f0f0f0</span>;
+    <span class="property">background-image</span>: <span class="value">url('pattern.jpg')</span>;
+    <span class="property">background-repeat</span>: <span class="value">no-repeat</span>;
+    
+    <span class="comment">/* Box properties */</span>
+    <span class="property">width</span>: <span class="value">200px</span>;
+    <span class="property">height</span>: <span class="value">100px</span>;
+    <span class="property">margin</span>: <span class="value">10px</span>;
+    <span class="property">padding</span>: <span class="value">15px</span>;
+    <span class="property">border</span>: <span class="value">2px solid #ccc</span>;
+    <span class="property">border-radius</span>: <span class="value">8px</span>;
+    
+    <span class="comment">/* Display properties */</span>
+    <span class="property">display</span>: <span class="value">block</span>;
+    <span class="property">visibility</span>: <span class="value">visible</span>;
+    <span class="property">opacity</span>: <span class="value">0.8</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">CSS Units</h2>
+            <div class="code-block">
+<span class="selector">.units-demo</span> {
+    <span class="comment">/* Absolute units */</span>
+    <span class="property">width</span>: <span class="value">100px</span>; <span class="comment">/* pixels */</span>
+    <span class="property">height</span>: <span class="value">2cm</span>; <span class="comment">/* centimeters */</span>
+    <span class="property">margin</span>: <span class="value">1in</span>; <span class="comment">/* inches */</span>
+    
+    <span class="comment">/* Relative units */</span>
+    <span class="property">font-size</span>: <span class="value">1.2em</span>; <span class="comment">/* relative to parent font size */</span>
+    <span class="property">width</span>: <span class="value">50%</span>; <span class="comment">/* percentage of parent */</span>
+    <span class="property">padding</span>: <span class="value">2rem</span>; <span class="comment">/* relative to root font size */</span>
+    <span class="property">margin</span>: <span class="value">10vw</span>; <span class="comment">/* 10% of viewport width */</span>
+    <span class="property">height</span>: <span class="value">5vh</span>; <span class="comment">/* 5% of viewport height */</span>
+}
+            </div>
+            <div class="result">
+                <div style="display: grid; gap: 10px;">
+                    <div style="width: 100px; background: #ffe6e6; padding: 10px; border: 1px solid #ccc;">100px width</div>
+                    <div style="width: 50%; background: #e6f3ff; padding: 10px; border: 1px solid #ccc;">50% width</div>
+                    <div style="font-size: 1.2em; background: #e6ffe6; padding: 10px; border: 1px solid #ccc;">1.2em font size</div>
+                    <div style="padding: 2rem; background: #fff0e6; border: 1px solid #ccc;">2rem padding</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">CSS Shorthand Properties</h2>
+            <div class="code-block">
+<span class="comment">/* Long form */</span>
+<span class="selector">.long-form</span> {
+    <span class="property">margin-top</span>: <span class="value">10px</span>;
+    <span class="property">margin-right</span>: <span class="value">20px</span>;
+    <span class="property">margin-bottom</span>: <span class="value">10px</span>;
+    <span class="property">margin-left</span>: <span class="value">20px</span>;
+}
+
+<span class="comment">/* Shorthand form */</span>
+<span class="selector">.shorthand</span> {
+    <span class="property">margin</span>: <span class="value">10px 20px</span>; <span class="comment">/* top/bottom left/right */</span>
+    <span class="property">padding</span>: <span class="value">5px 10px 15px 20px</span>; <span class="comment">/* top right bottom left */</span>
+    <span class="property">border</span>: <span class="value">2px solid red</span>; <span class="comment">/* width style color */</span>
+    <span class="property">background</span>: <span class="value">#fff url('bg.jpg') no-repeat center</span>;
+    <span class="property">font</span>: <span class="value">italic bold 16px Arial</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">CSS Inheritance</h2>
+            <div class="code-block">
+<span class="selector">body</span> {
+    <span class="property">font-family</span>: <span class="value">Arial, sans-serif</span>;
+    <span class="property">color</span>: <span class="value">#333</span>;
+}
+
+<span class="selector">.container</span> {
+    <span class="property">font-size</span>: <span class="value">16px</span>;
+}
+
+<span class="comment">/* Child elements inherit font-family and color from body */
+/* Child elements inherit font-size from .container */</span>
+            </div>
+            <div class="result">
+                <div style="font-family: Arial, sans-serif; color: #333; font-size: 16px; padding: 15px; background: #f8f9fa; border: 1px solid #ddd;">
+                    <p>This text inherits font-family and color from body, and font-size from container.</p>
+                    <span>This span also inherits the same styles.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">CSS Specificity</h2>
+            <div class="code-block">
+<span class="comment">/* Low specificity - element selector */</span>
+<span class="selector">p</span> { <span class="property">color</span>: <span class="value">black</span>; }
+
+<span class="comment">/* Medium specificity - class selector */</span>
+<span class="selector">.highlight</span> { <span class="property">color</span>: <span class="value">blue</span>; }
+
+<span class="comment">/* High specificity - ID selector */</span>
+<span class="selector">#special</span> { <span class="property">color</span>: <span class="value">red</span>; }
+
+<span class="comment">/* Very high specificity - inline style */</span>
+<span class="comment">/* style="color: green;" */
+
+<span class="comment">/* Highest specificity - !important */</span>
+<span class="selector">p</span> { <span class="property">color</span>: <span class="value">purple !important</span>; }
+            </div>
+            <div class="result">
+                <p style="color: black;">This paragraph uses element selector (black)</p>
+                <p class="highlight" style="color: blue;">This uses class selector (blue)</p>
+                <p id="special" style="color: red;">This uses ID selector (red)</p>
+                <p style="color: green;">This uses inline style (green)</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">CSS Reset vs Normalize</h2>
+            <div class="code-block">
+<span class="comment">/* Simple CSS Reset */</span>
+<span class="selector">*</span> {
+    <span class="property">margin</span>: <span class="value">0</span>;
+    <span class="property">padding</span>: <span class="value">0</span>;
+    <span class="property">box-sizing</span>: <span class="value">border-box</span>;
+}
+
+<span class="comment">/* Normalize.css makes browsers render all elements */
+<span class="comment">/* more consistently and in line with modern standards */</span>
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+</body>
+</html>

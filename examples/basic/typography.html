@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Typography - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .selector { color: #d73a49; }
+        .property { color: #0066cc; }
+        .value { color: #28a745; }
+        .comment { color: #6c757d; font-style: italic; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+        .font-demo {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS Typography</h1>
+        <p>This page demonstrates various CSS typography properties for styling text.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Font Family</h2>
+            <div class="code-block">
+<span class="comment">/* Font family with fallbacks */</span>
+<span class="selector">.font-serif</span> {
+    <span class="property">font-family</span>: <span class="value">Georgia, 'Times New Roman', Times, serif</span>;
+}
+
+<span class="selector">.font-sans-serif</span> {
+    <span class="property">font-family</span>: <span class="value">Arial, Helvetica, sans-serif</span>;
+}
+
+<span class="selector">.font-monospace</span> {
+    <span class="property">font-family</span>: <span class="value">'Courier New', Courier, monospace</span>;
+}
+
+<span class="comment">/* Web fonts (Google Fonts) */</span>
+<span class="selector">.font-web</span> {
+    <span class="property">font-family</span>: <span class="value">'Roboto', sans-serif</span>;
+}
+
+<span class="comment">/* Custom fonts with @font-face */</span>
+<span class="selector">.font-custom</span> {
+    <span class="property">font-family</span>: <span class="value">'MyCustomFont', sans-serif</span>;
+}
+            </div>
+            <div class="result">
+                <div class="font-demo" style="font-family: Georgia, 'Times New Roman', Times, serif;">
+                    Serif font: Georgia, 'Times New Roman', Times, serif
+                </div>
+                <div class="font-demo" style="font-family: Arial, Helvetica, sans-serif;">
+                    Sans-serif font: Arial, Helvetica, sans-serif
+                </div>
+                <div class="font-demo" style="font-family: 'Courier New', Courier, monospace;">
+                    Monospace font: 'Courier New', Courier, monospace
+                </div>
+                <div class="font-demo" style="font-family: 'Comic Sans MS', cursive;">
+                    Cursive font: 'Comic Sans MS', cursive
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Font Size</h2>
+            <div class="code-block">
+<span class="selector">.font-size-px</span> {
+    <span class="property">font-size</span>: <span class="value">16px</span>; <span class="comment">/* Pixels */</span>
+}
+
+<span class="selector">.font-size-em</span> {
+    <span class="property">font-size</span>: <span class="value">1.2em</span>; <span class="comment">/* Relative to parent */</span>
+}
+
+<span class="selector">.font-size-rem</span> {
+    <span class="property">font-size</span>: <span class="value">1.5rem</span>; <span class="comment">/* Relative to root */</span>
+}
+
+<span class="selector">.font-size-percent</span> {
+    <span class="property">font-size</span>: <span class="value">120%</span>; <span class="comment">/* Percentage of parent */</span>
+}
+
+<span class="selector">.font-size-vw</span> {
+    <span class="property">font-size</span>: <span class="value">4vw</span>; <span class="comment">/* Viewport width */</span>
+}
+
+<span class="comment">/* Keyword sizes */</span>
+<span class="selector">.font-size-xx-small</span> { <span class="property">font-size</span>: <span class="value">xx-small</span>; }
+<span class="selector">.font-size-small</span> { <span class="property">font-size</span>: <span class="value">small</span>; }
+<span class="selector">.font-size-medium</span> { <span class="property">font-size</span>: <span class="value">medium</span>; }
+<span class="selector">.font-size-large</span> { <span class="property">font-size</span>: <span class="value">large</span>; }
+<span class="selector">.font-size-x-large</span> { <span class="property">font-size</span>: <span class="value">x-large</span>; }
+<span class="selector">.font-size-xx-large</span> { <span class="property">font-size</span>: <span class="value">xx-large</span>; }
+            </div>
+            <div class="result">
+                <div class="font-demo" style="font-size: 12px;">12px font size</div>
+                <div class="font-demo" style="font-size: 16px;">16px font size</div>
+                <div class="font-demo" style="font-size: 20px;">20px font size</div>
+                <div class="font-demo" style="font-size: 24px;">24px font size</div>
+                <div class="font-demo" style="font-size: 32px;">32px font size</div>
+                <div class="font-demo" style="font-size: 4vw;">4vw (responsive to viewport width)</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Font Weight</h2>
+            <div class="code-block">
+<span class="comment">/* Numeric values (100-900) */</span>
+<span class="selector">.font-thin</span> { <span class="property">font-weight</span>: <span class="value">100</span>; }
+<span class="selector">.font-light</span> { <span class="property">font-weight</span>: <span class="value">300</span>; }
+<span class="selector">.font-normal</span> { <span class="property">font-weight</span>: <span class="value">400</span>; }
+<span class="selector">.font-medium</span> { <span class="property">font-weight</span>: <span class="value">500</span>; }
+<span class="selector">.font-semibold</span> { <span class="property">font-weight</span>: <span class="value">600</span>; }
+<span class="selector">.font-bold</span> { <span class="property">font-weight</span>: <span class="value">700</span>; }
+<span class="selector">.font-black</span> { <span class="property">font-weight</span>: <span class="value">900</span>; }
+
+<span class="comment">/* Keyword values */</span>
+<span class="selector">.font-normal-keyword</span> { <span class="property">font-weight</span>: <span class="value">normal</span>; }
+<span class="selector">.font-bold-keyword</span> { <span class="property">font-weight</span>: <span class="value">bold</span>; }
+<span class="selector">.font-lighter</span> { <span class="property">font-weight</span>: <span class="value">lighter</span>; }
+<span class="selector">.font-bolder</span> { <span class="property">font-weight</span>: <span class="value">bolder</span>; }
+            </div>
+            <div class="result">
+                <div class="font-demo" style="font-weight: 100;">Thin (100)</div>
+                <div class="font-demo" style="font-weight: 300;">Light (300)</div>
+                <div class="font-demo" style="font-weight: 400;">Normal (400)</div>
+                <div class="font-demo" style="font-weight: 500;">Medium (500)</div>
+                <div class="font-demo" style="font-weight: 600;">Semibold (600)</div>
+                <div class="font-demo" style="font-weight: 700;">Bold (700)</div>
+                <div class="font-demo" style="font-weight: 900;">Black (900)</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Font Style</h2>
+            <div class="code-block">
+<span class="selector">.font-style-normal</span> {
+    <span class="property">font-style</span>: <span class="value">normal</span>; <span class="comment">/* Default */</span>
+}
+
+<span class="selector">.font-style-italic</span> {
+    <span class="property">font-style</span>: <span class="value">italic</span>;
+}
+
+<span class="selector">.font-style-oblique</span> {
+    <span class="property">font-style</span>: <span class="value">oblique</span>;
+}
+
+<span class="selector">.font-style-oblique-angle</span> {
+    <span class="property">font-style</span>: <span class="value">oblique 15deg</span>;
+}
+            </div>
+            <div class="result">
+                <div class="font-demo" style="font-style: normal;">Normal font style</div>
+                <div class="font-demo" style="font-style: italic;">Italic font style</div>
+                <div class="font-demo" style="font-style: oblique;">Oblique font style</div>
+                <div class="font-demo" style="font-style: oblique 15deg;">Oblique 15deg</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Line Height</h2>
+            <div class="code-block">
+<span class="selector">.line-height-unitless</span> {
+    <span class="property">line-height</span>: <span class="value">1.5</span>; <span class="comment">/* Unitless (recommended) */</span>
+}
+
+<span class="selector">.line-height-em</span> {
+    <span class="property">line-height</span>: <span class="value">1.5em</span>; <span class="comment">/* Em units */</span>
+}
+
+<span class="selector">.line-height-percent</span> {
+    <span class="property">line-height</span>: <span class="value">150%</span>; <span class="comment">/* Percentage */</span>
+}
+
+<span class="selector">.line-height-px</span> {
+    <span class="property">line-height</span>: <span class="value">24px</span>; <span class="comment">/* Fixed pixels */</span>
+}
+
+<span class="comment">/* Keyword values */</span>
+<span class="selector">.line-height-normal</span> {
+    <span class="property">line-height</span>: <span class="value">normal</span>; <span class="comment">/* Browser default (~1.2) */</span>
+}
+            </div>
+            <div class="result">
+                <div class="font-demo" style="line-height: 1;">
+                    Line height 1.0 - Tight spacing. This text demonstrates how different line heights affect readability and spacing between lines of text.
+                </div>
+                <div class="font-demo" style="line-height: 1.5;">
+                    Line height 1.5 - Good readability. This text demonstrates how different line heights affect readability and spacing between lines of text.
+                </div>
+                <div class="font-demo" style="line-height: 2;">
+                    Line height 2.0 - Loose spacing. This text demonstrates how different line heights affect readability and spacing between lines of text.
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Text Alignment</h2>
+            <div class="code-block">
+<span class="selector">.text-left</span> {
+    <span class="property">text-align</span>: <span class="value">left</span>;
+}
+
+<span class="selector">.text-center</span> {
+    <span class="property">text-align</span>: <span class="value">center</span>;
+}
+
+<span class="selector">.text-right</span> {
+    <span class="property">text-align</span>: <span class="value">right</span>;
+}
+
+<span class="selector">.text-justify</span> {
+    <span class="property">text-align</span>: <span class="value">justify</span>;
+}
+
+<span class="comment">/* Modern alignment */</span>
+<span class="selector">.text-start</span> {
+    <span class="property">text-align</span>: <span class="value">start</span>; <span class="comment">/* Respects text direction */</span>
+}
+
+<span class="selector">.text-end</span> {
+    <span class="property">text-align</span>: <span class="value">end</span>; <span class="comment">/* Respects text direction */</span>
+}
+            </div>
+            <div class="result">
+                <div class="font-demo" style="text-align: left;">Left aligned text</div>
+                <div class="font-demo" style="text-align: center;">Center aligned text</div>
+                <div class="font-demo" style="text-align: right;">Right aligned text</div>
+                <div class="font-demo" style="text-align: justify;">
+                    Justified text spreads across the full width of the container. This creates clean edges on both sides but can sometimes create awkward spacing between words. This paragraph demonstrates how justified text looks with enough content to span multiple lines.
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Text Decoration</h2>
+            <div class="code-block">
+<span class="selector">.text-decoration-none</span> {
+    <span class="property">text-decoration</span>: <span class="value">none</span>;
+}
+
+<span class="selector">.text-underline</span> {
+    <span class="property">text-decoration</span>: <span class="value">underline</span>;
+}
+
+<span class="selector">.text-overline</span> {
+    <span class="property">text-decoration</span>: <span class="value">overline</span>;
+}
+
+<span class="selector">.text-line-through</span> {
+    <span class="property">text-decoration</span>: <span class="value">line-through</span>;
+}
+
+<span class="comment">/* Modern syntax with multiple values */</span>
+<span class="selector">.text-decoration-modern</span> {
+    <span class="property">text-decoration</span>: <span class="value">underline wavy red</span>;
+}
+
+<span class="comment">/* Individual properties */</span>
+<span class="selector">.text-decoration-custom</span> {
+    <span class="property">text-decoration-line</span>: <span class="value">underline</span>;
+    <span class="property">text-decoration-style</span>: <span class="value">dashed</span>;
+    <span class="property">text-decoration-color</span>: <span class="value">blue</span>;
+    <span class="property">text-decoration-thickness</span>: <span class="value">2px</span>;
+}
+            </div>
+            <div class="result">
+                <div class="font-demo" style="text-decoration: none;">No decoration</div>
+                <div class="font-demo" style="text-decoration: underline;">Underlined text</div>
+                <div class="font-demo" style="text-decoration: overline;">Overlined text</div>
+                <div class="font-demo" style="text-decoration: line-through;">Strikethrough text</div>
+                <div class="font-demo" style="text-decoration: underline wavy red;">Wavy underline</div>
+                <div class="font-demo" style="text-decoration: underline dashed blue;">Dashed blue underline</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Text Transform</h2>
+            <div class="code-block">
+<span class="selector">.text-transform-none</span> {
+    <span class="property">text-transform</span>: <span class="value">none</span>; <span class="comment">/* Default */</span>
+}
+
+<span class="selector">.text-transform-uppercase</span> {
+    <span class="property">text-transform</span>: <span class="value">uppercase</span>;
+}
+
+<span class="selector">.text-transform-lowercase</span> {
+    <span class="property">text-transform</span>: <span class="value">lowercase</span>;
+}
+
+<span class="selector">.text-transform-capitalize</span> {
+    <span class="property">text-transform</span>: <span class="value">capitalize</span>;
+}
+
+<span class="selector">.text-transform-full-width</span> {
+    <span class="property">text-transform</span>: <span class="value">full-width</span>;
+}
+            </div>
+            <div class="result">
+                <div class="font-demo" style="text-transform: none;">No transformation</div>
+                <div class="font-demo" style="text-transform: uppercase;">uppercase text</div>
+                <div class="font-demo" style="text-transform: lowercase;">LOWERCASE TEXT</div>
+                <div class="font-demo" style="text-transform: capitalize;">capitalize each word</div>
+                <div class="font-demo" style="text-transform: full-width;">Full-width text</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Letter Spacing</h2>
+            <div class="code-block">
+<span class="selector">.letter-spacing-normal</span> {
+    <span class="property">letter-spacing</span>: <span class="value">normal</span>; <span class="comment">/* Default */</span>
+}
+
+<span class="selector">.letter-spacing-tight</span> {
+    <span class="property">letter-spacing</span>: <span class="value">-1px</span>; <span class="comment">/* Negative spacing */</span>
+}
+
+<span class="selector">.letter-spacing-wide</span> {
+    <span class="property">letter-spacing</span>: <span class="value">2px</span>; <span class="comment">/* Wide spacing */</span>
+}
+
+<span class="selector">.letter-spacing-em</span> {
+    <span class="property">letter-spacing</span>: <span class="value">0.1em</span>; <span class="comment">/* Relative spacing */</span>
+}
+            </div>
+            <div class="result">
+                <div class="font-demo" style="letter-spacing: normal;">Normal letter spacing</div>
+                <div class="font-demo" style="letter-spacing: -1px;">Tight letter spacing (-1px)</div>
+                <div class="font-demo" style="letter-spacing: 2px;">Wide letter spacing (2px)</div>
+                <div class="font-demo" style="letter-spacing: 0.2em;">Wide letter spacing (0.2em)</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Word Spacing</h2>
+            <div class="code-block">
+<span class="selector">.word-spacing-normal</span> {
+    <span class="property">word-spacing</span>: <span class="value">normal</span>; <span class="comment">/* Default */</span>
+}
+
+<span class="selector">.word-spacing-tight</span> {
+    <span class="property">word-spacing</span>: <span class="value">-2px</span>; <span class="comment">/* Tight spacing */</span>
+}
+
+<span class="selector">.word-spacing-wide</span> {
+    <span class="property">word-spacing</span>: <span class="value">5px</span>; <span class="comment">/* Wide spacing */</span>
+}
+
+<span class="selector">.word-spacing-em</span> {
+    <span class="property">word-spacing</span>: <span class="value">0.3em</span>; <span class="comment">/* Relative spacing */</span>
+}
+            </div>
+            <div class="result">
+                <div class="font-demo" style="word-spacing: normal;">Normal word spacing between words</div>
+                <div class="font-demo" style="word-spacing: -2px;">Tight word spacing between words</div>
+                <div class="font-demo" style="word-spacing: 5px;">Wide word spacing between words</div>
+                <div class="font-demo" style="word-spacing: 0.3em;">Wide word spacing between words</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Text Indent</h2>
+            <div class="code-block">
+<span class="selector">.text-indent-px</span> {
+    <span class="property">text-indent</span>: <span class="value">30px</span>; <span class="comment">/* Pixels */</span>
+}
+
+<span class="selector">.text-indent-em</span> {
+    <span class="property">text-indent</span>: <span class="value">2em</span>; <span class="comment">/* Em units */span>
+}
+
+<span class="selector">.text-indent-percent</span> {
+    <span class="property">text-indent</span>: <span class="value">10%</span>; <span class="comment">/* Percentage of container width */</span>
+}
+
+<span class="selector">.text-indent-hanging</span> {
+    <span class="property">text-indent</span>: <span class="value">-20px</span>; <span class="comment">/* Hanging indent */</span>
+}
+            </div>
+            <div class="result">
+                <div class="font-demo" style="text-indent: 30px;">This paragraph has a 30px text indent. The first line is indented while subsequent lines return to the normal margin.</div>
+                <div class="font-demo" style="text-indent: 2em;">This paragraph has a 2em text indent. The first line is indented while subsequent lines return to the normal margin.</div>
+                <div class="font-demo" style="text-indent: 10%;">This paragraph has a 10% text indent. The first line is indented while subsequent lines return to the normal margin.</div>
+                <div class="font-demo" style="text-indent: -20px; padding-left: 20px;">This paragraph has a hanging indent. The first line extends to the left while subsequent lines are indented.</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Text Shadow</h2>
+            <div class="code-block">
+<span class="selector">.text-shadow-simple</span> {
+    <span class="property">text-shadow</span>: <span class="value">2px 2px 4px rgba(0,0,0,0.3)</span>;
+}
+
+<span class="selector">.text-shadow-multiple</span> {
+    <span class="property">text-shadow</span>: <span class="value">1px 1px 0px #fff, -1px -1px 0px #000</span>;
+}
+
+<span class="selector">.text-shadow-glow</span> {
+    <span class="property">text-shadow</span>: <span class="value">0 0 10px #00ff00</span>;
+}
+
+<span class="selector">.text-shadow-3d</span> {
+    <span class="property">text-shadow</span>: <span class="value">3px 3px 0px #ccc, 6px 6px 0px #999</span>;
+}
+
+<span class="selector">.text-shadow-outline</span> {
+    <span class="property">text-shadow</span>: <span class="value">-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black</span>;
+}
+            </div>
+            <div class="result">
+                <div class="font-demo" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Simple shadow effect</div>
+                <div class="font-demo" style="text-shadow: 1px 1px 0px #fff, -1px -1px 0px #000; color: #666;">Multiple shadows (outline effect)</div>
+                <div class="font-demo" style="text-shadow: 0 0 10px #00ff00; color: white; background: black;">Glow effect</div>
+                <div class="font-demo" style="text-shadow: 3px 3px 0px #ccc, 6px 6px 0px #999;">3D shadow effect</div>
+                <div class="font-demo" style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: white;">Text outline</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Font Shorthand</h2>
+            <div class="code-block">
+<span class="comment">/* Long form */</span>
+<span class="selector">.font-long</span> {
+    <span class="property">font-style</span>: <span class="value">italic</span>;
+    <span class="property">font-variant</span>: <span class="value">normal</span>;
+    <span class="property">font-weight</span>: <span class="value">bold</span>;
+    <span class="property">font-size</span>: <span class="value">16px</span>;
+    <span class="property">line-height</span>: <span class="value">1.5</span>;
+    <span class="property">font-family</span>: <span class="value">Arial, sans-serif</span>;
+}
+
+<span class="comment">/* Shorthand form */</span>
+<span class="selector">.font-short</span> {
+    <span class="property">font</span>: <span class="value">italic normal bold 16px/1.5 Arial, sans-serif</span>;
+}
+
+<span class="comment">/* System font stack */</span>
+<span class="selector">.font-system</span> {
+    <span class="property">font</span>: <span class="value">system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif</span>;
+}
+            </div>
+            <div class="result">
+                <div class="font-demo" style="font: italic bold 16px/1.5 Arial, sans-serif;">
+                    This text uses font shorthand: italic bold 16px/1.5 Arial, sans-serif
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Vertical Alignment</h2>
+            <div class="code-block">
+<span class="selector">.align-baseline</span> {
+    <span class="property">vertical-align</span>: <span class="value">baseline</span>; <span class="comment">/* Default */</span>
+}
+
+<span class="selector">.align-top</span> {
+    <span class="property">vertical-align</span>: <span class="value">top</span>;
+}
+
+<span class="selector">.align-middle</span> {
+    <span class="property">vertical-align</span>: <span class="value">middle</span>;
+}
+
+<span class="selector">.align-bottom</span> {
+    <span class="property">vertical-align</span>: <span class="value">bottom</span>;
+}
+
+<span class="selector">.align-super</span> {
+    <span class="property">vertical-align</span>: <span class="value">super</span>;
+}
+
+<span class="selector">.align-sub</span> {
+    <span class="property">vertical-align</span>: <span class="value">sub</span>;
+}
+            </div>
+            <div class="result">
+                <div style="font-size: 24px; border: 1px solid #ccc; padding: 10px;">
+                    Normal text <span style="vertical-align: baseline; background: #e6f3ff;">baseline</span>
+                    <span style="vertical-align: top; background: #ffe6e6;">top</span>
+                    <span style="vertical-align: middle; background: #e6ffe6;">middle</span>
+                    <span style="vertical-align: bottom; background: #fff0e6;">bottom</span>
+                    <span style="vertical-align: super; font-size: 0.8em; background: #f0e6ff;">super</span>
+                    <span style="vertical-align: sub; font-size: 0.8em; background: #ffe6ff;">sub</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">White Space</h2>
+            <div class="code-block">
+<span class="selector">.white-space-normal</span> {
+    <span class="property">white-space</span>: <span class="value">normal</span>; <span class="comment">/* Default */</span>
+}
+
+<span class="selector">.white-space-nowrap</span> {
+    <span class="property">white-space</span>: <span class="value">nowrap</span>; <span class="comment">/* No line breaks */</span>
+}
+
+<span class="selector">.white-space-pre</span> {
+    <span class="property">white-space</span>: <span class="value">pre</span>; <span class="comment">/* Preserve whitespace */</span>
+}
+
+<span class="selector">.white-space-pre-wrap</span> {
+    <span class="property">white-space</span>: <span class="value">pre-wrap</span>; <span class="comment">/* Preserve + wrap */</span>
+}
+
+<span class="selector">.white-space-pre-line</span> {
+    <span class="property">white-space</span>: <span class="value">pre-line</span>; <span class="comment">/* Preserve line breaks */</span>
+}
+            </div>
+            <div class="result">
+                <div class="font-demo" style="white-space: normal;">Normal: Multiple   spaces   are collapsed</div>
+                <div class="font-demo" style="white-space: nowrap;">No wrap: This text will not wrap to the next line even if it's very long</div>
+                <div class="font-demo" style="white-space: pre;">Pre:    Multiple    spaces    are    preserved</div>
+                <div class="font-demo" style="white-space: pre-wrap;">Pre-wrap:    Multiple    spaces    are    preserved    but    text    wraps</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Text Overflow</h2>
+            <div class="code-block">
+<span class="selector">.overflow-clip</span> {
+    <span class="property">white-space</span>: <span class="value">nowrap</span>;
+    <span class="property">overflow</span>: <span class="value">hidden</span>;
+    <span class="property">text-overflow</span>: <span class="value">clip</span>;
+}
+
+<span class="selector">.overflow-ellipsis</span> {
+    <span class="property">white-space</span>: <span class="value">nowrap</span>;
+    <span class="property">overflow</span>: <span class="value">hidden</span>;
+    <span class="property">text-overflow</span>: <span class="value">ellipsis</span>;
+}
+
+<span class="selector">.overflow-string</span> {
+    <span class="property">white-space</span>: <span class="value">nowrap</span>;
+    <span class="property">overflow</span>: <span class="value">hidden</span>;
+    <span class="property">text-overflow</span>: <span class="value">'...'</span>;
+}
+            </div>
+            <div class="result">
+                <div class="font-demo" style="white-space: nowrap; overflow: hidden; text-overflow: clip; width: 200px; border: 1px solid #ccc;">This text will be clipped when it overflows the container</div>
+                <div class="font-demo" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 200px; border: 1px solid #ccc;">This text will show ellipsis when it overflows</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Best Practices</h2>
+            <div class="code-block">
+<span class="comment">/* Use relative units for accessibility */</span>
+<span class="selector">body</span> {
+    <span class="property">font-size</span>: <span class="value">16px</span>;
+    <span class="property">line-height</span>: <span class="value">1.5</span>;
+}
+
+<span class="selector">h1</span> {
+    <span class="property">font-size</span>: <span class="value">2rem</span>;
+    <span class="property">line-height</span>: <span class="value">1.2</span>;
+}
+
+<span class="comment">/* Ensure sufficient contrast */</span>
+<span class="selector">.text-light</span> {
+    <span class="property">color</span>: <span class="value">#333</span>;
+    <span class="property">background-color</span>: <span class="value">#fff</span>;
+}
+
+<span class="selector">.text-dark</span> {
+    <span class="property">color</span>: <span class="value">#fff</span>;
+    <span class="property">background-color</span>: <span class="value">#333</span>;
+}
+
+<span class="comment">/* Use system fonts for better performance */</span>
+<span class="selector">.system-font</span> {
+    <span class="property">font-family</span>: <span class="value">system-ui, -apple-system, sans-serif</span>;
+}
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+</body>
+</html>

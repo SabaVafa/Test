@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Model - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .selector { color: #d73a49; }
+        .property { color: #0066cc; }
+        .value { color: #28a745; }
+        .comment { color: #6c757d; font-style: italic; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+        .box-demo {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .box-visual {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            padding: 20px;
+            margin: 10px 0;
+            position: relative;
+        }
+        .box-visual::before {
+            content: "Content";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 5px 10px;
+            border: 1px solid #2196f3;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        .margin-visual {
+            background: #ffebee;
+            border: 2px dashed #f44336;
+            padding: 40px;
+            margin: 20px;
+            position: relative;
+        }
+        .margin-visual::before {
+            content: "Margin";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #f44336;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+        }
+        .padding-visual {
+            background: #e8f5e8;
+            border: 2px solid #4caf50;
+            padding: 30px;
+            margin: 10px;
+            position: relative;
+        }
+        .padding-visual::before {
+            content: "Padding";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #4caf50;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+        }
+        .border-visual {
+            background: #fff3e0;
+            border: 4px solid #ff9800;
+            padding: 20px;
+            margin: 10px;
+            position: relative;
+        }
+        .border-visual::before {
+            content: "Border";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #ff9800;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+        }
+        .box-model-diagram {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .demo-box {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            padding: 15px;
+            margin: 10px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS Box Model</h1>
+        <p>This page demonstrates the CSS box model and how margin, padding, border, and content work together.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Box Model Overview</h2>
+            <div class="code-block">
+<span class="comment">/* The CSS Box Model consists of: */</span>
+<span class="comment">/* 1. Content - The actual content */</span>
+<span class="comment">/* 2. Padding - Space around the content */</span>
+<span class="comment">/* 3. Border - Goes around the padding */</span>
+<span class="comment">/* 4. Margin - Space outside the border */</span>
+
+<span class="selector">.box</span> {
+    <span class="property">width</span>: <span class="value">200px</span>; <span class="comment">/* Content width */</span>
+    <span class="property">height</span>: <span class="value">100px</span>; <span class="comment">/* Content height */</span>
+    <span class="property">padding</span>: <span class="value">20px</span>; <span class="comment">/* Space around content */</span>
+    <span class="property">border</span>: <span class="value">5px solid blue</span>; <span class="comment">/* Border around padding */</span>
+    <span class="property">margin</span>: <span class="value">10px</span>; <span class="comment">/* Space outside border */</span>
+}
+            </div>
+            <div class="result">
+                <div class="margin-visual">
+                    <div class="padding-visual">
+                        <div class="border-visual">
+                            <div class="box-visual" style="width: 100px; height: 60px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <p style="text-align: center; font-size: 12px; color: #666;">
+                    Red dashed = Margin | Green solid = Padding | Orange solid = Border | Blue solid = Content
+                </p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Width and Height</h2>
+            <div class="code-block">
+<span class="selector">.width-height-demo</span> {
+    <span class="property">width</span>: <span class="value">200px</span>; <span class="comment">/* Fixed width */</span>
+    <span class="property">height</span>: <span class="value">100px</span>; <span class="comment">/* Fixed height */</span>
+}
+
+<span class="selector">.width-height-percent</span> {
+    <span class="property">width</span>: <span class="value">50%</span>; <span class="comment">/* Percentage of parent */</span>
+    <span class="property">height</span>: <span class="value">auto</span>; <span class="comment">/* Auto height based on content */</span>
+}
+
+<span class="selector">.width-height-vw</span> {
+    <span class="property">width</span>: <span class="value">80vw</span>; <span class="comment">/* 80% of viewport width */</span>
+    <span class="property">height</span>: <span class="value">20vh</span>; <span class="comment">/* 20% of viewport height */</span>
+}
+
+<span class="selector">.width-height-min-max</span> {
+    <span class="property">min-width</span>: <span class="value">100px</span>; <span class="comment">/* Minimum width */</span>
+    <span class="property">max-width</span>: <span class="value">300px</span>; <span class="comment">/* Maximum width */</span>
+    <span class="property">min-height</span>: <span class="value">50px</span>; <span class="comment">/* Minimum height */</span>
+    <span class="property">max-height</span>: <span class="value">150px</span>; <span class="comment">/* Maximum height */</span>
+}
+            </div>
+            <div class="result">
+                <div class="demo-box" style="width: 200px; height: 100px;">200px × 100px</div>
+                <div class="demo-box" style="width: 50%; height: auto;">50% width, auto height</div>
+                <div class="demo-box" style="width: 80vw; height: 20vh;">80vw × 20vh</div>
+                <div class="demo-box" style="min-width: 100px; max-width: 300px; min-height: 50px; max-height: 150px;">Min/Max constraints</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Padding</h2>
+            <div class="code-block">
+<span class="comment">/* Individual padding properties */</span>
+<span class="selector">.padding-individual</span> {
+    <span class="property">padding-top</span>: <span class="value">10px</span>;
+    <span class="property">padding-right</span>: <span class="value">20px</span>;
+    <span class="property">padding-bottom</span>: <span class="value">15px</span>;
+    <span class="property">padding-left</span>: <span class="value">25px</span>;
+}
+
+<span class="comment">/* Shorthand padding */</span>
+<span class="selector">.padding-short</span> {
+    <span class="property">padding</span>: <span class="value">10px 20px</span>; <span class="comment">/* top/bottom left/right */</span>
+}
+
+<span class="selector">.padding-short-3</span> {
+    <span class="property">padding</span>: <span class="value">10px 20px 30px</span>; <span class="comment">/* top left/right bottom */</span>
+}
+
+<span class="selector">.padding-short-4</span> {
+    <span class="property">padding</span>: <span class="value">10px 20px 30px 40px</span>; <span class="comment">/* top right bottom left */</span>
+}
+
+<span class="comment">/* Different units */</span>
+<span class="selector">.padding-units</span> {
+    <span class="property">padding</span>: <span class="value">1em 2rem 10% 5vw</span>;
+}
+            </div>
+            <div class="result">
+                <div class="demo-box" style="padding: 10px 20px 15px 25px;">Padding: 10px 20px 15px 25px</div>
+                <div class="demo-box" style="padding: 10px 20px;">Padding: 10px 20px</div>
+                <div class="demo-box" style="padding: 10px 20px 30px;">Padding: 10px 20px 30px</div>
+                <div class="demo-box" style="padding: 2em;">Padding: 2em (all sides)</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Margin</h2>
+            <div class="code-block">
+<span class="comment">/* Individual margin properties */</span>
+<span class="selector">.margin-individual</span> {
+    <span class="property">margin-top</span>: <span class="value">10px</span>;
+    <span class="property">margin-right</span>: <span class="value">20px</span>;
+    <span class="property">margin-bottom</span>: <span class="value">15px</span>;
+    <span class="property">margin-left</span>: <span class="value">25px</span>;
+}
+
+<span class="comment">/* Shorthand margin */</span>
+<span class="selector">.margin-short</span> {
+    <span class="property">margin</span>: <span class="value">10px 20px</span>;
+}
+
+<span class="comment">/* Auto margin (centering) */</span>
+<span class="selector">.margin-auto</span> {
+    <span class="property">margin</span>: <span class="value">0 auto</span>; <span class="comment">/* Center horizontally */</span>
+}
+
+<span class="comment">/* Negative margin */</span>
+<span class="selector">.margin-negative</span> {
+    <span class="property">margin-top</span>: <span class="value">-10px</span>;
+}
+
+<span class="comment">/* Margin collapse */</span>
+<span class="selector">.margin-collapse</span> {
+    <span class="property">margin-top</span>: <span class="value">20px</span>;
+    <span class="property">margin-bottom</span>: <span class="value">20px</span>;
+}
+            </div>
+            <div class="result">
+                <div class="demo-box" style="margin: 10px 20px 15px 25px;">Margin: 10px 20px 15px 25px</div>
+                <div class="demo-box" style="margin: 10px 20px;">Margin: 10px 20px</div>
+                <div class="demo-box" style="margin: 0 auto; width: 200px;">Centered box (margin: 0 auto)</div>
+                <div class="demo-box" style="margin-top: -10px; border: 2px solid red;">Negative margin (-10px)</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Border</h2>
+            <div class="code-block">
+<span class="comment">/* Individual border properties */</span>
+<span class="selector">.border-individual</span> {
+    <span class="property">border-width</span>: <span class="value">2px</span>;
+    <span class="property">border-style</span>: <span class="value">solid</span>;
+    <span class="property">border-color</span>: <span class="value">blue</span>;
+}
+
+<span class="comment">/* Shorthand border */</span>
+<span class="selector">.border-short</span> {
+    <span class="property">border</span>: <span class="value">2px solid blue</span>;
+}
+
+<span class="comment">/* Individual sides */</span>
+<span class="selector">.border-sides</span> {
+    <span class="property">border-top</span>: <span class="value">3px solid red</span>;
+    <span class="property">border-right</span>: <span class="value">2px dashed green</span>;
+    <span class="property">border-bottom</span>: <span class="value">4px dotted blue</span>;
+    <span class="property">border-left</span>: <span class="value">1px solid orange</span>;
+}
+
+<span class="comment">/* Border radius */</span>
+<span class="selector">.border-radius</span> {
+    <span class="property">border-radius</span>: <span class="value">10px</span>;
+}
+
+<span class="selector">.border-radius-individual</span> {
+    <span class="property">border-top-left-radius</span>: <span class="value">10px</span>;
+    <span class="property">border-top-right-radius</span>: <span class="value">20px</span>;
+    <span class="property">border-bottom-right-radius</span>: <span class="value">30px</span>;
+    <span class="property">border-bottom-left-radius</span>: <span class="value">40px</span>;
+}
+            </div>
+            <div class="result">
+                <div class="demo-box" style="border: 2px solid blue;">Border: 2px solid blue</div>
+                <div class="demo-box" style="border-top: 3px solid red; border-right: 2px dashed green; border-bottom: 4px dotted blue; border-left: 1px solid orange;">Different borders per side</div>
+                <div class="demo-box" style="border: 2px solid #333; border-radius: 10px;">Border radius: 10px</div>
+                <div class="demo-box" style="border: 2px solid #333; border-radius: 10px 20px 30px 40px;">Border radius: 10px 20px 30px 40px</div>
+                <div class="demo-box" style="border: 2px solid #333; border-radius: 50%;">Circle (50% radius)</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Box Sizing</h2>
+            <div class="code-block">
+<span class="comment">/* Default box-sizing: content-box */</span>
+<span class="selector">.content-box</span> {
+    <span class="property">box-sizing</span>: <span class="value">content-box</span>;
+    <span class="property">width</span>: <span class="value">200px</span>;
+    <span class="property">padding</span>: <span class="value">20px</span>;
+    <span class="property">border</span>: <span class="value">5px solid blue</span>;
+    <span class="comment">/* Total width = 200 + 40 + 10 = 250px */</span>
+}
+
+<span class="comment">/* Border-box includes padding and border in width */</span>
+<span class="selector">.border-box</span> {
+    <span class="property">box-sizing</span>: <span class="value">border-box</span>;
+    <span class="property">width</span>: <span class="value">200px</span>;
+    <span class="property">padding</span>: <span class="value">20px</span>;
+    <span class="property">border</span>: <span class="value">5px solid blue</span>;
+    <span class="comment">/* Total width = 200px (content adjusts) */</span>
+}
+
+<span class="comment">/* Global border-box for easier layout */</span>
+<span class="selector">*, *::before, *::after</span> {
+    <span class="property">box-sizing</span>: <span class="value">border-box</span>;
+}
+            </div>
+            <div class="result">
+                <div class="demo-box" style="box-sizing: content-box; width: 200px; padding: 20px; border: 5px solid blue;">
+                    Content-box: 200px + 40px padding + 10px border = 250px total
+                </div>
+                <div class="demo-box" style="box-sizing: border-box; width: 200px; padding: 20px; border: 5px solid blue;">
+                    Border-box: Total width = 200px (content adjusts)
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Outline</h2>
+            <div class="code-block">
+<span class="selector">.outline-demo</span> {
+    <span class="property">outline</span>: <span class="value">3px solid red</span>;
+    <span class="property">outline-offset</span>: <span class="value">5px</span>;
+}
+
+<span class="comment">/* Outline vs Border */</span>
+<span class="selector">.outline-vs-border</span> {
+    <span class="property">border</span>: <span class="value">2px solid blue</span>;
+    <span class="property">outline</span>: <span class="value">3px solid red</span>;
+    <span class="property">outline-offset</span>: <span class="value">5px</span>;
+}
+
+<span class="comment">/* Focus outline */</span>
+<span class="selector">input:focus</span> {
+    <span class="property">outline</span>: <span class="value">2px solid #0066cc</span>;
+    <span class="property">outline-offset</span>: <span class="value">2px</span>;
+}
+            </div>
+            <div class="result">
+                <div class="demo-box" style="outline: 3px solid red; outline-offset: 5px;">Outline with offset</div>
+                <div class="demo-box" style="border: 2px solid blue; outline: 3px solid red; outline-offset: 5px;">Border + Outline</div>
+                <input type="text" placeholder="Focus me to see outline" style="padding: 10px; margin: 10px 0;">
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Display Property and Box Model</h2>
+            <div class="code-block">
+<span class="comment">/* Block elements (full width, stack vertically) */</span>
+<span class="selector">.block</span> {
+    <span class="property">display</span>: <span class="value">block</span>;
+    <span class="property">width</span>: <span class="value">200px</span>;
+    <span class="property">margin</span>: <span class="value">10px 0</span>;
+}
+
+<span class="comment">/* Inline elements (only take needed space, flow horizontally) */</span>
+<span class="selector">.inline</span> {
+    <span class="property">display</span>: <span class="value">inline</span>;
+    <span class="property">margin</span>: <span class="value">10px</span>;
+    <span class="comment">/* width/height don't work on inline elements */</span>
+}
+
+<span class="comment">/* Inline-block (flow horizontally but accept box model properties) */</span>
+<span class="selector">.inline-block</span> {
+    <span class="property">display</span>: <span class="value">inline-block</span>;
+    <span class="property">width</span>: <span class="value">100px</span>;
+    <span class="property">height</span>: <span class="value">50px</span>;
+    <span class="property">margin</span>: <span class="value">10px</span>;
+}
+            </div>
+            <div class="result">
+                <div class="demo-box" style="display: block; width: 200px; margin: 10px 0;">Block element</div>
+                <div class="demo-box" style="display: block; width: 200px; margin: 10px 0;">Another block</div>
+                
+                <div style="margin: 20px 0;">
+                    <span class="demo-box" style="display: inline; background: #e3f2fd; border: 1px solid #2196f3; padding: 5px;">Inline 1</span>
+                    <span class="demo-box" style="display: inline; background: #e3f2fd; border: 1px solid #2196f3; padding: 5px;">Inline 2</span>
+                    <span class="demo-box" style="display: inline; background: #e3f2fd; border: 1px solid #2196f3; padding: 5px;">Inline 3</span>
+                </div>
+                
+                <div style="margin: 20px 0;">
+                    <div class="demo-box" style="display: inline-block; width: 100px; height: 50px; margin: 10px;">Inline-block 1</div>
+                    <div class="demo-box" style="display: inline-block; width: 100px; height: 50px; margin: 10px;">Inline-block 2</div>
+                    <div class="demo-box" style="display: inline-block; width: 100px; height: 50px; margin: 10px;">Inline-block 3</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Overflow</h2>
+            <div class="code-block">
+<span class="selector">.overflow-visible</span> {
+    <span class="property">overflow</span>: <span class="value">visible</span>; <span class="comment">/* Default */</span>
+}
+
+<span class="selector">.overflow-hidden</span> {
+    <span class="property">overflow</span>: <span class="value">hidden</span>;
+}
+
+<span class="selector">.overflow-scroll</span> {
+    <span class="property">overflow</span>: <span class="value">scroll</span>;
+}
+
+<span class="selector">.overflow-auto</span> {
+    <span class="property">overflow</span>: <span class="value">auto</span>;
+}
+
+<span class="comment">/* Individual axes */</span>
+<span class="selector">.overflow-xy</span> {
+    <span class="property">overflow-x</span>: <span class="value">auto</span>;
+    <span class="property">overflow-y</span>: <span class="value">hidden</span>;
+}
+            </div>
+            <div class="result">
+                <div class="demo-box" style="overflow: visible; width: 200px; height: 60px;">
+                    Visible overflow: This content is longer than the container and will spill out
+                </div>
+                <div class="demo-box" style="overflow: hidden; width: 200px; height: 60px;">
+                    Hidden overflow: This content is longer than the container but is clipped
+                </div>
+                <div class="demo-box" style="overflow: scroll; width: 200px; height: 60px;">
+                    Scroll overflow: This content is longer than the container and shows scrollbars
+                </div>
+                <div class="demo-box" style="overflow: auto; width: 200px; height: 60px;">
+                    Auto overflow: This content is longer than the container and shows scrollbars when needed
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Box Shadow</h2>
+            <div class="code-block">
+<span class="selector">.box-shadow-simple</span> {
+    <span class="property">box-shadow</span>: <span class="value">2px 2px 5px rgba(0,0,0,0.2)</span>;
+}
+
+<span class="selector">.box-shadow-multiple</span> {
+    <span class="property">box-shadow</span>: <span class="value">0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)</span>;
+}
+
+<span class="selector">.box-shadow-inset</span> {
+    <span class="property">box-shadow</span>: <span class="value">inset 0 2px 4px rgba(0,0,0,0.1)</span>;
+}
+
+<span class="selector">.box-shadow-colored</span> {
+    <span class="property">box-shadow</span>: <span class="value">0 4px 8px rgba(255,0,0,0.3)</span>;
+}
+
+<span class="selector">.box-shadow-spread</span> {
+    <span class="property">box-shadow</span>: <span class="value">0 0 0 3px rgba(0,0,255,0.3)</span>;
+}
+            </div>
+            <div class="result">
+                <div class="demo-box" style="box-shadow: 2px 2px 5px rgba(0,0,0,0.2);">Simple shadow</div>
+                <div class="demo-box" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">Material shadow</div>
+                <div class="demo-box" style="box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);">Inset shadow</div>
+                <div class="demo-box" style="box-shadow: 0 4px 8px rgba(255,0,0,0.3);">Colored shadow</div>
+                <div class="demo-box" style="box-shadow: 0 0 0 3px rgba(0,0,255,0.3);">Spread shadow (outline effect)</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Visibility and Opacity</h2>
+            <div class="code-block">
+<span class="selector">.visibility-hidden</span> {
+    <span class="property">visibility</span>: <span class="value">hidden</span>; <span class="comment">/* Hidden but takes up space */</span>
+}
+
+<span class="selector">.visibility-visible</span> {
+    <span class="property">visibility</span>: <span class="value">visible</span>; <span class="comment">/* Default */</span>
+}
+
+<span class="selector">.opacity-zero</span> {
+    <span class="property">opacity</span>: <span class="value">0</span>; <span class="comment">/* Transparent but takes up space */</span>
+}
+
+<span class="selector">.opacity-half</span> {
+    <span class="property">opacity</span>: <span class="value">0.5</span>;
+}
+
+<span class="selector">.display-none</span> {
+    <span class="property">display</span>: <span class="value">none</span>; <span class="comment">/* Removed from layout */</span>
+}
+            </div>
+            <div class="result">
+                <div class="demo-box" style="visibility: hidden;">Hidden (visibility: hidden)</div>
+                <div class="demo-box" style="opacity: 0;">Transparent (opacity: 0)</div>
+                <div class="demo-box" style="opacity: 0.5;">50% opacity</div>
+                <div class="demo-box" style="display: none;">This is not displayed (display: none)</div>
+                <p>The space above shows the difference between visibility:hidden, opacity:0, and display:none</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Best Practices</h2>
+            <div class="code-block">
+<span class="comment">/* Use border-box for easier calculations */</span>
+<span class="selector">*, *::before, *::after</span> {
+    <span class="property">box-sizing</span>: <span class="value">border-box</span>;
+}
+
+<span class="comment">/* Remove default margins for consistent layout */</span>
+<span class="selector">body</span> {
+    <span class="property">margin</span>: <span class="value">0</span>;
+}
+
+<span class="comment">/* Use consistent spacing */</span>
+<span class="selector">:root</span> {
+    <span class="property">--spacing-xs</span>: <span class="value">4px</span>;
+    <span class="property">--spacing-sm</span>: <span class="value">8px</span>;
+    <span class="property">--spacing-md</span>: <span class="value">16px</span>;
+    <span class="property">--spacing-lg</span>: <span class="value">24px</span>;
+    <span class="property">--spacing-xl</span>: <span class="value">32px</span>;
+}
+
+<span class="comment">/* Handle margin collapse */</span>
+<span class="selector">.container</span> {
+    <span class="property">padding</span>: <span class="value">1rem</span>;
+}
+
+<span class="comment">/* Use overflow for content that might exceed container */</span>
+<span class="selector">.responsive-container</span> {
+    <span class="property">overflow</span>: <span class="value">auto</span>;
+    <span class="property">max-width</span>: <span class="value">100%</span>;
+}
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Transitions - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .selector { color: #d73a49; }
+        .property { color: #0066cc; }
+        .value { color: #28a745; }
+        .comment { color: #6c757d; font-style: italic; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+        
+        /* Transition demo styles */
+        .transition-box {
+            width: 100px;
+            height: 100px;
+            background: #2196f3;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+        
+        .transition-all:hover {
+            transform: scale(1.2);
+            background: #f44336;
+            border-radius: 50%;
+        }
+        
+        .transition-properties {
+            transition: background 0.3s ease, transform 0.5s ease, border-radius 0.2s ease;
+        }
+        
+        .transition-properties:hover {
+            background: #4caf50;
+            transform: rotate(45deg);
+            border-radius: 0;
+        }
+        
+        .transition-duration {
+            transition: all 2s ease;
+        }
+        
+        .transition-duration:hover {
+            transform: translateX(100px);
+            background: #ff9800;
+        }
+        
+        .transition-timing-linear {
+            transition: all 0.5s linear;
+        }
+        
+        .transition-timing-linear:hover {
+            transform: scale(1.5);
+            background: #9c27b0;
+        }
+        
+        .transition-timing-ease {
+            transition: all 0.5s ease;
+        }
+        
+        .transition-timing-ease:hover {
+            transform: scale(1.5);
+            background: #00bcd4;
+        }
+        
+        .transition-timing-ease-in {
+            transition: all 0.5s ease-in;
+        }
+        
+        .transition-timing-ease-in:hover {
+            transform: scale(1.5);
+            background: #795548;
+        }
+        
+        .transition-timing-ease-out {
+            transition: all 0.5s ease-out;
+        }
+        
+        .transition-timing-ease-out:hover {
+            transform: scale(1.5);
+            background: #607d8b;
+        }
+        
+        .transition-timing-ease-in-out {
+            transition: all 0.5s ease-in-out;
+        }
+        
+        .transition-timing-ease-in-out:hover {
+            transform: scale(1.5);
+            background: #e91e63;
+        }
+        
+        .transition-delay {
+            transition: all 0.3s ease 0.5s;
+        }
+        
+        .transition-delay:hover {
+            transform: translateY(-20px);
+            background: #3f51b5;
+        }
+        
+        .transition-multiple {
+            transition: 
+                background 0.3s ease,
+                transform 0.5s ease 0.1s,
+                border-radius 0.2s ease 0.2s,
+                opacity 0.4s ease 0.3s;
+        }
+        
+        .transition-multiple:hover {
+            background: #ff5722;
+            transform: rotate(180deg) scale(1.2);
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+        
+        .button-transition {
+            padding: 12px 24px;
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        
+        .button-transition:hover {
+            background: #1976d2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .button-transition:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .card-transition {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin: 10px;
+            max-width: 200px;
+        }
+        
+        .card-transition:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        
+        .input-transition {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        
+        .input-transition:focus {
+            outline: none;
+            border-color: #2196f3;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+        
+        .link-transition {
+            color: #2196f3;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 10px;
+        }
+        
+        .link-transition:hover {
+            color: #1976d2;
+            transform: translateX(5px);
+        }
+        
+        .image-transition {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin: 10px;
+        }
+        
+        .image-transition:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        
+        .navbar-transition {
+            background: #333;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-transition.scrolled {
+            background: #2196f3;
+            padding: 10px 15px;
+        }
+        
+        .navbar-transition a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-transition a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS Transitions</h1>
+        <p>This page demonstrates CSS transitions for creating smooth animations between state changes.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Basic Transition</h2>
+            <div class="code-block">
+<span class="selector">.basic-transition</span> {
+    <span class="property">transition</span>: <span class="value">all 0.3s ease</span>;
+}
+
+<span class="selector">.basic-transition:hover</span> {
+    <span class="property">background-color</span>: <span class="value">red</span>;
+    <span class="property">transform</span>: <span class="value">scale(1.2)</span>;
+}
+
+<span class="comment">/* Transition properties breakdown */</span>
+<span class="selector">.detailed-transition</span> {
+    <span class="property">transition-property</span>: <span class="value">background-color, transform</span>;
+    <span class="property">transition-duration</span>: <span class="value">0.3s</span>;
+    <span class="property">transition-timing-function</span>: <span class="value">ease</span>;
+    <span class="property">transition-delay</span>: <span class="value">0s</span>;
+}
+            </div>
+            <div class="result">
+                <div class="transition-box transition-all">Hover me</div>
+                <p><small>All properties transition over 0.3s with ease timing</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Transition Properties</h2>
+            <div class="code-block">
+<span class="selector">.specific-properties</span> {
+    <span class="property">transition</span>: <span class="value">background 0.3s ease, transform 0.5s ease, border-radius 0.2s ease</span>;
+}
+
+<span class="comment">/* Common transition properties */</span>
+<span class="selector">.common-transitions</span> {
+    <span class="property">transition</span>: <span class="value">background-color 0.3s ease</span>;
+    <span class="property">transition</span>: <span class="value">color 0.3s ease</span>;
+    <span class="property">transition</span>: <span class="value">border-color 0.3s ease</span>;
+    <span class="property">transition</span>: <span class="value">transform 0.3s ease</span>;
+    <span class="property">transition</span>: <span class="value">opacity 0.3s ease</span>;
+    <span class="property">transition</span>: <span class="value">box-shadow 0.3s ease</span>;
+    <span class="property">transition</span>: <span class="value">width 0.3s ease</span>;
+    <span class="property">transition</span>: <span class="value">height 0.3s ease</span>;
+}
+            </div>
+            <div class="result">
+                <div class="transition-box transition-properties">Hover me</div>
+                <p><small>Different properties transition at different speeds</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Transition Duration</h2>
+            <div class="code-block">
+<span class="selector">.fast-transition</span> {
+    <span class="property">transition</span>: <span class="value">all 0.1s ease</span>;
+}
+
+<span class="selector">.slow-transition</span> {
+    <span class="property">transition</span>: <span class="value">all 2s ease</span>;
+}
+
+<span class="selector">.custom-duration</span> {
+    <span class="property">transition</span>: <span class="value">transform 0.5s ease, background 0.2s ease</span>;
+}
+
+<span class="comment">/* Duration units */</span>
+<span class="selector">.duration-units</span> {
+    <span class="property">transition-duration</span>: <span class="value">500ms</span>; <span class="comment">/* milliseconds */</span>
+    <span class="property">transition-duration</span>: <span class="value">0.5s</span>; <span class="comment">/* seconds */</span>
+}
+            </div>
+            <div class="result">
+                <div class="transition-box transition-duration">Hover me (2s)</div>
+                <p><small>Longer duration for more dramatic effect</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Timing Functions</h2>
+            <div class="code-block">
+<span class="selector">.linear</span> {
+    <span class="property">transition</span>: <span class="value">all 0.5s linear</span>; <span class="comment">/* Constant speed */</span>
+}
+
+<span class="selector">.ease</span> {
+    <span class="property">transition</span>: <span class="value">all 0.5s ease</span>; <span class="comment">/* Slow start, fast middle, slow end */</span>
+}
+
+<span class="selector">.ease-in</span> {
+    <span class="property">transition</span>: <span class="value">all 0.5s ease-in</span>; <span class="comment">/* Slow start, fast end */</span>
+}
+
+<span class="selector">.ease-out</span> {
+    <span class="property">transition</span>: <span class="value">all 0.5s ease-out</span>; <span class="comment">/* Fast start, slow end */</span>
+}
+
+<span class="selector">.ease-in-out</span> {
+    <span class="property">transition</span>: <span class="value">all 0.5s ease-in-out</span>; <span class="comment">/* Slow start and end */</span>
+}
+
+<span class="comment">/* Cubic bezier curves */</span>
+<span class="selector">.custom-timing</span> {
+    <span class="property">transition</span>: <span class="value">all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)</span>;
+}
+            </div>
+            <div class="result">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 20px 0;">
+                    <div class="transition-box transition-timing-linear">Linear</div>
+                    <div class="transition-box transition-timing-ease">Ease</div>
+                    <div class="transition-box transition-timing-ease-in">Ease-in</div>
+                    <div class="transition-box transition-timing-ease-out">Ease-out</div>
+                    <div class="transition-box transition-timing-ease-in-out">Ease-in-out</div>
+                </div>
+                <p><small>Hover each box to see different timing functions</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Transition Delay</h2>
+            <div class="code-block">
+<span class="selector">.delayed-transition</span> {
+    <span class="property">transition</span>: <span class="value">all 0.3s ease 0.5s</span>; <span class="comment">/* 0.5s delay */</span>
+}
+
+<span class="selector">.multi-delay</span> {
+    <span class="property">transition</span>: <span class="value">transform 0.3s ease 0.1s, background 0.3s ease 0.2s, opacity 0.3s ease 0.3s</span>;
+}
+
+<span class="comment">/* Separate delay property */</span>
+<span class="selector">.separate-delay</span> {
+    <span class="property">transition-property</span>: <span class="value">all</span>;
+    <span class="property">transition-duration</span>: <span class="value">0.3s</span>;
+    <span class="property">transition-timing-function</span>: <span class="value">ease</span>;
+    <span class="property">transition-delay</span>: <span class="value">0.5s</span>;
+}
+            </div>
+            <div class="result">
+                <div class="transition-box transition-delay">Hover me (0.5s delay)</div>
+                <p><small>Wait 0.5 seconds before transition starts</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Multiple Transitions</h2>
+            <div class="code-block">
+<span class="selector">.multiple-transitions</span> {
+    <span class="property">transition</span>: 
+        <span class="value">background 0.3s ease</span>,
+        <span class="value">transform 0.5s ease 0.1s</span>,
+        <span class="value">border-radius 0.2s ease 0.2s</span>,
+        <span class="value">opacity 0.4s ease 0.3s</span>;
+}
+
+<span class="selector">.multiple-transitions:hover</span> {
+    <span class="property">background</span>: <span class="value">red</span>;
+    <span class="property">transform</span>: <span class="value">rotate(180deg) scale(1.2)</span>;
+    <span class="property">border-radius</span>: <span class="value">50%</span>;
+    <span class="property">opacity</span>: <span class="value">0.8</span>;
+}
+            </div>
+            <div class="result">
+                <div class="transition-box transition-multiple">Hover me</div>
+                <p><small>Multiple properties transition at different times</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Button Transitions</h2>
+            <div class="code-block">
+<span class="selector">.btn</span> {
+    <span class="property">padding</span>: <span class="value">12px 24px</span>;
+    <span class="property">background</span>: <span class="value">#2196f3</span>;
+    <span class="property">color</span>: <span class="value">white</span>;
+    <span class="property">border</span>: <span class="value">none</span>;
+    <span class="property">border-radius</span>: <span class="value">4px</span>;
+    <span class="property">cursor</span>: <span class="value">pointer</span>;
+    <span class="property">transition</span>: <span class="value">all 0.3s ease</span>;
+}
+
+<span class="selector">.btn:hover</span> {
+    <span class="property">background</span>: <span class="value">#1976d2</span>;
+    <span class="property">transform</span>: <span class="value">translateY(-2px)</span>;
+    <span class="property">box-shadow</span>: <span class="value">0 4px 8px rgba(0,0,0,0.2)</span>;
+}
+
+<span class="selector">.btn:active</span> {
+    <span class="property">transform</span>: <span class="value">translateY(0)</span>;
+    <span class="property">box-shadow</span>: <span class="value">0 2px 4px rgba(0,0,0,0.2)</span>;
+}
+            </div>
+            <div class="result">
+                <button class="button-transition">Hover me</button>
+                <button class="button-transition">Click me</button>
+                <p><small>Buttons with hover and active states</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Card Transitions</h2>
+            <div class="code-block">
+<span class="selector">.card</span> {
+    <span class="property">background</span>: <span class="value">white</span>;
+    <span class="property">border-radius</span>: <span class="value">8px</span>;
+    <span class="property">padding</span>: <span class="value">20px</span>;
+    <span class="property">box-shadow</span>: <span class="value">0 2px 4px rgba(0,0,0,0.1)</span>;
+    <span class="property">transition</span>: <span class="value">all 0.3s ease</span>;
+    <span class="property">cursor</span>: <span class="value">pointer</span>;
+}
+
+<span class="selector">.card:hover</span> {
+    <span class="property">transform</span>: <span class="value">translateY(-5px)</span>;
+    <span class="property">box-shadow</span>: <span class="value">0 8px 16px rgba(0,0,0,0.2)</span>;
+}
+            </div>
+            <div class="result">
+                <div class="card-transition">
+                    <h3>Card Title</h3>
+                    <p>Hover over this card to see the transition effect.</p>
+                </div>
+                <div class="card-transition">
+                    <h3>Another Card</h3>
+                    <p>Cards lift up and cast shadows on hover.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Form Input Transitions</h2>
+            <div class="code-block">
+<span class="selector">.form-input</span> {
+    <span class="property">padding</span>: <span class="value">10px</span>;
+    <span class="property">border</span>: <span class="value">2px solid #ddd</span>;
+    <span class="property">border-radius</span>: <span class="value">4px</span>;
+    <span class="property">font-size</span>: <span class="value">16px</span>;
+    <span class="property">transition</span>: <span class="value">all 0.3s ease</span>;
+}
+
+<span class="selector">.form-input:focus</span> {
+    <span class="property">outline</span>: <span class="value">none</span>;
+    <span class="property">border-color</span>: <span class="value">#2196f3</span>;
+    <span class="property">box-shadow</span>: <span class="value">0 0 0 3px rgba(33, 150, 243, 0.1)</span>;
+}
+
+<span class="selector">.form-input:hover</span> {
+    <span class="property">border-color</span>: <span class="value">#999</span>;
+}
+            </div>
+            <div class="result">
+                <input type="text" class="input-transition" placeholder="Focus me">
+                <input type="email" class="input-transition" placeholder="Email input">
+                <p><small>Inputs with focus and hover transitions</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Link Transitions</h2>
+            <div class="code-block">
+<span class="selector">.link</span> {
+    <span class="property">color</span>: <span class="value">#2196f3</span>;
+    <span class="property">text-decoration</span>: <span class="value">none</span>;
+    <span class="property">transition</span>: <span class="value">all 0.3s ease</span>;
+    <span class="property">display</span>: <span class="value">inline-block</span>;
+}
+
+<span class="selector">.link:hover</span> {
+    <span class="property">color</span>: <span class="value">#1976d2</span>;
+    <span class="property">transform</span>: <span class="value">translateX(5px)</span>;
+}
+
+<span class="selector">.link-underline</span> {
+    <span class="property">position</span>: <span class="value">relative</span>;
+    <span class="property">text-decoration</span>: <span class="value">none</span>;
+    <span class="property">color</span>: <span class="value">#2196f3</span>;
+}
+
+<span class="selector">.link-underline::after</span> {
+    <span class="property">content</span>: <span class="value">''</span>;
+    <span class="property">position</span>: <span class="value">absolute</span>;
+    <span class="property">bottom</span>: <span class="value">-2px</span>;
+    <span class="property">left</span>: <span class="value">0</span>;
+    <span class="property">width</span>: <span class="value">0</span>;
+    <span class="property">height</span>: <span class="value">2px</span>;
+    <span class="property">background</span>: <span class="value">#2196f3</span>;
+    <span class="property">transition</span>: <span class="value">width 0.3s ease</span>;
+}
+
+<span class="selector">.link-underline:hover::after</span> {
+    <span class="property">width</span>: <span class="value">100%</span>;
+}
+            </div>
+            <div class="result">
+                <a href="#" class="link-transition">Hover link</a>
+                <a href="#" class="link-transition">Another link</a>
+                <p><small>Links with slide and color transitions</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Image Transitions</h2>
+            <div class="code-block">
+<span class="selector">.image-hover</span> {
+    <span class="property">width</span>: <span class="value">150px</span>;
+    <span class="property">height</span>: <span class="value">150px</span>;
+    <span class="property">border-radius</span>: <span class="value">8px</span>;
+    <span class="property">transition</span>: <span class="value">all 0.3s ease</span>;
+    <span class="property">cursor</span>: <span class="value">pointer</span>;
+}
+
+<span class="selector">.image-hover:hover</span> {
+    <span class="property">transform</span>: <span class="value">scale(1.1)</span>;
+    <span class="property">box-shadow</span>: <span class="value">0 8px 16px rgba(0,0,0,0.3)</span>;
+}
+
+<span class="selector">.image-grayscale</span> {
+    <span class="property">filter</span>: <span class="value">grayscale(100%)</span>;
+    <span class="property">transition</span>: <span class="value">filter 0.3s ease</span>;
+}
+
+<span class="selector">.image-grayscale:hover</span> {
+    <span class="property">filter</span>: <span class="value">grayscale(0%)</span>;
+}
+            </div>
+            <div class="result">
+                <div class="image-transition" style="background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);">Image</div>
+                <div class="image-transition" style="background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);">Image</div>
+                <p><small>Images with scale and shadow transitions</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Navigation Bar Transitions</h2>
+            <div class="code-block">
+<span class="selector">.navbar</span> {
+    <span class="property">background</span>: <span class="value">#333</span>;
+    <span class="property">padding</span>: <span class="value">15px</span>;
+    <span class="property">transition</span>: <span class="value">all 0.3s ease</span>;
+}
+
+<span class="selector">.navbar.scrolled</span> {
+    <span class="property">background</span>: <span class="value">#2196f3</span>;
+    <span class="property">padding</span>: <span class="value">10px 15px</span>;
+}
+
+<span class="selector">.navbar a</span> {
+    <span class="property">color</span>: <span class="value">white</span>;
+    <span class="property">text-decoration</span>: <span class="value">none</span>;
+    <span class="property">padding</span>: <span class="value">8px 16px</span>;
+    <span class="property">border-radius</span>: <span class="value">4px</span>;
+    <span class="property">transition</span>: <span class="value">all 0.3s ease</span>;
+}
+
+<span class="selector">.navbar a:hover</span> {
+    <span class="property">background</span>: <span class="value">rgba(255,255,255,0.1)</span>;
+}
+            </div>
+            <div class="result">
+                <div class="navbar-transition">
+                    <div>Logo</div>
+                    <div>
+                        <a href="#">Home</a>
+                        <a href="#">About</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+                <p><small>Navigation bar with link transitions</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Performance Considerations</h2>
+            <div class="code-block">
+<span class="comment">/* Use transform and opacity for better performance */</span>
+<span class="selector">.performant-transition</span> {
+    <span class="property">transition</span>: <span class="value">transform 0.3s ease, opacity 0.3s ease</span>;
+}
+
+<span class="comment">/* Avoid these properties for smooth animations */</span>
+<span class="comment">/* width, height, padding, margin, left, top */</span>
+
+<span class="comment">/* Use will-change for complex animations */</span>
+<span class="selector">.complex-animation</span> {
+    <span class="property">will-change</span>: <span class="value">transform, opacity</span>;
+}
+
+<span class="comment">/* Remove will-change after animation */</span>
+<span class="selector">.complex-animation.animation-end</span> {
+    <span class="property">will-change</span>: <span class="value">auto</span>;
+}
+
+<span class="comment">/* Use hardware acceleration */</span>
+<span class="selector">.hardware-accelerated</span> {
+    <span class="property">transform</span>: <span class="value">translateZ(0)</span>;
+    <span class="property">backface-visibility</span>: <span class="value">hidden</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Best Practices</h2>
+            <div class="code-block">
+<span class="comment">/* Keep transitions short and subtle */</span>
+<span class="selector">.good-transition</span> {
+    <span class="property">transition</span>: <span class="value">all 0.2s ease</span>;
+}
+
+<span class="comment">/* Use consistent timing across your site */</span>
+<span class="selector">:root</span> {
+    <span class="property">--transition-fast</span>: <span class="value">0.15s ease</span>;
+    <span class="property">--transition-normal</span>: <span class="value">0.3s ease</span>;
+    <span class="property">--transition-slow</span>: <span class="value">0.5s ease</span>;
+}
+
+<span class="comment">/* Consider accessibility */</span>
+<span class="selector">@media (prefers-reduced-motion: reduce)</span> {
+    <span class="selector">*</span> {
+        <span class="property">transition</span>: <span class="value">none !important</span>;
+    }
+}
+
+<span class="comment">/* Add transitions to interactive elements only */</span>
+<span class="selector">button, a, input, .interactive</span> {
+    <span class="property">transition</span>: <span class="value">var(--transition-normal)</span>;
+}
+
+<span class="comment">/* Test on mobile devices */</span>
+<span class="selector">.mobile-friendly</span> {
+    <span class="property">transition</span>: <span class="value">transform 0.3s ease</span>; <span class="comment">/* Works well on touch */</span>
+}
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+</body>
+</html>

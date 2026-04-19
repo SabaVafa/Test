@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .selector { color: #d73a49; }
+        .property { color: #0066cc; }
+        .value { color: #28a745; }
+        .comment { color: #6c757d; font-style: italic; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+        
+        /* Demo styles */
+        .element-demo { color: red; font-weight: bold; }
+        .class-demo { color: blue; font-style: italic; }
+        #id-demo { color: green; text-decoration: underline; }
+        
+        .descendant-demo div { background: #ffe6e6; padding: 10px; margin: 5px; }
+        .child-demo > div { background: #e6f3ff; padding: 10px; margin: 5px; }
+        .adjacent-demo + p { background: #e6ffe6; padding: 10px; }
+        .general-demo ~ p { background: #fff0e6; padding: 10px; }
+        
+        .attribute-demo[type="text"] { border: 2px solid red; }
+        .attribute-demo[type="password"] { border: 2px solid blue; }
+        
+        .pseudo-first:first-child { background: yellow; }
+        .pseudo-last:last-child { background: lightblue; }
+        .pseudo-nth:nth-child(2) { background: lightgreen; }
+        
+        .pseudo-hover:hover { background: #f0f0f0; cursor: pointer; }
+        .pseudo-focus:focus { outline: 2px solid blue; }
+        
+        .pseudo-before::before { content: "Before: "; color: red; }
+        .pseudo-after::after { content: " :After"; color: blue; }
+        
+        .group-demo, .group-demo-2 { font-size: 18px; color: purple; }
+        
+        .universal-demo * { border: 1px solid #ccc; padding: 5px; margin: 2px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS Selectors</h1>
+        <p>This page demonstrates different types of CSS selectors and how to target HTML elements.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Basic Selectors</h2>
+            <div class="code-block">
+<span class="comment">/* Element selector */</span>
+<span class="selector">p</span> { <span class="property">color</span>: <span class="value">red</span>; <span class="property">font-weight</span>: <span class="value">bold</span>; }
+
+<span class="comment">/* Class selector */</span>
+<span class="selector">.highlight</span> { <span class="property">color</span>: <span class="value">blue</span>; <span class="property">font-style</span>: <span class="value">italic</span>; }
+
+<span class="comment">/* ID selector */</span>
+<span class="selector">#header</span> { <span class="property">color</span>: <span class="value">green</span>; <span class="property">text-decoration</span>: <span class="value">underline</span>; }
+
+<span class="comment">/* Universal selector */</span>
+<span class="selector">*</span> { <span class="property">margin</span>: <span class="value">0</span>; <span class="property">padding</span>: <span class="value">0</span>; }
+            </div>
+            <div class="result">
+                <p class="element-demo">This paragraph uses element selector (p)</p>
+                <p class="class-demo">This paragraph uses class selector (.class-demo)</p>
+                <p id="id-demo">This paragraph uses ID selector (#id-demo)</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Combination Selectors</h2>
+            <div class="code-block">
+<span class="comment">/* Descendant selector (space) */</span>
+<span class="selector">div p</span> { <span class="property">background</span>: <span class="value">#ffe6e6</span>; }
+
+<span class="comment">/* Child selector (>) */</span>
+<span class="selector">ul > li</span> { <span class="property">background</span>: <span class="value">#e6f3ff</span>; }
+
+<span class="comment">/* Adjacent sibling selector (+) */</span>
+<span class="selector">h2 + p</span> { <span class="property">background</span>: <span class="value">#e6ffe6</span>; }
+
+<span class="comment">/* General sibling selector (~) */</span>
+<span class="selector">h2 ~ p</span> { <span class="property">background</span>: <span class="value">#fff0e6</span>; }
+            </div>
+            <div class="result">
+                <div class="descendant-demo">
+                    <div>Descendant level 1</div>
+                    <div>
+                        <div>Descendant level 2</div>
+                    </div>
+                </div>
+                
+                <div class="child-demo">
+                    <div>Child level 1</div>
+                    <div>
+                        <div>Child level 2 (not directly selected)</div>
+                    </div>
+                </div>
+                
+                <p class="adjacent-demo">This paragraph is adjacent to the previous element</p>
+                <p class="general-demo">This paragraph is a general sibling</p>
+                <p class="general-demo">This is also a general sibling</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Attribute Selectors</h2>
+            <div class="code-block">
+<span class="comment">/* Attribute exists */</span>
+<span class="selector">[disabled]</span> { <span class="property">opacity</span>: <span class="value">0.5</span>; }
+
+<span class="comment">/* Attribute equals value */</span>
+<span class="selector">input[type="text"]</span> { <span class="property">border</span>: <span class="value">2px solid red</span>; }
+
+<span class="comment">/* Attribute contains word */</span>
+<span class="selector">[class~="highlight"]</span> { <span class="property">background</span>: <span class="value">yellow</span>; }
+
+<span class="comment">/* Attribute starts with */</span>
+<span class="selector">[href^="https"]</span> { <span class="property">color</span>: <span class="value">green</span>; }
+
+<span class="comment">/* Attribute ends with */</span>
+<span class="selector">[src$=".jpg"]</span> { <span class="property">border</span>: <span class="value">1px solid blue</span>; }
+
+<span class="comment">/* Attribute contains substring */</span>
+<span class="selector">[class*="demo"]</span> { <span class="property">font-weight</span>: <span class="value">bold</span>; }
+            </div>
+            <div class="result">
+                <input type="text" class="attribute-demo" placeholder="Text input (red border)"><br><br>
+                <input type="password" class="attribute-demo" placeholder="Password input (blue border)"><br><br>
+                <input type="email" class="attribute-demo" placeholder="Email input (default border)">
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Pseudo-class Selectors</h2>
+            <div class="code-block">
+<span class="comment">/* Dynamic pseudo-classes */</span>
+<span class="selector">a:hover</span> { <span class="property">color</span>: <span class="value">red</span>; }
+<span class="selector">input:focus</span> { <span class="property">outline</span>: <span class="value">2px solid blue</span>; }
+<span class="selector">a:active</span> { <span class="property">color</span>: <span class="value">green</span>; }
+
+<span class="comment">/* Structural pseudo-classes */</span>
+<span class="selector">li:first-child</span> { <span class="property">background</span>: <span class="value">yellow</span>; }
+<span class="selector">li:last-child</span> { <span class="property">background</span>: <span class="value">lightblue</span>; }
+<span class="selector">li:nth-child(2)</span> { <span class="property">background</span>: <span class="value">lightgreen</span>; }
+<span class="selector">li:nth-child(odd)</span> { <span class="property">font-weight</span>: <span class="value">bold</span>; }
+<span class="selector">li:nth-child(even)</span> { <span class="property">font-style</span>: <span class="value">italic</span>; }
+
+<span class="comment">/* UI state pseudo-classes */</span>
+<span class="selector">input:checked</span> { <span class="property">margin-left</span>: <span class="value">20px</span>; }
+<span class="selector">input:disabled</span> { <span class="property">opacity</span>: <span class="value">0.5</span>; }
+<span class="selector">input:enabled</span> { <span class="property">background</span>: <span class="value">white</span>; }
+
+<span class="comment">/* Language pseudo-class */</span>
+<span class="selector">p:lang(en)</span> { <span class="property">quotes</span>: <span class="value">'"' '"'</span>; }
+            </div>
+            <div class="result">
+                <ul>
+                    <li class="pseudo-first">First item (yellow background)</li>
+                    <li class="pseudo-nth">Second item (lightgreen background)</li>
+                    <li>Third item (odd, bold)</li>
+                    <li class="pseudo-last">Fourth item (lightblue background)</li>
+                </ul>
+                
+                <div>
+                    <label><input type="checkbox"> Checkbox (checked state adds margin)</label><br>
+                    <input type="text" class="pseudo-focus" placeholder="Focus me (blue outline)"><br>
+                    <input type="text" disabled placeholder="Disabled input (50% opacity)">
+                </div>
+                
+                <div>
+                    <a href="#" class="pseudo-hover">Hover over this link</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Pseudo-element Selectors</h2>
+            <div class="code-block">
+<span class="comment">/* ::before and ::after */</span>
+<span class="selector">.quote::before</span> { <span class="property">content</span>: <span class="value">'"'</span>; <span class="property">color</span>: <span class="value">red</span>; }
+<span class="selector">.quote::after</span> { <span class="property">content</span>: <span class="value">'"'</span>; <span class="property">color</span>: <span class="value">red</span>; }
+
+<span class="comment">/* ::first-line and ::first-letter */</span>
+<span class="selector">p::first-line</span> { <span class="property">color</span>: <span class="value">blue</span>; }
+<span class="selector">p::first-letter</span> { <span class="property">font-size</span>: <span class="value">2em</span>; <span class="property">color</span>: <span class="value">red</span>; }
+
+<span class="comment">/* ::selection */</span>
+<span class="selector">::selection</span> { <span class="property">background</span>: <span class="value">yellow</span>; <span class="property">color</span>: <span class="value">black</span>; }
+            </div>
+            <div class="result">
+                <p class="pseudo-before">This paragraph has ::before and ::after pseudo-elements</p>
+                <p style="color: blue; font-size: 16px;">
+                    <span style="font-size: 2em; color: red; float: left; line-height: 1;">T</span>his paragraph has ::first-letter and ::first-line pseudo-elements. The first letter is larger and red, while the first line is blue.
+                </p>
+                <p>Try selecting this text to see the ::selection pseudo-element in action.</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Grouping Selectors</h2>
+            <div class="code-block">
+<span class="comment">/* Group multiple selectors with same styles */</span>
+<span class="selector">h1, h2, h3</span> { <span class="property">font-family</span>: <span class="value">Arial, sans-serif</span>; }
+<span class="selector">.class1, .class2, #id1</span> { <span class="property">color</span>: <span class="value">purple</span>; }
+            </div>
+            <div class="result">
+                <p class="group-demo">This paragraph uses grouped selector (purple, 18px)</p>
+                <p class="group-demo-2">This paragraph also uses grouped selector</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Advanced Selectors</h2>
+            <div class="code-block">
+<span class="comment">/* :not() pseudo-class */</span>
+<span class="selector">p:not(.highlight)</span> { <span class="property">color</span>: <span class="value">gray</span>; }
+
+<span class="comment">/* :empty pseudo-class */</span>
+<span class="selector">div:empty</span> { <span class="property">background</span>: <span class="value">lightgray</span>; <span class="property">height</span>: <span class="value">20px</span>; }
+
+<span class="comment">/* :nth-of-type() */</span>
+<span class="selector">p:nth-of-type(2)</span> { <span class="property">border</span>: <span class="value">2px solid red</span>; }
+
+<span class="comment">/* :only-child */</span>
+<span class="selector">span:only-child</span> { <span class="property">background</span>: <span class="value">yellow</span>; }
+
+<span class="comment">/* :root */</span>
+<span class="selector">:root</span> { <span class="property">--main-color</span>: <span class="value">blue</span>; }
+            </div>
+            <div class="result">
+                <div style="border: 1px solid #ccc; padding: 10px; margin: 10px 0;">
+                    <p>First paragraph (not highlighted, so gray)</p>
+                    <p style="border: 2px solid red;">Second paragraph (nth-of-type(2), red border)</p>
+                    <p class="highlight">Third paragraph (highlighted class, not gray)</p>
+                </div>
+                
+                <div>
+                    <span style="background: yellow;">Only child span (yellow background)</span>
+                </div>
+                
+                <div style="background: lightgray; height: 20px; margin: 10px 0;"></div>
+                <p><small>Empty div above (styled with :empty)</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Selector Specificity Examples</h2>
+            <div class="code-block">
+<span class="comment">/* Specificity hierarchy (highest to lowest): */</span>
+<span class="comment">/* 1. Inline styles */</span>
+<span class="comment">/* 2. ID selectors */</span>
+<span class="selector">#id</span> { <span class="property">color</span>: <span class="value">red</span>; } <span class="comment">/* Specificity: 100 */</span>
+
+<span class="comment">/* 3. Class selectors, attribute selectors, pseudo-classes */</span>
+<span class="selector">.class</span> { <span class="property">color</span>: <span class="value">blue</span>; } <span class="comment">/* Specificity: 10 */</span>
+<span class="selector">[type="text"]</span> { <span class="property">color</span>: <span class="value">green</span>; } <span class="comment">/* Specificity: 10 */</span>
+<span class="selector">:hover</span> { <span class="property">color</span>: <span class="value">orange</span>; } <span class="comment">/* Specificity: 10 */</span>
+
+<span class="comment">/* 4. Element selectors, pseudo-elements */</span>
+<span class="selector">p</span> { <span class="property">color</span>: <span class="value">black</span>; } <span class="comment">/* Specificity: 1 */</span>
+<span class="selector">::before</span> { <span class="property">content</span>: <span class="value">""</span>; } <span class="comment">/* Specificity: 1 */</span>
+
+<span class="comment">/* 5. Universal selector */</span>
+<span class="selector">*</span> { <span class="property">margin</span>: <span class="value">0</span>; } <span class="comment">/* Specificity: 0 */</span>
+
+<span class="comment">/* Combining selectors adds specificity */</span>
+<span class="selector">#id .class p</span> { <span class="property">color</span>: <span class="value">purple</span>; } <span class="comment">/* Specificity: 100 + 10 + 1 = 111 */</span>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Best Practices</h2>
+            <div class="code-block">
+<span class="comment">/* Use class selectors for reusable styles */</span>
+<span class="selector">.btn-primary</span> { <span class="property">background</span>: <span class="value">blue</span>; }
+<span class="selector">.btn-secondary</span> { <span class="property">background</span>: <span class="value">gray</span>; }
+
+<span class="comment">/* Use ID selectors sparingly (only for unique elements) */</span>
+<span class="selector">#main-header</span> { <span class="property">position</span>: <span class="value">fixed</span>; }
+
+<span class="comment">/* Avoid overly specific selectors */</span>
+<span class="comment">/* Bad: */</span>
+<span class="selector">div.container > ul.nav > li.item > a.link</span> { }
+
+<span class="comment">/* Good: */</span>
+<span class="selector">.nav-link</span> { }
+
+<span class="comment">/* Use semantic HTML with appropriate selectors */</span>
+<span class="selector">article</span> { <span class="property">margin</span>: <span class="value">20px</span>; }
+<span class="selector">aside</span> { <span class="property">float</span>: <span class="value">right</span>; }
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+</body>
+</html>

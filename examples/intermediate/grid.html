@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .selector { color: #d73a49; }
+        .property { color: #0066cc; }
+        .value { color: #28a745; }
+        .comment { color: #6c757d; font-style: italic; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+        .grid-container {
+            background: #f0f0f0;
+            border: 2px solid #333;
+            padding: 10px;
+            margin: 10px 0;
+            min-height: 100px;
+            display: grid;
+            gap: 10px;
+        }
+        .grid-item {
+            background: #2196f3;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .grid-item-1 { background: #f44336; }
+        .grid-item-2 { background: #4caf50; }
+        .grid-item-3 { background: #ff9800; }
+        .grid-item-4 { background: #9c27b0; }
+        .grid-item-5 { background: #00bcd4; }
+        .grid-item-6 { background: #795548; }
+        .grid-item-7 { background: #607d8b; }
+        .grid-item-8 { background: #e91e63; }
+        .grid-item-9 { background: #3f51b5; }
+        
+        .grid-basic { grid-template-columns: 1fr 1fr 1fr; }
+        .grid-2x3 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr 1fr; }
+        .grid-fixed { grid-template-columns: 200px 200px 200px; }
+        .grid-mixed { grid-template-columns: 200px 1fr 100px; }
+        .grid-repeat { grid-template-columns: repeat(3, 1fr); }
+        .grid-auto { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+        .grid-tracks { grid-template-columns: 100px 2fr 1fr 50px; }
+        .grid-areas { 
+            grid-template-areas: 
+                "header header header"
+                "sidebar content content"
+                "footer footer footer";
+            grid-template-columns: 200px 1fr 1fr;
+            grid-template-rows: auto 1fr auto;
+        }
+        .grid-dense { grid-auto-flow: dense; }
+        
+        .item-span-2 { grid-column: span 2; }
+        .item-span-3 { grid-column: span 3; }
+        .item-row-span-2 { grid-row: span 2; }
+        .item-col-2-3 { grid-column: 2 / 4; }
+        .item-row-1-3 { grid-row: 1 / 3; }
+        .item-area-header { grid-area: header; }
+        .item-area-sidebar { grid-area: sidebar; }
+        .item-area-content { grid-area: content; }
+        .item-area-footer { grid-area: footer; }
+        
+        .grid-gap-10 { gap: 10px; }
+        .grid-gap-20 { gap: 20px; }
+        .grid-gap-row { row-gap: 10px; }
+        .grid-gap-col { column-gap: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS Grid</h1>
+        <p>This page demonstrates CSS Grid layout system for creating two-dimensional layouts with rows and columns.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Basic Grid Container</h2>
+            <div class="code-block">
+<span class="selector">.grid-container</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">1fr 1fr 1fr</span>;
+    <span class="property">gap</span>: <span class="value">10px</span>;
+}
+
+<span class="comment">/* HTML */</span>
+<span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"grid-container"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"grid-item"</span><span class="tag">&gt;</span>1<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"grid-item"</span><span class="tag">&gt;</span>2<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"grid-item"</span><span class="tag">&gt;</span>3<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+            </div>
+            <div class="result">
+                <div class="grid-container grid-basic">
+                    <div class="grid-item grid-item-1">1</div>
+                    <div class="grid-item grid-item-2">2</div>
+                    <div class="grid-item grid-item-3">3</div>
+                    <div class="grid-item grid-item-4">4</div>
+                    <div class="grid-item grid-item-5">5</div>
+                    <div class="grid-item grid-item-6">6</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Grid Template Columns</h2>
+            <div class="code-block">
+<span class="selector">.grid-fixed-columns</span> {
+    <span class="property">grid-template-columns</span>: <span class="value">200px 200px 200px</span>; <span class="comment">/* Fixed widths */</span>
+}
+
+<span class="selector">.grid-flexible-columns</span> {
+    <span class="property">grid-template-columns</span>: <span class="value">1fr 2fr 1fr</span>; <span class="comment">/* Fractional units */</span>
+}
+
+<span class="selector">.grid-mixed-columns</span> {
+    <span class="property">grid-template-columns</span>: <span class="value">200px 1fr 100px</span>; <span class="comment">/* Mixed units */</span>
+}
+
+<span class="selector">.grid-percentage-columns</span> {
+    <span class="property">grid-template-columns</span>: <span class="value">30% 40% 30%</span>; <span class="comment">/* Percentages */</span>
+}
+
+<span class="selector">.grid-auto-columns</span> {
+    <span class="property">grid-template-columns</span>: <span class="value">auto 1fr auto</span>; <span class="comment">/* Auto sizing */</span>
+}
+            </div>
+            <div class="result">
+                <div class="grid-container grid-fixed">
+                    <div class="grid-item grid-item-1">200px</div>
+                    <div class="grid-item grid-item-2">200px</div>
+                    <div class="grid-item grid-item-3">200px</div>
+                </div>
+                
+                <div class="grid-container" style="grid-template-columns: 1fr 2fr 1fr;">
+                    <div class="grid-item grid-item-1">1fr</div>
+                    <div class="grid-item grid-item-2">2fr</div>
+                    <div class="grid-item grid-item-3">1fr</div>
+                </div>
+                
+                <div class="grid-container grid-mixed">
+                    <div class="grid-item grid-item-1">200px</div>
+                    <div class="grid-item grid-item-2">1fr</div>
+                    <div class="grid-item grid-item-3">100px</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Grid Template Rows</h2>
+            <div class="code-block">
+<span class="selector">.grid-rows</span> {
+    <span class="property">grid-template-rows</span>: <span class="value">100px 200px 100px</span>; <span class="comment">/* Fixed heights */</span>
+}
+
+<span class="selector">.grid-flexible-rows</span> {
+    <span class="property">grid-template-rows</span>: <span class="value">1fr 2fr 1fr</span>; <span class="comment">/* Fractional units */</span>
+}
+
+<span class="selector">.grid-mixed-rows</span> {
+    <span class="property">grid-template-rows</span>: <span class="value">auto 1fr auto</span>; <span class="comment">/* Mixed units */</span>
+}
+
+<span class="selector">.grid-minmax-rows</span> {
+    <span class="property">grid-template-rows</span>: <span class="value">minmax(100px, auto) 1fr minmax(50px, 200px)</span>;
+}
+            </div>
+            <div class="result">
+                <div class="grid-container" style="grid-template-columns: 1fr 1fr; grid-template-rows: 80px 120px 80px; height: 300px;">
+                    <div class="grid-item grid-item-1">Row 1</div>
+                    <div class="grid-item grid-item-2">Row 1</div>
+                    <div class="grid-item grid-item-3">Row 2</div>
+                    <div class="grid-item grid-item-4">Row 2</div>
+                    <div class="grid-item grid-item-5">Row 3</div>
+                    <div class="grid-item grid-item-6">Row 3</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Repeat Function</h2>
+            <div class="code-block">
+<span class="selector">.grid-repeat</span> {
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(3, 1fr)</span>; <span class="comment">/* 3 equal columns */</span>
+}
+
+<span class="selector">.grid-repeat-pattern</span> {
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(2, 100px 1fr)</span>; <span class="comment">/* Pattern repeats */</span>
+}
+
+<span class="selector">.grid-auto-fit</span> {
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(auto-fit, minmax(200px, 1fr))</span>;
+}
+
+<span class="selector">.grid-auto-fill</span> {
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(auto-fill, minmax(150px, 1fr))</span>;
+}
+            </div>
+            <div class="result">
+                <div class="grid-container grid-repeat">
+                    <div class="grid-item grid-item-1">repeat(3, 1fr)</div>
+                    <div class="grid-item grid-item-2">2</div>
+                    <div class="grid-item grid-item-3">3</div>
+                    <div class="grid-item grid-item-4">4</div>
+                    <div class="grid-item grid-item-5">5</div>
+                    <div class="grid-item grid-item-6">6</div>
+                </div>
+                
+                <div class="grid-container grid-auto" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+                    <div class="grid-item grid-item-1">Auto-fit</div>
+                    <div class="grid-item grid-item-2">2</div>
+                    <div class="grid-item grid-item-3">3</div>
+                    <div class="grid-item grid-item-4">4</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Grid Gaps</h2>
+            <div class="code-block">
+<span class="selector">.grid-gap</span> {
+    <span class="property">gap</span>: <span class="value">10px</span>; <span class="comment">/* Same for rows and columns */</span>
+}
+
+<span class="selector">.grid-gap-different</span> {
+    <span class="property">gap</span>: <span class="value">20px 10px</span>; <span class="comment">/* 20px rows, 10px columns */</span>
+}
+
+<span class="selector">.grid-row-gap</span> {
+    <span class="property">row-gap</span>: <span class="value">15px</span>; <span class="comment">/* Only row gaps */</span>
+}
+
+<span class="selector">.grid-column-gap</span> {
+    <span class="property">column-gap</span>: <span class="value">25px</span>; <span class="comment">/* Only column gaps */</span>
+}
+
+<span class="comment">/* Legacy syntax */</span>
+<span class="selector">.grid-gap-legacy</span> {
+    <span class="property">grid-gap</span>: <span class="value">10px</span>;
+    <span class="property">grid-row-gap</span>: <span class="value">15px</span>;
+    <span class="property">grid-column-gap</span>: <span class="value">20px</span>;
+}
+            </div>
+            <div class="result">
+                <div class="grid-container" style="grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+                    <div class="grid-item grid-item-1">Gap: 20px</div>
+                    <div class="grid-item grid-item-2">2</div>
+                    <div class="grid-item grid-item-3">3</div>
+                    <div class="grid-item grid-item-4">4</div>
+                    <div class="grid-item grid-item-5">5</div>
+                    <div class="grid-item grid-item-6">6</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Grid Item Placement</h2>
+            <div class="code-block">
+<span class="comment">/* Grid lines are numbered starting from 1 */</span>
+<span class="selector">.item-column-span</span> {
+    <span class="property">grid-column</span>: <span class="value">span 2</span>; <span class="comment">/* Spans 2 columns */</span>
+}
+
+<span class="selector">.item-row-span</span> {
+    <span class="property">grid-row</span>: <span class="value">span 2</span>; <span class="comment">/* Spans 2 rows */</span>
+}
+
+<span class="selector">.item-specific-position</span> {
+    <span class="property">grid-column</span>: <span class="value">2 / 4</span>; <span class="comment">/* From line 2 to 4 */</span>
+    <span class="property">grid-row</span>: <span class="value">1 / 3</span>; <span class="comment">/* From line 1 to 3 */</span>
+}
+
+<span class="selector">.item-area</span> {
+    <span class="property">grid-area</span>: <span class="value">2 / 2 / 4 / 4</span>; <span class="comment">/* row-start / col-start / row-end / col-end */</span>
+}
+            </div>
+            <div class="result">
+                <div class="grid-container" style="grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr;">
+                    <div class="grid-item grid-item-1 item-span-2">Span 2 columns</div>
+                    <div class="grid-item grid-item-2">2</div>
+                    <div class="grid-item grid-item-3">3</div>
+                    <div class="grid-item grid-item-4 item-row-span-2">Span 2 rows</div>
+                    <div class="grid-item grid-item-5">5</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Grid Areas</h2>
+            <div class="code-block">
+<span class="selector">.grid-layout</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-areas</span>: 
+        <span class="value">"header header header"
+        "sidebar content content"
+        "footer footer footer"</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">200px 1fr 1fr</span>;
+    <span class="property">grid-template-rows</span>: <span class="value">auto 1fr auto</span>;
+}
+
+<span class="selector">.header</span> { <span class="property">grid-area</span>: <span class="value">header</span>; }
+<span class="selector">.sidebar</span> { <span class="property">grid-area</span>: <span class="value">sidebar</span>; }
+<span class="selector">.content</span> { <span class="property">grid-area</span>: <span class="value">content</span>; }
+<span class="selector">.footer</span> { <span class="property">grid-area</span>: <span class="value">footer</span>; }
+            </div>
+            <div class="result">
+                <div class="grid-container grid-areas" style="grid-template-areas: 'header header header' 'sidebar content content' 'footer footer footer'; grid-template-columns: 150px 1fr 1fr; grid-template-rows: auto 1fr auto; height: 300px;">
+                    <div class="grid-item grid-item-1 item-area-header">Header</div>
+                    <div class="grid-item grid-item-2 item-area-sidebar">Sidebar</div>
+                    <div class="grid-item grid-item-3 item-area-content">Content</div>
+                    <div class="grid-item grid-item-4 item-area-footer">Footer</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Auto Placement</h2>
+            <div class="code-block">
+<span class="selector">.grid-auto-flow-row</span> {
+    <span class="property">grid-auto-flow</span>: <span class="value">row</span>; <span class="comment">/* Default - fill rows first */</span>
+}
+
+<span class="selector">.grid-auto-flow-column</span> {
+    <span class="property">grid-auto-flow</span>: <span class="value">column</span>; <span class="comment">/* Fill columns first */</span>
+}
+
+<span class="selector">.grid-auto-flow-dense</span> {
+    <span class="property">grid-auto-flow</span>: <span class="value">dense</span>; <span class="comment">/* Fill empty spaces */</span>
+}
+
+<span class="selector">.grid-auto-columns</span> {
+    <span class="property">grid-auto-columns</span>: <span class="value">1fr</span>; <span class="comment">/* Width of auto-created columns */</span>
+}
+
+<span class="selector">.grid-auto-rows</span> {
+    <span class="property">grid-auto-rows</span>: <span class="value">100px</span>; <span class="comment">/* Height of auto-created rows */</span>
+}
+            </div>
+            <div class="result">
+                <div class="grid-container" style="grid-template-columns: 1fr 1fr; grid-auto-flow: dense;">
+                    <div class="grid-item grid-item-1" style="grid-column: span 2;">Item 1 (span 2)</div>
+                    <div class="grid-item grid-item-2">Item 2</div>
+                    <div class="grid-item grid-item-3">Item 3</div>
+                    <div class="grid-item grid-item-4">Item 4</div>
+                    <div class="grid-item grid-item-5">Item 5</div>
+                </div>
+                <p><small>Dense packing fills empty spaces</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Alignment in Grid</h2>
+            <div class="code-block">
+<span class="comment">/* Align items within grid cells */</span>
+<span class="selector">.grid-align-items</span> {
+    <span class="property">align-items</span>: <span class="value">center</span>; <span class="comment">/* Vertical alignment */</span>
+    <span class="property">justify-items</span>: <span class="value">center</span>; <span class="comment">/* Horizontal alignment */</span>
+}
+
+<span class="comment">/* Align grid within container */</span>
+<span class="selector">.grid-justify-content</span> {
+    <span class="property">justify-content</span>: <span class="value">center</span>; <span class="comment">/* Horizontal grid alignment */</span>
+    <span class="property">align-content</span>: <span class="value">center</span>; <span class="comment">/* Vertical grid alignment */</span>
+}
+
+<span class="comment">/* Individual item alignment */</span>
+<span class="selector">.grid-item-align</span> {
+    <span class="property">justify-self</span>: <span class="value">end</span>; <span class="comment">/* Override container alignment */</span>
+    <span class="property">align-self</span>: <span class="value">start</span>;
+}
+            </div>
+            <div class="result">
+                <div class="grid-container" style="grid-template-columns: 1fr 1fr 1fr; align-items: center; justify-items: center; height: 200px;">
+                    <div class="grid-item grid-item-1" style="height: 60px;">Centered</div>
+                    <div class="grid-item grid-item-2" style="height: 80px;">Centered</div>
+                    <div class="grid-item grid-item-3" style="height: 100px;">Centered</div>
+                </div>
+                <p><small>Items centered within their cells</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Common Grid Layouts</h2>
+            <div class="code-block">
+<span class="comment">/* Holy Grail Layout */</span>
+<span class="selector">.holy-grail</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template</span>: 
+        <span class="value">"header header header"
+        "nav    aside main"
+        "footer footer footer"</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">200px 200px 1fr</span>;
+    <span class="property">grid-template-rows</span>: <span class="value">auto 1fr auto</span>;
+    <span class="property">min-height</span>: <span class="value">100vh</span>;
+}
+
+<span class="comment">/* Masonry-like layout */</span>
+<span class="selector">.masonry</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(auto-fit, minmax(200px, 1fr))</span>;
+    <span class="property">grid-auto-rows</span>: <span class="value">auto</span>;
+    <span class="property">gap</span>: <span class="value">1rem</span>;
+}
+
+<span class="comment">/* Responsive grid */</span>
+<span class="selector">.responsive-grid</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(auto-fit, minmax(250px, 1fr))</span>;
+    <span class="property">gap</span>: <span class="value">1rem</span>;
+}
+
+<span class="comment">/* 12-column grid system */</span>
+<span class="selector">.grid-12</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(12, 1fr)</span>;
+    <span class="property">gap</span>: <span class="value">1rem</span>;
+}
+
+<span class="selector">.col-4</span> { <span class="property">grid-column</span>: <span class="value">span 4</span>; }
+<span class="selector">.col-6</span> { <span class="property">grid-column</span>: <span class="value">span 6</span>; }
+<span class="selector">.col-12</span> { <span class="property">grid-column</span>: <span class="value">span 12</span>; }
+            </div>
+            <div class="result">
+                <div class="grid-container" style="grid-template-columns: 1fr 3fr 1fr; grid-template-rows: auto 1fr auto; grid-template-areas: 'header header header' 'nav main aside' 'footer footer footer'; height: 300px;">
+                    <div class="grid-item grid-item-1" style="grid-area: header;">Header</div>
+                    <div class="grid-item grid-item-2" style="grid-area: nav;">Nav</div>
+                    <div class="grid-item grid-item-3" style="grid-area: main;">Main</div>
+                    <div class="grid-item grid-item-4" style="grid-area: aside;">Aside</div>
+                    <div class="grid-item grid-item-5" style="grid-area: footer;">Footer</div>
+                </div>
+                <p><small>Holy Grail layout</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Grid vs Flexbox</h2>
+            <div class="code-block">
+<span class="comment">/* Use Grid for: */</span>
+<span class="comment">/* - Two-dimensional layouts (rows AND columns) */</span>
+<span class="comment">/* - Page-level layouts */</span>
+<span class="comment">/* - Complex grid structures */</span>
+<span class="comment">/* - Overlapping elements */</span>
+<span class="comment">/* - Precise control over placement */</span>
+
+<span class="comment">/* Use Flexbox for: */</span>
+<span class="comment">/* - One-dimensional layouts (row OR column) */</span>
+<span class="comment">/* - Component-level layouts */</span>
+<span class="comment">/* - Content alignment and distribution */</span>
+<span class="comment">/* - Navigation bars, cards, forms */</span>
+
+<span class="comment">/* They can work together! */</span>
+<span class="selector">.grid-page</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-areas</span>: <span class="value">"header" "main" "footer"</span>;
+}
+
+<span class="selector">.flex-card</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+    <span class="property">flex-direction</span>: <span class="value">column</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Advanced Grid Techniques</h2>
+            <div class="code-block">
+<span class="comment">/* Subgrid (CSS Grid Level 2) */</span>
+<span class="selector">.subgrid-container</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">1fr 1fr 1fr</span>;
+}
+
+<span class="selector">.subgrid-item</span> {
+    <span class="property">grid-column</span>: <span class="value">span 2</span>;
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">subgrid</span>;
+}
+
+<span class="comment">/* Named grid lines */</span>
+<span class="selector">.named-lines</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">[start] 1fr [middle] 2fr [end]</span>;
+}
+
+<span class="selector">.named-lines-item</span> {
+    <span class="property">grid-column</span>: <span class="value">start / middle</span>;
+}
+
+<span class="comment">/* Dynamic grid with CSS variables */</span>
+<span class="selector">:root</span> {
+    <span class="property">--columns</span>: <span class="value">3</span>;
+    <span class="property">--gap</span>: <span class="value">1rem</span>;
+}
+
+<span class="selector">.dynamic-grid</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(var(--columns), 1fr)</span>;
+    <span class="property">gap</span>: <span class="value">var(--gap)</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Best Practices</h2>
+            <div class="code-block">
+<span class="comment">/* Use semantic HTML with grid areas */</span>
+<span class="selector">.page-layout</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-areas</span>: 
+        <span class="value">"header header header"
+        "nav    main   aside"
+        "footer footer footer"</span>;
+}
+
+<span class="comment">/* Make grids responsive */</span>
+<span class="selector">.responsive-grid</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(auto-fit, minmax(250px, 1fr))</span>;
+}
+
+<span class="comment">/* Use minmax for flexible sizing */</span>
+<span class="selector">.flexible-grid</span> {
+    <span class="property">grid-template-columns</span>: <span class="value">minmax(200px, 1fr) minmax(300px, 2fr)</span>;
+}
+
+<span class="comment">/* Consider accessibility with reordering */</span>
+<span class="selector">.reordered-item</span> {
+    <span class="property">order</span>: <span class="value">-1</span>; <span class="comment">/* Be careful with visual reordering */</span>
+}
+
+<span class="comment">/* Test with different content sizes */</span>
+<span class="selector">.test-grid</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">1fr 1fr</span>;
+    <span class="property">min-height</span>: <span class="value">0</span>; <span class="comment">/* Prevents overflow issues */</span>
+}
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+</body>
+</html>

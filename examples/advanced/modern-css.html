@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern CSS Features - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .selector { color: #d73a49; }
+        .property { color: #0066cc; }
+        .value { color: #28a745; }
+        .comment { color: #6c757d; font-style: italic; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+        
+        /* Modern CSS demo styles */
+        .modern-box {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        /* CSS Grid with subgrid */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .grid-item {
+            background: #2196f3;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .subgrid-container {
+            display: grid;
+            grid-template-columns: subgrid;
+            grid-column: span 2;
+            gap: 10px;
+        }
+        
+        /* Container queries */
+        .card-container {
+            container-type: inline-size;
+            width: 300px;
+            margin: 20px auto;
+        }
+        
+        .card {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        @container (min-width: 400px) {
+            .card {
+                background: #f8f9fa;
+                border-color: #2196f3;
+            }
+        }
+        
+        /* CSS Nesting */
+        .nested-component {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        /* Simulated nesting with regular CSS */
+        .nested-component {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .nested-component h3 {
+            color: #2196f3;
+            margin-bottom: 10px;
+        }
+        
+        .nested-component p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .nested-component a {
+            color: #2196f3;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nested-component a:hover {
+            color: #1976d2;
+            text-decoration: underline;
+        }
+        
+        /* CSS Scroll Snap */
+        .scroll-snap-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 20px 0;
+            margin: 20px 0;
+        }
+        
+        .scroll-snap-item {
+            flex: 0 0 300px;
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b 0%, #4ecdc4 100%);
+            border-radius: 8px;
+            scroll-snap-align: start;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* Focus Visible */
+        .focus-visible-demo {
+            padding: 12px 24px;
+            background: #2196f3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background 0.3s ease;
+        }
+        
+        .focus-visible-demo:hover {
+            background: #1976d2;
+        }
+        
+        .focus-visible-demo:focus-visible {
+            outline: 3px solid #ff9800;
+            outline-offset: 2px;
+        }
+        
+        /* Logical Properties */
+        .logical-properties {
+            background: #4caf50;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .logical-demo {
+            margin-inline-start: 20px;
+            margin-inline-end: 20px;
+            padding-block-start: 10px;
+            padding-block-end: 10px;
+            border-inline-start: 3px solid #fff;
+            border-inline-end: 3px solid #fff;
+        }
+        
+        /* Color Functions */
+        .color-function-demo {
+            width: 200px;
+            height: 200px;
+            border-radius: 8px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .color-mix {
+            background: color-mix(in srgb, #2196f3 50%, #ff9800 50%);
+        }
+        
+        .color-contrast {
+            background: #2196f3;
+            color: color-contrast(#2196f3 vs white, black, #666);
+        }
+        
+        /* Cascade Layers */
+        @layer base, components, utilities;
+        
+        @layer base {
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+            }
+        }
+        
+        @layer components {
+            .layered-component {
+                background: #9c27b0;
+                color: white;
+                padding: 20px;
+                border-radius: 8px;
+                margin: 20px 0;
+            }
+        }
+        
+        @layer utilities {
+            .text-center {
+                text-align: center;
+            }
+        }
+        
+        /* CSS Custom Properties with @property */
+        @property --hue {
+            syntax: '<angle>';
+            inherits: false;
+            initial-value: 0deg;
+        }
+        
+        .animated-hue {
+            background: hsl(var(--hue), 70%, 50%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            animation: hueRotate 3s linear infinite;
+        }
+        
+        @keyframes hueRotate {
+            to { --hue: 360deg; }
+        }
+        
+        /* Trigonometric Functions */
+        .trig-demo {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #e91e63, #9c27b0);
+            border-radius: 8px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transform: rotate(calc(sin(45deg) * 180deg));
+        }
+        
+        /* Exponential Functions */
+        .exp-demo {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #00bcd4, #009688);
+            border-radius: 8px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            opacity: calc(exp(-1) * 2);
+        }
+        
+        /* Stepped Functions */
+        .stepped-demo {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #ff5722, #ff9800);
+            border-radius: 8px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transform: scale(round(1.2));
+        }
+        
+        /* Modulo Function */
+        .modulo-demo {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #795548, #607d8b);
+            border-radius: 8px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .modulo-demo:nth-child(odd) {
+            transform: rotate(mod(45deg, 90deg));
+        }
+        
+        /* Sign Function */
+        .sign-demo {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #3f51b5, #2196f3);
+            border-radius: 8px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* Min/Max/Clamp Functions */
+        .fluid-typography {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+        
+        .responsive-spacing {
+            padding: max(20px, 5vw);
+            margin: min(40px, 10vw);
+        }
+        
+        .adaptive-width {
+            width: min(100%, 800px);
+            margin: 0 auto;
+        }
+        
+        /* CSS Shapes */
+        .shape-demo {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            margin: 20px;
+            float: left;
+            shape-outside: circle(50%);
+            shape-margin: 20px;
+        }
+        
+        .shape-text {
+            margin-left: 220px;
+            line-height: 1.6;
+        }
+        
+        /* CSS Houdini Paint API (simulated) */
+        .houdini-demo {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 8px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            background-image: paint(myPaint, #2196f3, #ff9800);
+        }
+        
+        /* Feature Detection */
+        @supports (display: grid) {
+            .grid-supported {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+        
+        @supports not (display: grid) {
+            .grid-supported {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+        
+        @supports (backdrop-filter: blur(10px)) {
+            .backdrop-supported {
+                backdrop-filter: blur(10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Modern CSS Features</h1>
+        <p>This page demonstrates modern CSS features for creating advanced and efficient styles.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">CSS Grid Subgrid</h2>
+            <div class="code-block">
+<span class="selector">.parent-grid</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(3, 1fr)</span>;
+    <span class="property">gap</span>: <span class="value">20px</span>;
+}
+
+<span class="selector">.subgrid-item</span> {
+    <span class="property">grid-column</span>: <span class="value">span 2</span>;
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">subgrid</span>;
+    <span class="property">gap</span>: <span class="value">10px</span>;
+}
+
+<span class="comment">/* Subgrid inherits parent's grid lines */</span>
+<span class="comment">/* Available in Firefox 71+, Chrome 117+ */</span>
+            </div>
+            <div class="result">
+                <div class="grid-container">
+                    <div class="grid-item">Grid Item 1</div>
+                    <div class="subgrid-container">
+                        <div class="grid-item">Subgrid 1</div>
+                        <div class="grid-item">Subgrid 2</div>
+                    </div>
+                    <div class="grid-item">Grid Item 3</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Container Queries</h2>
+            <div class="code-block">
+<span class="selector">.card-container</span> {
+    <span class="property">container-type</span>: <span class="value">inline-size</span>;
+    <span class="property">width</span>: <span class="value">300px</span>;
+}
+
+<span class="key">@container</span> <span class="value">(min-width: 400px)</span> {
+    <span class="selector">.card</span> {
+        <span class="property">background</span>: <span class="value">#f8f9fa</span>;
+        <span class="property">border-color</span>: <span class="value">#2196f3</span>;
+        <span class="property">padding</span>: <span class="value">30px</span>;
+    }
+}
+
+<span class="key">@container</span> <span class="value">(max-width: 300px)</span> {
+    <span class="selector">.card</span> {
+        <span class="property">padding</span>: <span class="value">15px</span>;
+        <span class="property">font-size</span>: <span class="value">14px</span>;
+    }
+}
+
+<span class="comment">/* Available in Chrome 105+, Safari 16+ */</span>
+            </div>
+            <div class="result">
+                <div class="card-container">
+                    <div class="card">
+                        <h3>Container Query Card</h3>
+                        <p>This card adapts its styling based on its container width, not the viewport.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">CSS Nesting</h2>
+            <div class="code-block">
+<span class="comment">/* Traditional CSS */</span>
+<span class="selector">.component</span> {
+    <span class="property">background</span>: <span class="value">#f8f9fa</span>;
+    <span class="property">padding</span>: <span class="value">20px</span>;
+}
+
+<span class="selector">.component h3</span> {
+    <span class="property">color</span>: <span class="value">#2196f3</span>;
+}
+
+<span class="selector">.component a</span> {
+    <span class="property">color</span>: <span class="value">#2196f3</span>;
+}
+
+<span class="selector">.component a:hover</span> {
+    <span class="property">color</span>: <span class="value">#1976d2</span>;
+}
+
+<span class="comment">/* CSS Nesting (available in Chrome 112+, Safari 16.5+) */</span>
+<span class="selector">.component</span> {
+    <span class="property">background</span>: <span class="value">#f8f9fa</span>;
+    <span class="property">padding</span>: <span class="value">20px</span>;
+    
+    <span class="selector">& h3</span> {
+        <span class="property">color</span>: <span class="value">#2196f3</span>;
+    }
+    
+    <span class="selector">& a</span> {
+        <span class="property">color</span>: <span class="value">#2196f3</span>;
+        
+        <span class="selector">&:hover</span> {
+            <span class="property">color</span>: <span class="value">#1976d2</span>;
+        }
+    }
+}
+            </div>
+            <div class="result">
+                <div class="nested-component">
+                    <h3>Nested Component</h3>
+                    <p>This demonstrates how CSS nesting works (simulated here with regular CSS).</p>
+                    <a href="#">Learn more</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">CSS Scroll Snap</h2>
+            <div class="code-block">
+<span class="selector">.scroll-container</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+    <span class="property">overflow-x</span>: <span class="value">auto</span>;
+    <span class="property">scroll-snap-type</span>: <span class="value">x mandatory</span>;
+    <span class="property">scroll-behavior</span>: <span class="value">smooth</span>;
+    <span class="property">gap</span>: <span class="value">20px</span>;
+}
+
+<span class="selector">.scroll-item</span> {
+    <span class="property">flex</span>: <span class="value">0 0 300px</span>;
+    <span class="property">height</span>: <span class="value">200px</span>;
+    <span class="property">scroll-snap-align</span>: <span class="value">start</span>;
+}
+
+<span class="selector">.scroll-item-center</span> {
+    <span class="property">scroll-snap-align</span>: <span class="value">center</span>;
+}
+
+<span class="selector">.scroll-item-end</span> {
+    <span class="property">scroll-snap-align</span>: <span class="value">end</span>;
+}
+            </div>
+            <div class="result">
+                <div class="scroll-snap-container">
+                    <div class="scroll-snap-item">Item 1</div>
+                    <div class="scroll-snap-item">Item 2</div>
+                    <div class="scroll-snap-item">Item 3</div>
+                    <div class="scroll-snap-item">Item 4</div>
+                </div>
+                <p><small>Scroll horizontally to see snap behavior</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">:focus-visible</h2>
+            <div class="code-block">
+<span class="selector">.button</span> {
+    <span class="property">padding</span>: <span class="value">12px 24px</span>;
+    <span class="property">background</span>: <span class="value">#2196f3</span>;
+    <span class="property">color</span>: <span class="value">white</span>;
+    <span class="property">border</span>: <span class="value">none</span>;
+    <span class="property">border-radius</span>: <span class="value">4px</span>;
+    <span class="property">cursor</span>: <span class="value">pointer</span>;
+    <span class="property">transition</span>: <span class="value">background 0.3s ease</span>;
+}
+
+<span class="selector">.button:hover</span> {
+    <span class="property">background</span>: <span class="value">#1976d2</span>;
+}
+
+<span class="selector">.button:focus</span> {
+    <span class="property">outline</span>: <span class="value">none</span>;
+}
+
+<span class="selector">.button:focus-visible</span> {
+    <span class="property">outline</span>: <span class="value">3px solid #ff9800</span>;
+    <span class="property">outline-offset</span>: <span class="value">2px</span>;
+}
+
+<span class="comment">/* Only shows focus when using keyboard, not mouse */</span>
+            </div>
+            <div class="result">
+                <button class="focus-visible-demo">Focus Visible Button</button>
+                <button class="focus-visible-demo">Another Button</button>
+                <p><small>Tab through buttons to see focus outline (keyboard only)</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Logical Properties</h2>
+            <div class="code-block">
+<span class="comment">/* Traditional properties */</span>
+<span class="selector">.element</span> {
+    <span class="property">margin-left</span>: <span class="value">20px</span>;
+    <span class="property">margin-right</span>: <span class="value">20px</span>;
+    <span class="property">padding-top</span>: <span class="value">10px</span>;
+    <span class="property">padding-bottom</span>: <span class="value">10px</span>;
+    <span class="property">border-left</span>: <span class="value">3px solid #333</span>;
+    <span class="property">text-align</span>: <span class="value">left</span>;
+}
+
+<span class="comment">/* Logical properties */</span>
+<span class="selector">.element</span> {
+    <span class="property">margin-inline</span>: <span class="value">20px</span>;
+    <span class="property">padding-block</span>: <span class="value">10px</span>;
+    <span class="property">border-inline-start</span>: <span class="value">3px solid #333</span>;
+    <span class="property">text-align</span>: <span class="value">start</span>;
+}
+
+<span class="comment">/* Adapts to writing direction (LTR/RTL) */</span>
+            </div>
+            <div class="result">
+                <div class="logical-properties">
+                    <div class="logical-demo">Logical Properties Demo</div>
+                    <p>Uses margin-inline, padding-block, and border-inline-start for better internationalization support.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Modern Color Functions</h2>
+            <div class="code-block">
+<span class="selector">.color-mix</span> {
+    <span class="property">background</span>: <span class="value">color-mix(in srgb, #2196f3 50%, #ff9800 50%)</span>;
+}
+
+<span class="selector">.color-contrast</span> {
+    <span class="property">color</span>: <span class="value">color-contrast(#2196f3 vs white, black, #666)</span>;
+}
+
+<span class="selector">.color-adjust</span> {
+    <span class="property">background</span>: <span class="value">color-adjust(#2196f3 50%)</span>;
+}
+
+<span class="selector">.relative-color</span> {
+    <span class="property">background</span>: <span class="value">#2196f3</span>;
+    <span class="property">color</span>: <span class="value">#2196f3 from #2196f3 20% lighter</span>;
+}
+
+<span class="comment">/* Available in Chrome 111+, Safari 15.4+ */</span>
+            </div>
+            <div class="result">
+                <div class="color-function-demo color-mix">Color Mix</div>
+                <div class="color-function-demo color-contrast">Color Contrast</div>
+                <p><small>Modern color functions for better color manipulation</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Cascade Layers</h2>
+            <div class="code-block">
+<span class="comment">/* Define layers in order of precedence */</span>
+<span class="key">@layer</span> <span class="value">base, components, utilities</span>;
+
+<span class="key">@layer</span> <span class="value">base</span> {
+    <span class="selector">body</span> {
+        <span class="property">font-family</span>: <span class="value">Arial, sans-serif</span>;
+        <span class="property">line-height</span>: <span class="value">1.6</span>;
+    }
+}
+
+<span class="key">@layer</span> <span class="value">components</span> {
+    <span class="selector">.button</span> {
+        <span class="property">background</span>: <span class="value">#2196f3</span>;
+        <span class="property">color</span>: <span class="value">white</span>;
+    }
+}
+
+<span class="key">@layer</span> <span class="value">utilities</span> {
+    <span class="selector">.text-center</span> {
+        <span class="property">text-align</span>: <span class="value">center</span>;
+    }
+}
+
+<span class="comment">/* Unlayered styles have highest precedence */</span>
+<span class="selector">.button</span> {
+    <span class="property">background</span>: <span class="value">#ff9800</span>; <span class="comment">/* Wins over layer */</span>
+}
+            </div>
+            <div class="result">
+                <div class="layered-component text-center">
+                    <h3>Cascade Layers Demo</h3>
+                    <p>This component uses cascade layers for better control over CSS specificity.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">CSS Custom Properties with @property</h2>
+            <div class="code-block">
+<span class="key">@property</span> <span class="value">--hue</span> {
+    <span class="property">syntax</span>: <span class="value">'&lt;angle&gt;'</span>;
+    <span class="property">inherits</span>: <span class="value">false</span>;
+    <span class="property">initial-value</span>: <span class="value">0deg</span>;
+}
+
+<span class="key">@property</span> <span class="value">--opacity</span> {
+    <span class="property">syntax</span>: <span class="value">'&lt;number&gt;'</span>;
+    <span class="property">inherits</span>: <span class="value">false</span>;
+    <span class="property">initial-value</span>: <span class="value">1</span>;
+}
+
+<span class="selector">.animated-element</span> {
+    <span class="property">background</span>: <span class="value">hsl(var(--hue), 70%, 50%)</span>;
+    <span class="property">opacity</span>: <span class="value">var(--opacity)</span>;
+    <span class="property">animation</span>: <span class="value">animate 3s linear infinite</span>;
+}
+
+<span class="key">@keyframes</span> <span class="value">animate</span> {
+    <span class="property">to</span> {
+        <span class="property">--hue</span>: <span class="value">360deg</span>;
+        <span class="property">--opacity</span>: <span class="value">0.5</span>;
+    }
+}
+
+<span class="comment">/* Available in Chrome 78+, Safari 14.1+ */</span>
+            </div>
+            <div class="result">
+                <div class="animated-hue">Animated Hue</div>
+                <p><small>Custom property with @property for type checking and animation</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Mathematical Functions</h2>
+            <div class="code-block">
+<span class="comment">/* Trigonometric functions */</span>
+<span class="selector">.trig-element</span> {
+    <span class="property">transform</span>: <span class="value">rotate(calc(sin(45deg) * 180deg))</span>;
+}
+
+<span class="comment">/* Exponential functions */</span>
+<span class="selector">.exp-element</span> {
+    <span class="property">opacity</span>: <span class="value">calc(exp(-1) * 2)</span>;
+}
+
+<span class="comment">/* Stepped functions */</span>
+<span class="selector">.stepped-element</span> {
+    <span class="property">transform</span>: <span class="value">scale(round(1.2))</span>;
+}
+
+<span class="comment">/* Modulo function */</span>
+<span class="selector">.modulo-element</span> {
+    <span class="property">transform</span>: <span class="value">rotate(mod(45deg, 90deg))</span>;
+}
+
+<span class="comment">/* Sign function */</span>
+<span class="selector">.sign-element</span> {
+    <span class="property">opacity</span>: <span class="value">calc(sign(1) * 0.5 + 0.5)</span>;
+}
+
+<span class="comment">/* Available in Chrome 111+, Safari 15.4+ */</span>
+            </div>
+            <div class="result">
+                <div class="trig-demo">Trigonometric</div>
+                <div class="exp-demo">Exponential</div>
+                <div class="stepped-demo">Stepped</div>
+                <div class="modulo-demo">Modulo</div>
+                <div class="sign-demo">Sign</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Fluid Typography with clamp()</h2>
+            <div class="code-block">
+<span class="selector">.fluid-text</span> {
+    <span class="property">font-size</span>: <span class="value">clamp(1rem, 2.5vw, 1.5rem)</span>;
+}
+
+<span class="selector">.fluid-spacing</span> {
+    <span class="property">padding</span>: <span class="value">clamp(1rem, 5vw, 3rem)</span>;
+}
+
+<span class="selector">.responsive-width</span> {
+    <span class="property">width</span>: <span class="value">clamp(300px, 80%, 1200px)</span>;
+}
+
+<span class="comment">/* clamp(min, preferred, max) */</span>
+<span class="comment">/* min: minimum value */</span>
+<span class="comment">/* preferred: ideal value (often viewport-based) */</span>
+<span class="comment">/* max: maximum value */</span>
+            </div>
+            <div class="result">
+                <div class="fluid-typography">
+                    <h3>Fluid Typography</h3>
+                    <p>This text scales smoothly between minimum and maximum sizes based on viewport width using clamp(). Resize your browser to see the effect.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">CSS Shapes</h2>
+            <div class="code-block">
+<span class="selector">.shape-circle</span> {
+    <span class="property">shape-outside</span>: <span class="value">circle(50%)</span>;
+    <span class="property">shape-margin</span>: <span class="value">20px</span>;
+}
+
+<span class="selector">.shape-ellipse</span> {
+    <span class="property">shape-outside</span>: <span class="value">ellipse(50% 30%)</span>;
+}
+
+<span class="selector">.shape-polygon</span> {
+    <span class="property">shape-outside</span>: <span class="value">polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)</span>;
+}
+
+<span class="selector">.shape-path</span> {
+    <span class="property">shape-outside</span>: <span class="value">path('M 0 100 L 50 0 L 100 100 Z')</span>;
+}
+
+<span class="selector">.shape-image</span> {
+    <span class="property">shape-outside</span>: <span class="value">url('image.png')</span>;
+}
+            </div>
+            <div class="result">
+                <div class="shape-demo"></div>
+                <div class="shape-text">
+                    <p>This text flows around the circular shape using CSS Shapes. The shape-outside property allows text to wrap around non-rectangular shapes, creating more dynamic and interesting layouts.</p>
+                    <p>CSS Shapes provide powerful layout options for creating magazine-style layouts and creative text flow around images and geometric shapes.</p>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Feature Detection</h2>
+            <div class="code-block">
+<span class="key">@supports</span> <span class="value">(display: grid)</span> {
+    <span class="comment">/* Grid layout supported */</span>
+    <span class="selector">.layout</span> {
+        <span class="property">display</span>: <span class="value">grid</span>;
+    }
+}
+
+<span class="key">@supports</span> <span class="value">not (display: grid)</span> {
+    <span class="comment">/* Fallback for no grid support */</span>
+    <span class="selector">.layout</span> {
+        <span class="property">display</span>: <span class="value">flex</span>;
+    }
+}
+
+<span class="key">@supports</span> <span class="value">(backdrop-filter: blur(10px))</span> {
+    <span class="comment">/* Backdrop filter supported */</span>
+    <span class="selector">.glass-effect</span> {
+        <span class="property">backdrop-filter</span>: <span class="value">blur(10px)</span>;
+    }
+}
+
+<span class="key">@supports</span> <span class="value">(container-type: inline-size)</span> {
+    <span class="comment">/* Container queries supported */</span>
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Browser Support</h2>
+            <div class="code-block">
+<span class="comment">/* Modern CSS features and their support */</span>
+<span class="comment">/* CSS Grid Subgrid: Firefox 71+, Chrome 117+ */</span>
+<span class="comment">/* Container Queries: Chrome 105+, Safari 16+ */</span>
+<span class="comment">/* CSS Nesting: Chrome 112+, Safari 16.5+ */</span>
+<span class="comment">/* :focus-visible: Chrome 86+, Firefox 85+, Safari 15.4+ */</span>
+<span class="comment">/* Logical Properties: Chrome 89+, Firefox 72+, Safari 15+ */</span>
+<span class="comment">/* Color Functions: Chrome 111+, Safari 15.4+ */</span>
+<span class="comment">/* Cascade Layers: Chrome 99+, Firefox 97+, Safari 15.4+ */</span>
+<span class="comment">/* @property: Chrome 78+, Safari 14.1+ */</span>
+<span class="comment">/* Math Functions: Chrome 111+, Safari 15.4+ */</span>
+<span class="comment">/* CSS Shapes: Chrome 37+, Safari 10+ */</span>
+<span class="comment">/* Scroll Snap: Chrome 69+, Firefox 68+, Safari 11+ */</span>
+
+<span class="comment">/* Use @supports for progressive enhancement */</span>
+<span class="key">@supports</span> <span class="value">(feature: value)</span> {
+    <span class="comment">/* Modern feature supported */</span>
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Best Practices</h2>
+            <div class="code-block">
+<span class="comment">/* Use feature detection for progressive enhancement */</span>
+<span class="key">@supports</span> <span class="value">(display: grid)</span> {
+    <span class="selector">.modern-layout</span> {
+        <span class="property">display</span>: <span class="value">grid</span>;
+    }
+}
+
+<span class="comment">/* Provide fallbacks for older browsers */</span>
+<span class="selector">.legacy-layout</span> {
+    <span class="property">display</span>: <span class="value">flex</span>; <span class="comment">/* Fallback */</span>
+}
+
+<span class="comment">/* Use cascade layers for better specificity control */</span>
+<span class="key">@layer</span> <span class="value">base, components, utilities</span>;
+
+<span class="comment">/* Use logical properties for internationalization */</span>
+<span class="selector">.i18n-friendly</span> {
+    <span class="property">margin-inline</span>: <span class="value">20px</span>;
+    <span class="property">text-align</span>: <span class="value">start</span>;
+}
+
+<span class="comment">/* Use modern color functions for better theming */</span>
+<span class="selector">.themed</span> {
+    <span class="property">background</span>: <span class="value">color-mix(in srgb, var(--primary) 80%, var(--secondary) 20%)</span>;
+}
+
+<span class="comment">/* Use clamp() for responsive design without media queries */</span>
+<span class="selector">.responsive</span> {
+    <span class="property">font-size</span>: <span class="value">clamp(1rem, 2.5vw, 1.5rem)</span>;
+}
+
+<span class="comment">/* Test in multiple browsers */</span>
+<span class="comment">/* Use progressive enhancement approach */</span>
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+</body>
+</html>

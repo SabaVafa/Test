@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Flexbox - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .selector { color: #d73a49; }
+        .property { color: #0066cc; }
+        .value { color: #28a745; }
+        .comment { color: #6c757d; font-style: italic; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+        .flex-container {
+            background: #f0f0f0;
+            border: 2px solid #333;
+            padding: 10px;
+            margin: 10px 0;
+            min-height: 100px;
+        }
+        .flex-item {
+            background: #2196f3;
+            color: white;
+            padding: 20px;
+            margin: 5px;
+            text-align: center;
+            border-radius: 5px;
+            min-width: 60px;
+            font-weight: bold;
+        }
+        .flex-item-1 { background: #f44336; }
+        .flex-item-2 { background: #4caf50; }
+        .flex-item-3 { background: #ff9800; }
+        .flex-item-4 { background: #9c27b0; }
+        .flex-item-5 { background: #00bcd4; }
+        
+        .direction-row { flex-direction: row; }
+        .direction-row-reverse { flex-direction: row-reverse; }
+        .direction-column { flex-direction: column; }
+        .direction-column-reverse { flex-direction: column-reverse; }
+        
+        .wrap-nowrap { flex-wrap: nowrap; }
+        .wrap-wrap { flex-wrap: wrap; }
+        .wrap-wrap-reverse { flex-wrap: wrap-reverse; }
+        
+        .justify-start { justify-content: flex-start; }
+        .justify-end { justify-content: flex-end; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-around { justify-content: space-around; }
+        .justify-evenly { justify-content: space-evenly; }
+        
+        .align-start { align-items: flex-start; }
+        .align-end { align-items: flex-end; }
+        .align-center { align-items: center; }
+        .align-stretch { align-items: stretch; }
+        .align-baseline { align-items: baseline; }
+        
+        .align-content-start { align-content: flex-start; }
+        .align-content-end { align-content: flex-end; }
+        .align-content-center { align-content: center; }
+        .align-content-between { align-content: space-between; }
+        .align-content-around { align-content: space-around; }
+        .align-content-stretch { align-content: stretch; }
+        
+        .item-auto { flex: auto; }
+        .item-1 { flex: 1; }
+        .item-2 { flex: 2; }
+        .item-100px { flex: 0 0 100px; }
+        .item-200px { flex: 0 0 200px; }
+        
+        .item-align-auto { align-self: auto; }
+        .item-align-start { align-self: flex-start; }
+        .item-align-end { align-self: flex-end; }
+        .item-align-center { align-self: center; }
+        .item-align-stretch { align-self: stretch; }
+        .item-align-baseline { align-self: baseline; }
+        
+        .item-order-1 { order: 1; }
+        .item-order-2 { order: 2; }
+        .item-order-3 { order: 3; }
+        .item-order--1 { order: -1; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS Flexbox</h1>
+        <p>This page demonstrates CSS Flexbox layout system for creating flexible and responsive layouts.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Basic Flex Container</h2>
+            <div class="code-block">
+<span class="selector">.flex-container</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+}
+
+<span class="comment">/* HTML */</span>
+<span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"flex-container"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"flex-item"</span><span class="tag">&gt;</span>1<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"flex-item"</span><span class="tag">&gt;</span>2<span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"flex-item"</span><span class="tag">&gt;</span>3<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+            </div>
+            <div class="result">
+                <div class="flex-container" style="display: flex;">
+                    <div class="flex-item flex-item-1">1</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Flex Direction</h2>
+            <div class="code-block">
+<span class="selector">.direction-row</span> {
+    <span class="property">flex-direction</span>: <span class="value">row</span>; <span class="comment">/* Default */</span>
+}
+
+<span class="selector">.direction-row-reverse</span> {
+    <span class="property">flex-direction</span>: <span class="value">row-reverse</span>;
+}
+
+<span class="selector">.direction-column</span> {
+    <span class="property">flex-direction</span>: <span class="value">column</span>;
+}
+
+<span class="selector">.direction-column-reverse</span> {
+    <span class="property">flex-direction</span>: <span class="value">column-reverse</span>;
+}
+            </div>
+            <div class="result">
+                <div class="flex-container direction-row">
+                    <div class="flex-item flex-item-1">Row</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                </div>
+                
+                <div class="flex-container direction-row-reverse">
+                    <div class="flex-item flex-item-1">Row-reverse</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                </div>
+                
+                <div class="flex-container direction-column" style="height: 200px;">
+                    <div class="flex-item flex-item-1">Column</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                </div>
+                
+                <div class="flex-container direction-column-reverse" style="height: 200px;">
+                    <div class="flex-item flex-item-1">Column-reverse</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Flex Wrap</h2>
+            <div class="code-block">
+<span class="selector">.wrap-nowrap</span> {
+    <span class="property">flex-wrap</span>: <span class="value">nowrap</span>; <span class="comment">/* Default */</span>
+}
+
+<span class="selector">.wrap-wrap</span> {
+    <span class="property">flex-wrap</span>: <span class="value">wrap</span>;
+}
+
+<span class="selector">.wrap-wrap-reverse</span> {
+    <span class="property">flex-wrap</span>: <span class="value">wrap-reverse</span>;
+}
+
+<span class="comment">/* Shorthand */</span>
+<span class="selector">.flex-flow</span> {
+    <span class="property">flex-flow</span>: <span class="value">row wrap</span>; <span class="comment">/* direction + wrap */</span>
+}
+            </div>
+            <div class="result">
+                <div class="flex-container wrap-nowrap" style="width: 300px;">
+                    <div class="flex-item flex-item-1">1</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                    <div class="flex-item flex-item-4">4</div>
+                    <div class="flex-item flex-item-5">5</div>
+                </div>
+                <p><small>Nowrap (no wrapping, items shrink)</small></p>
+                
+                <div class="flex-container wrap-wrap" style="width: 300px;">
+                    <div class="flex-item flex-item-1">1</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                    <div class="flex-item flex-item-4">4</div>
+                    <div class="flex-item flex-item-5">5</div>
+                </div>
+                <p><small>Wrap (items wrap to next line)</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Justify Content (Main Axis)</h2>
+            <div class="code-block">
+<span class="selector">.justify-start</span> {
+    <span class="property">justify-content</span>: <span class="value">flex-start</span>; <span class="comment">/* Default */</span>
+}
+
+<span class="selector">.justify-end</span> {
+    <span class="property">justify-content</span>: <span class="value">flex-end</span>;
+}
+
+<span class="selector">.justify-center</span> {
+    <span class="property">justify-content</span>: <span class="value">center</span>;
+}
+
+<span class="selector">.justify-between</span> {
+    <span class="property">justify-content</span>: <span class="value">space-between</span>;
+}
+
+<span class="selector">.justify-around</span> {
+    <span class="property">justify-content</span>: <span class="value">space-around</span>;
+}
+
+<span class="selector">.justify-evenly</span> {
+    <span class="property">justify-content</span>: <span class="value">space-evenly</span>;
+}
+            </div>
+            <div class="result">
+                <div class="flex-container justify-start">
+                    <div class="flex-item flex-item-1">Start</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                </div>
+                
+                <div class="flex-container justify-end">
+                    <div class="flex-item flex-item-1">End</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                </div>
+                
+                <div class="flex-container justify-center">
+                    <div class="flex-item flex-item-1">Center</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                </div>
+                
+                <div class="flex-container justify-between">
+                    <div class="flex-item flex-item-1">Between</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                </div>
+                
+                <div class="flex-container justify-around">
+                    <div class="flex-item flex-item-1">Around</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                </div>
+                
+                <div class="flex-container justify-evenly">
+                    <div class="flex-item flex-item-1">Evenly</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Align Items (Cross Axis)</h2>
+            <div class="code-block">
+<span class="selector">.align-start</span> {
+    <span class="property">align-items</span>: <span class="value">flex-start</span>;
+}
+
+<span class="selector">.align-end</span> {
+    <span class="property">align-items</span>: <span class="value">flex-end</span>;
+}
+
+<span class="selector">.align-center</span> {
+    <span class="property">align-items</span>: <span class="value">center</span>;
+}
+
+<span class="selector">.align-stretch</span> {
+    <span class="property">align-items</span>: <span class="value">stretch</span>; <span class="comment">/* Default */</span>
+}
+
+<span class="selector">.align-baseline</span> {
+    <span class="property">align-items</span>: <span class="value">baseline</span>;
+}
+            </div>
+            <div class="result">
+                <div class="flex-container align-start" style="height: 120px;">
+                    <div class="flex-item flex-item-1" style="height: 40px;">Start</div>
+                    <div class="flex-item flex-item-2" style="height: 60px;">2</div>
+                    <div class="flex-item flex-item-3" style="height: 80px;">3</div>
+                </div>
+                
+                <div class="flex-container align-end" style="height: 120px;">
+                    <div class="flex-item flex-item-1" style="height: 40px;">End</div>
+                    <div class="flex-item flex-item-2" style="height: 60px;">2</div>
+                    <div class="flex-item flex-item-3" style="height: 80px;">3</div>
+                </div>
+                
+                <div class="flex-container align-center" style="height: 120px;">
+                    <div class="flex-item flex-item-1" style="height: 40px;">Center</div>
+                    <div class="flex-item flex-item-2" style="height: 60px;">2</div>
+                    <div class="flex-item flex-item-3" style="height: 80px;">3</div>
+                </div>
+                
+                <div class="flex-container align-stretch" style="height: 120px;">
+                    <div class="flex-item flex-item-1">Stretch</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                </div>
+                
+                <div class="flex-container align-baseline" style="height: 120px;">
+                    <div class="flex-item flex-item-1" style="height: 40px; padding-top: 20px;">Baseline</div>
+                    <div class="flex-item flex-item-2" style="height: 60px; padding-top: 10px;">2</div>
+                    <div class="flex-item flex-item-3" style="height: 80px;">3</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Align Content (Multi-line)</h2>
+            <div class="code-block">
+<span class="selector">.align-content-start</span> {
+    <span class="property">align-content</span>: <span class="value">flex-start</span>;
+}
+
+<span class="selector">.align-content-end</span> {
+    <span class="property">align-content</span>: <span class="value">flex-end</span>;
+}
+
+<span class="selector">.align-content-center</span> {
+    <span class="property">align-content</span>: <span class="value">center</span>;
+}
+
+<span class="selector">.align-content-between</span> {
+    <span class="property">align-content</span>: <span class="value">space-between</span>;
+}
+
+<span class="selector">.align-content-around</span> {
+    <span class="property">align-content</span>: <span class="value">space-around</span>;
+}
+
+<span class="selector">.align-content-stretch</span> {
+    <span class="property">align-content</span>: <span class="value">stretch</span>; <span class="comment">/* Default */</span>
+}
+            </div>
+            <div class="result">
+                <div class="flex-container wrap-wrap align-content-start" style="width: 250px; height: 200px;">
+                    <div class="flex-item flex-item-1">1</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                    <div class="flex-item flex-item-4">4</div>
+                    <div class="flex-item flex-item-5">5</div>
+                    <div class="flex-item flex-item-1">6</div>
+                </div>
+                <p><small>Start</small></p>
+                
+                <div class="flex-container wrap-wrap align-content-center" style="width: 250px; height: 200px;">
+                    <div class="flex-item flex-item-1">1</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                    <div class="flex-item flex-item-4">4</div>
+                    <div class="flex-item flex-item-5">5</div>
+                    <div class="flex-item flex-item-1">6</div>
+                </div>
+                <p><small>Center</small></p>
+                
+                <div class="flex-container wrap-wrap align-content-between" style="width: 250px; height: 200px;">
+                    <div class="flex-item flex-item-1">1</div>
+                    <div class="flex-item flex-item-2">2</div>
+                    <div class="flex-item flex-item-3">3</div>
+                    <div class="flex-item flex-item-4">4</div>
+                    <div class="flex-item flex-item-5">5</div>
+                    <div class="flex-item flex-item-1">6</div>
+                </div>
+                <p><small>Space Between</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Flex Item Properties</h2>
+            <div class="code-block">
+<span class="comment">/* flex-grow: how much item grows relative to others */</span>
+<span class="selector">.item-grow-1</span> { <span class="property">flex-grow</span>: <span class="value">1</span>; }
+<span class="selector">.item-grow-2</span> { <span class="property">flex-grow</span>: <span class="value">2</span>; }
+
+<span class="comment">/* flex-shrink: how much item shrinks relative to others */</span>
+<span class="selector">.item-shrink-0</span> { <span class="property">flex-shrink</span>: <span class="value">0</span>; <span class="comment">/* Don't shrink */</span> }
+<span class="selector">.item-shrink-1</span> { <span class="property">flex-shrink</span>: <span class="value">1</span>; <span class="comment">/* Default */</span> }
+
+<span class="comment">/* flex-basis: initial size of item */</span>
+<span class="selector">.item-basis-100px</span> { <span class="property">flex-basis</span>: <span class="value">100px</span>; }
+<span class="selector">.item-basis-200px</span> { <span class="property">flex-basis</span>: <span class="value">200px</span>; }
+
+<span class="comment">/* flex shorthand: grow shrink basis */</span>
+<span class="selector">.item-flex-1</span> { <span class="property">flex</span>: <span class="value">1</span>; <span class="comment">/* 1 1 auto */</span> }
+<span class="selector">.item-flex-auto</span> { <span class="property">flex</span>: <span class="value">auto</span>; <span class="comment">/* 1 1 auto */</span> }
+<span class="selector">.item-flex-none</span> { <span class="property">flex</span>: <span class="value">none</span>; <span class="comment">/* 0 0 auto */</span> }
+<span class="selector">.item-flex-fixed</span> { <span class="property">flex</span>: <span class="value">0 0 100px</span>; <span class="comment">/* Fixed size */</span> }
+            </div>
+            <div class="result">
+                <div class="flex-container" style="width: 400px;">
+                    <div class="flex-item flex-item-1 item-flex-1">Flex: 1</div>
+                    <div class="flex-item flex-item-2 item-flex-1">Flex: 1</div>
+                    <div class="flex-item flex-item-3 item-flex-2">Flex: 2</div>
+                </div>
+                <p><small>Items with different flex values</small></p>
+                
+                <div class="flex-container" style="width: 400px;">
+                    <div class="flex-item flex-item-1 item-100px">100px</div>
+                    <div class="flex-item flex-item-2 item-200px">200px</div>
+                    <div class="flex-item flex-item-3 item-1">Flex: 1</div>
+                </div>
+                <p><small>Mixed fixed and flexible items</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Align Self (Individual Item Alignment)</h2>
+            <div class="code-block">
+<span class="selector">.item-align-auto</span> { <span class="property">align-self</span>: <span class="value">auto</span>; <span class="comment">/* Default */</span> }
+<span class="selector">.item-align-start</span> { <span class="property">align-self</span>: <span class="value">flex-start</span>; }
+<span class="selector">.item-align-end</span> { <span class="property">align-self</span>: <span class="value">flex-end</span>; }
+<span class="selector">.item-align-center</span> { <span class="property">align-self</span>: <span class="value">center</span>; }
+<span class="selector">.item-align-stretch</span> { <span class="property">align-self</span>: <span class="value">stretch</span>; }
+<span class="selector">.item-align-baseline</span> { <span class="property">align-self</span>: <span class="value">baseline</span>; }
+            </div>
+            <div class="result">
+                <div class="flex-container align-center" style="height: 120px;">
+                    <div class="flex-item flex-item-1 item-align-start" style="height: 40px;">Start</div>
+                    <div class="flex-item flex-item-2 item-align-center" style="height: 60px;">Center</div>
+                    <div class="flex-item flex-item-3 item-align-end" style="height: 80px;">End</div>
+                    <div class="flex-item flex-item-4 item-align-stretch">Stretch</div>
+                </div>
+                <p><small>Container is center-aligned, but items override with align-self</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Order (Reordering Items)</h2>
+            <div class="code-block">
+<span class="selector">.item-order-1</span> { <span class="property">order</span>: <span class="value">1</span>; }
+<span class="selector">.item-order-2</span> { <span class="property">order</span>: <span class="value">2</span>; }
+<span class="selector">.item-order-3</span> { <span class="property">order</span>: <span class="value">3</span>; }
+<span class="selector">.item-order--1</span> { <span class="property">order</span>: <span class="value">-1</span>; <span class="comment">/* Comes first */</span> }
+<span class="comment">/* Default order is 0 */</span>
+            </div>
+            <div class="result">
+                <div class="flex-container">
+                    <div class="flex-item flex-item-1 item-order-2">Order 2</div>
+                    <div class="flex-item flex-item-2 item-order--1">Order -1</div>
+                    <div class="flex-item flex-item-3 item-order-1">Order 1</div>
+                    <div class="flex-item flex-item-4">Order 0 (default)</div>
+                </div>
+                <p><small>Items reordered by order property</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Common Flexbox Patterns</h2>
+            <div class="code-block">
+<span class="comment">/* Center content both horizontally and vertically */</span>
+<span class="selector">.center-content</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+    <span class="property">justify-content</span>: <span class="value">center</span>;
+    <span class="property">align-items</span>: <span class="value">center</span>;
+}
+
+<span class="comment">/* Holy Grail Layout */</span>
+<span class="selector">.holy-grail</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+    <span class="property">flex-direction</span>: <span class="value">column</span>;
+    <span class="property">min-height</span>: <span class="value">100vh</span>;
+}
+
+<span class="selector">.holy-grail-header</span>,
+<span class="selector">.holy-grail-footer</span> {
+    <span class="property">flex</span>: <span class="value">0 0 auto</span>;
+}
+
+<span class="selector">.holy-grail-body</span> {
+    <span class="property">flex</span>: <span class="value">1</span>;
+    <span class="property">display</span>: <span class="value">flex</span>;
+}
+
+<span class="selector">.holy-grail-content</span> {
+    <span class="property">flex</span>: <span class="value">1</span>;
+}
+
+<span class="comment">/* Navigation bar */</span>
+<span class="selector">.navbar</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+    <span class="property">justify-content</span>: <span class="value">space-between</span>;
+    <span class="property">align-items</span>: <span class="value">center</span>;
+}
+
+<span class="comment">/* Card layout */</span>
+<span class="selector">.card-container</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+    <span class="property">flex-wrap</span>: <span class="value">wrap</span>;
+    <span class="property">gap</span>: <span class="value">1rem</span>;
+}
+
+<span class="selector">.card</span> {
+    <span class="property">flex</span>: <span class="value">1 1 300px</span>;
+}
+            </div>
+            <div class="result">
+                <div class="flex-container justify-center align-center" style="height: 150px;">
+                    <div class="flex-item flex-item-1">Centered Content</div>
+                </div>
+                <p><small>Perfect centering</small></p>
+                
+                <div class="flex-container justify-between align-center" style="height: 60px;">
+                    <div class="flex-item flex-item-1" style="flex: 0 0 auto;">Logo</div>
+                    <div class="flex-item flex-item-2" style="flex: 0 0 auto;">Nav</div>
+                    <div class="flex-item flex-item-3" style="flex: 0 0 auto;">Menu</div>
+                </div>
+                <p><small>Navigation bar pattern</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Flexbox vs Grid</h2>
+            <div class="code-block">
+<span class="comment">/* Use Flexbox for: */</span>
+<span class="comment">/* - One-dimensional layouts (row or column) */</span>
+<span class="comment">/* - Component-level layouts */</span>
+<span class="comment">/* - Content alignment and distribution */</span>
+<span class="comment">/* - Navigation bars, cards, forms */</span>
+
+<span class="comment">/* Use Grid for: */</span>
+<span class="comment">/* - Two-dimensional layouts (rows and columns) */</span>
+<span class="comment">/* - Page-level layouts */</span>
+<span class="comment">/* - Complex grid structures */</span>
+<span class="comment">/* - Overlapping elements */</span>
+
+<span class="comment">/* They can work together! */</span>
+<span class="selector">.grid-container</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">1fr 1fr 1fr</span>;
+}
+
+<span class="selector">.flex-card</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+    <span class="property">flex-direction</span>: <span class="value">column</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Best Practices</h2>
+            <div class="code-block">
+<span class="comment">/* Use flexbox for component layouts */</span>
+<span class="selector">.component</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+    <span class="property">gap</span>: <span class="value">1rem</span>; <span class="comment">/* Modern way to add spacing */</span>
+}
+
+<span class="comment">/* Use min-width: 0 to prevent overflow */</span>
+<span class="selector">.flex-item</span> {
+    <span class="property">min-width</span>: <span class="value">0</span>;
+}
+
+<span class="comment">/* Use flex shorthand for better performance */</span>
+<span class="selector">.flex-item</span> {
+    <span class="property">flex</span>: <span class="value">1</span>; <span class="comment">/* Instead of grow, shrink, basis separately */</span>
+}
+
+<span class="comment">/* Consider accessibility */</span>
+<span class="selector">.reordered-item</span> {
+    <span class="property">order</span>: <span class="value">2</span>;
+}
+
+<span class="comment">/* Test with different content sizes */</span>
+<span class="selector">.test-container</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+    <span class="property">min-height</span>: <span class="value">0</span>; <span class="comment">/* Prevents overflow issues */</span>
+}
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+</body>
+</html>

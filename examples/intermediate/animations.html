@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Animations - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .selector { color: #d73a49; }
+        .property { color: #0066cc; }
+        .value { color: #28a745; }
+        .comment { color: #6c757d; font-style: italic; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+        
+        /* Animation demo styles */
+        .animation-box {
+            width: 100px;
+            height: 100px;
+            background: #2196f3;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin: 20px;
+            font-weight: bold;
+        }
+        
+        /* Basic animation */
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .slide-in {
+            animation: slideIn 2s ease-in-out;
+        }
+        
+        /* Rotation animation */
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .rotate {
+            animation: rotate 2s linear infinite;
+        }
+        
+        /* Scale animation */
+        @keyframes scale {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+        }
+        
+        .scale {
+            animation: scale 2s ease-in-out infinite;
+        }
+        
+        /* Color animation */
+        @keyframes colorChange {
+            0% {
+                background: #2196f3;
+            }
+            25% {
+                background: #f44336;
+            }
+            50% {
+                background: #4caf50;
+            }
+            75% {
+                background: #ff9800;
+            }
+            100% {
+                background: #2196f3;
+            }
+        }
+        
+        .color-change {
+            animation: colorChange 4s ease-in-out infinite;
+        }
+        
+        /* Bounce animation */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        .bounce {
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        /* Pulse animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Shake animation */
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                transform: translateX(-10px);
+            }
+            20%, 40%, 60%, 80% {
+                transform: translateX(10px);
+            }
+        }
+        
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        /* Fade animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+        /* Complex animation */
+        @keyframes complex {
+            0% {
+                transform: translateX(0) rotate(0deg) scale(1);
+                background: #2196f3;
+                border-radius: 8px;
+            }
+            25% {
+                transform: translateX(100px) rotate(90deg) scale(1.2);
+                background: #f44336;
+                border-radius: 50%;
+            }
+            50% {
+                transform: translateX(100px) rotate(180deg) scale(0.8);
+                background: #4caf50;
+                border-radius: 0;
+            }
+            75% {
+                transform: translateX(0) rotate(270deg) scale(1.1);
+                background: #ff9800;
+                border-radius: 25%;
+            }
+            100% {
+                transform: translateX(0) rotate(360deg) scale(1);
+                background: #2196f3;
+                border-radius: 8px;
+            }
+        }
+        
+        .complex {
+            animation: complex 4s ease-in-out infinite;
+        }
+        
+        /* Hover animation */
+        .hover-animation {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-animation:hover {
+            animation: bounce 0.5s ease-in-out;
+        }
+        
+        /* Loading spinner */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #2196f3;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px;
+        }
+        
+        /* Loading dots */
+        @keyframes loadingDots {
+            0%, 20% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+        
+        .loading-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #2196f3;
+            border-radius: 50%;
+            margin: 0 2px;
+        }
+        
+        .loading-dots span:nth-child(1) {
+            animation: loadingDots 1.4s ease-in-out infinite;
+        }
+        
+        .loading-dots span:nth-child(2) {
+            animation: loadingDots 1.4s ease-in-out infinite 0.2s;
+        }
+        
+        .loading-dots span:nth-child(3) {
+            animation: loadingDots 1.4s ease-in-out infinite 0.4s;
+        }
+        
+        /* Text animation */
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        
+        @keyframes blink {
+            0%, 50% {
+                border-color: transparent;
+            }
+            51%, 100% {
+                border-color: #333;
+            }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #333;
+            white-space: nowrap;
+            animation: typewriter 3s steps(30) 1s 1 normal both,
+                       blink 1s steps(1) infinite;
+        }
+        
+        /* Heartbeat animation */
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+            14% {
+                transform: scale(1.3);
+            }
+            28% {
+                transform: scale(1);
+            }
+            42% {
+                transform: scale(1.3);
+            }
+            70% {
+                transform: scale(1);
+            }
+        }
+        
+        .heartbeat {
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        /* Wave animation */
+        @keyframes wave {
+            0%, 60%, 100% {
+                transform: initial;
+            }
+            30% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        .wave span {
+            display: inline-block;
+            animation: wave 1.2s ease-in-out infinite;
+        }
+        
+        .wave span:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+        
+        .wave span:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+        
+        .wave span:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+        
+        .wave span:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS Animations</h1>
+        <p>This page demonstrates CSS animations for creating dynamic and engaging web experiences.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Basic Animation</h2>
+            <div class="code-block">
+<span class="comment">/* Define keyframes */</span>
+<span class="key">@keyframes</span> <span class="value">slideIn</span> {
+    <span class="property">from</span> {
+        <span class="property">transform</span>: <span class="value">translateX(-100%)</span>;
+        <span class="property">opacity</span>: <span class="value">0</span>;
+    }
+    <span class="property">to</span> {
+        <span class="property">transform</span>: <span class="value">translateX(0)</span>;
+        <span class="property">opacity</span>: <span class="value">1</span>;
+    }
+}
+
+<span class="comment">/* Apply animation */</span>
+<span class="selector">.animated-element</span> {
+    <span class="property">animation</span>: <span class="value">slideIn 2s ease-in-out</span>;
+}
+
+<span class="comment">/* Animation properties breakdown */</span>
+<span class="selector">.detailed-animation</span> {
+    <span class="property">animation-name</span>: <span class="value">slideIn</span>;
+    <span class="property">animation-duration</span>: <span class="value">2s</span>;
+    <span class="property">animation-timing-function</span>: <span class="value">ease-in-out</span>;
+    <span class="property">animation-delay</span>: <span class="value">0s</span>;
+    <span class="property">animation-iteration-count</span>: <span class="value">1</span>;
+    <span class="property">animation-direction</span>: <span class="value">normal</span>;
+    <span class="property">animation-fill-mode</span>: <span class="value">forwards</span>;
+}
+            </div>
+            <div class="result">
+                <div class="animation-box slide-in">Slide In</div>
+                <p><small>Animation plays once on page load</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Rotation Animation</h2>
+            <div class="code-block">
+<span class="key">@keyframes</span> <span class="value">rotate</span> {
+    <span class="property">from</span> {
+        <span class="property">transform</span>: <span class="value">rotate(0deg)</span>;
+    }
+    <span class="property">to</span> {
+        <span class="property">transform</span>: <span class="value">rotate(360deg)</span>;
+    }
+}
+
+<span class="selector">.rotating-element</span> {
+    <span class="property">animation</span>: <span class="value">rotate 2s linear infinite</span>;
+}
+
+<span class="comment">/* Different rotation speeds */</span>
+<span class="selector">.rotate-slow</span> {
+    <span class="property">animation</span>: <span class="value">rotate 4s linear infinite</span>;
+}
+
+<span class="selector">.rotate-fast</span> {
+    <span class="property">animation</span>: <span class="value">rotate 0.5s linear infinite</span>;
+}
+            </div>
+            <div class="result">
+                <div class="animation-box rotate">Rotate</div>
+                <p><small>Continuous rotation animation</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Scale Animation</h2>
+            <div class="code-block">
+<span class="key">@keyframes</span> <span class="value">scale</span> {
+    <span class="property">0%</span>, <span class="property">100%</span> {
+        <span class="property">transform</span>: <span class="value">scale(1)</span>;
+    }
+    <span class="property">50%</span> {
+        <span class="property">transform</span>: <span class="value">scale(1.5)</span>;
+    }
+}
+
+<span class="selector">.scaling-element</span> {
+    <span class="property">animation</span>: <span class="value">scale 2s ease-in-out infinite</span>;
+}
+
+<span class="comment">/* Scale up and down */</span>
+<span class="key">@keyframes</span> <span class="value">scaleUpDown</span> {
+    <span class="property">0%</span> {
+        <span class="property">transform</span>: <span class="value">scale(0.5)</span>;
+    }
+    <span class="property">50%</span> {
+        <span class="property">transform</span>: <span class="value">scale(1.2)</span>;
+    }
+    <span class="property">100%</span> {
+        <span class="property">transform</span>: <span class="value">scale(0.5)</span>;
+    }
+}
+            </div>
+            <div class="result">
+                <div class="animation-box scale">Scale</div>
+                <p><small>Scaling animation that grows and shrinks</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Color Animation</h2>
+            <div class="code-block">
+<span class="key">@keyframes</span> <span class="value">colorChange</span> {
+    <span class="property">0%</span> {
+        <span class="property">background</span>: <span class="value">#2196f3</span>;
+    }
+    <span class="property">25%</span> {
+        <span class="property">background</span>: <span class="value">#f44336</span>;
+    }
+    <span class="property">50%</span> {
+        <span class="property">background</span>: <span class="value">#4caf50</span>;
+    }
+    <span class="property">75%</span> {
+        <span class="property">background</span>: <span class="value">#ff9800</span>;
+    }
+    <span class="property">100%</span> {
+        <span class="property">background</span>: <span class="value">#2196f3</span>;
+    }
+}
+
+<span class="selector">.color-changing-element</span> {
+    <span class="property">animation</span>: <span class="value">colorChange 4s ease-in-out infinite</span>;
+}
+            </div>
+            <div class="result">
+                <div class="animation-box color-change">Color</div>
+                <p><small>Background color transitions through multiple colors</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Bounce Animation</h2>
+            <div class="code-block">
+<span class="key">@keyframes</span> <span class="value">bounce</span> {
+    <span class="property">0%</span>, <span class="property">20%</span>, <span class="property">50%</span>, <span class="property">80%</span>, <span class="property">100%</span> {
+        <span class="property">transform</span>: <span class="value">translateY(0)</span>;
+    }
+    <span class="property">40%</span> {
+        <span class="property">transform</span>: <span class="value">translateY(-30px)</span>;
+    }
+    <span class="property">60%</span> {
+        <span class="property">transform</span>: <span class="value">translateY(-15px)</span>;
+    }
+}
+
+<span class="selector">.bouncing-element</span> {
+    <span class="property">animation</span>: <span class="value">bounce 2s ease-in-out infinite</span>;
+}
+            </div>
+            <div class="result">
+                <div class="animation-box bounce">Bounce</div>
+                <p><small>Bouncing animation with multiple keyframes</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Pulse Animation</h2>
+            <div class="code-block">
+<span class="key">@keyframes</span> <span class="value">pulse</span> {
+    <span class="property">0%</span> {
+        <span class="property">transform</span>: <span class="value">scale(1)</span>;
+        <span class="property">opacity</span>: <span class="value">1</span>;
+    }
+    <span class="property">50%</span> {
+        <span class="property">transform</span>: <span class="value">scale(1.1)</span>;
+        <span class="property">opacity</span>: <span class="value">0.7</span>;
+    }
+    <span class="property">100%</span> {
+        <span class="property">transform</span>: <span class="value">scale(1)</span>;
+        <span class="property">opacity</span>: <span class="value">1</span>;
+    }
+}
+
+<span class="selector">.pulsing-element</span> {
+    <span class="property">animation</span>: <span class="value">pulse 2s ease-in-out infinite</span>;
+}
+            </div>
+            <div class="result">
+                <div class="animation-box pulse">Pulse</div>
+                <p><small>Pulsing animation with scale and opacity changes</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Complex Animation</h2>
+            <div class="code-block">
+<span class="key">@keyframes</span> <span class="value">complex</span> {
+    <span class="property">0%</span> {
+        <span class="property">transform</span>: <span class="value">translateX(0) rotate(0deg) scale(1)</span>;
+        <span class="property">background</span>: <span class="value">#2196f3</span>;
+        <span class="property">border-radius</span>: <span class="value">8px</span>;
+    }
+    <span class="property">25%</span> {
+        <span class="property">transform</span>: <span class="value">translateX(100px) rotate(90deg) scale(1.2)</span>;
+        <span class="property">background</span>: <span class="value">#f44336</span>;
+        <span class="property">border-radius</span>: <span class="value">50%</span>;
+    }
+    <span class="property">50%</span> {
+        <span class="property">transform</span>: <span class="value">translateX(100px) rotate(180deg) scale(0.8)</span>;
+        <span class="property">background</span>: <span class="value">#4caf50</span>;
+        <span class="property">border-radius</span>: <span class="value">0</span>;
+    }
+    <span class="property">75%</span> {
+        <span class="property">transform</span>: <span class="value">translateX(0) rotate(270deg) scale(1.1)</span>;
+        <span class="property">background</span>: <span class="value">#ff9800</span>;
+        <span class="property">border-radius</span>: <span class="value">25%</span>;
+    }
+    <span class="property">100%</span> {
+        <span class="property">transform</span>: <span class="value">translateX(0) rotate(360deg) scale(1)</span>;
+        <span class="property">background</span>: <span class="value">#2196f3</span>;
+        <span class="property">border-radius</span>: <span class="value">8px</span>;
+    }
+}
+
+<span class="selector">.complex-element</span> {
+    <span class="property">animation</span>: <span class="value">complex 4s ease-in-out infinite</span>;
+}
+            </div>
+            <div class="result">
+                <div class="animation-box complex">Complex</div>
+                <p><small>Complex animation with multiple property changes</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Animation Properties</h2>
+            <div class="code-block">
+<span class="comment">/* Animation duration */</span>
+<span class="selector">.fast-animation</span> {
+    <span class="property">animation-duration</span>: <span class="value">0.5s</span>;
+}
+
+<span class="selector">.slow-animation</span> {
+    <span class="property">animation-duration</span>: <span class="value">3s</span>;
+}
+
+<span class="comment">/* Animation timing functions */</span>
+<span class="selector">.linear-animation</span> {
+    <span class="property">animation-timing-function</span>: <span class="value">linear</span>;
+}
+
+<span class="selector">.ease-animation</span> {
+    <span class="property">animation-timing-function</span>: <span class="value">ease</span>;
+}
+
+<span class="selector">.ease-in-animation</span> {
+    <span class="property">animation-timing-function</span>: <span class="value">ease-in</span>;
+}
+
+<span class="selector">.ease-out-animation</span> {
+    <span class="property">animation-timing-function</span>: <span class="value">ease-out</span>;
+}
+
+<span class="selector">.ease-in-out-animation</span> {
+    <span class="property">animation-timing-function</span>: <span class="value">ease-in-out</span>;
+}
+
+<span class="comment">/* Animation iteration count */</span>
+<span class="selector">.once-animation</span> {
+    <span class="property">animation-iteration-count</span>: <span class="value">1</span>;
+}
+
+<span class="selector">.infinite-animation</span> {
+    <span class="property">animation-iteration-count</span>: <span class="value">infinite</span>;
+}
+
+<span class="selector">.multiple-animation</span> {
+    <span class="property">animation-iteration-count</span>: <span class="value">3</span>;
+}
+
+<span class="comment">/* Animation direction */</span>
+<span class="selector">.normal-direction</span> {
+    <span class="property">animation-direction</span>: <span class="value">normal</span>;
+}
+
+<span class="selector">.reverse-direction</span> {
+    <span class="property">animation-direction</span>: <span class="value">reverse</span>;
+}
+
+<span class="selector">.alternate-direction</span> {
+    <span class="property">animation-direction</span>: <span class="value">alternate</span>;
+}
+
+<span class="selector">.alternate-reverse-direction</span> {
+    <span class="property">animation-direction</span>: <span class="value">alternate-reverse</span>;
+}
+
+<span class="comment">/* Animation fill mode */</span>
+<span class="selector">.none-fill</span> {
+    <span class="property">animation-fill-mode</span>: <span class="value">none</span>;
+}
+
+<span class="selector">.forwards-fill</span> {
+    <span class="property">animation-fill-mode</span>: <span class="value">forwards</span>;
+}
+
+<span class="selector">.backwards-fill</span> {
+    <span class="property">animation-fill-mode</span>: <span class="value">backwards</span>;
+}
+
+<span class="selector">.both-fill</span> {
+    <span class="property">animation-fill-mode</span>: <span class="value">both</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Loading Animations</h2>
+            <div class="code-block">
+<span class="comment">/* Spinner */</span>
+<span class="key">@keyframes</span> <span class="value">spin</span> {
+    <span class="property">0%</span> {
+        <span class="property">transform</span>: <span class="value">rotate(0deg)</span>;
+    }
+    <span class="property">100%</span> {
+        <span class="property">transform</span>: <span class="value">rotate(360deg)</span>;
+    }
+}
+
+<span class="selector">.spinner</span> {
+    <span class="property">width</span>: <span class="value">40px</span>;
+    <span class="property">height</span>: <span class="value">40px</span>;
+    <span class="property">border</span>: <span class="value">4px solid #f3f3f3</span>;
+    <span class="property">border-top</span>: <span class="value">4px solid #2196f3</span>;
+    <span class="property">border-radius</span>: <span class="value">50%</span>;
+    <span class="property">animation</span>: <span class="value">spin 1s linear infinite</span>;
+}
+
+<span class="comment">/* Loading dots */</span>
+<span class="key">@keyframes</span> <span class="value">loadingDots</span> {
+    <span class="property">0%</span>, <span class="property">20%</span> {
+        <span class="property">opacity</span>: <span class="value">0</span>;
+        <span class="property">transform</span>: <span class="value">scale(0)</span>;
+    }
+    <span class="property">50%</span> {
+        <span class="property">opacity</span>: <span class="value">1</span>;
+        <span class="property">transform</span>: <span class="value">scale(1)</span>;
+    }
+    <span class="property">100%</span> {
+        <span class="property">opacity</span>: <span class="value">0</span>;
+        <span class="property">transform</span>: <span class="value">scale(0)</span>;
+    }
+}
+            </div>
+            <div class="result">
+                <div class="spinner"></div>
+                <div class="loading-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <p><small>Loading spinner and dots animations</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Text Animations</h2>
+            <div class="code-block">
+<span class="comment">/* Typewriter effect */</span>
+<span class="key">@keyframes</span> <span class="value">typewriter</span> {
+    <span class="property">from</span> {
+        <span class="property">width</span>: <span class="value">0</span>;
+    }
+    <span class="property">to</span> {
+        <span class="property">width</span>: <span class="value">100%</span>;
+    }
+}
+
+<span class="key">@keyframes</span> <span class="value">blink</span> {
+    <span class="property">0%</span>, <span class="property">50%</span> {
+        <span class="property">border-color</span>: <span class="value">transparent</span>;
+    }
+    <span class="property">51%</span>, <span class="property">100%</span> {
+        <span class="property">border-color</span>: <span class="value">#333</span>;
+    }
+}
+
+<span class="selector">.typewriter</span> {
+    <span class="property">overflow</span>: <span class="value">hidden</span>;
+    <span class="property">border-right</span>: <span class="value">3px solid #333</span>;
+    <span class="property">white-space</span>: <span class="value">nowrap</span>;
+    <span class="property">animation</span>: <span class="value">typewriter 3s steps(30) 1s 1 normal both</span>,
+               <span class="value">blink 1s steps(1) infinite</span>;
+}
+
+<span class="comment">/* Wave text animation */</span>
+<span class="key">@keyframes</span> <span class="value">wave</span> {
+    <span class="property">0%</span>, <span class="property">60%</span>, <span class="property">100%</span> {
+        <span class="property">transform</span>: <span class="value">initial</span>;
+    }
+    <span class="property">30%</span> {
+        <span class="property">transform</span>: <span class="value">translateY(-15px)</span>;
+    }
+}
+            </div>
+            <div class="result">
+                <div class="typewriter" style="font-size: 18px; font-family: monospace;">Hello, World!</div>
+                <div class="wave" style="font-size: 24px; font-weight: bold; margin: 20px 0;">
+                    <span>H</span><span>E</span><span>L</span><span>L</span><span>O</span>
+                </div>
+                <p><small>Typewriter and wave text animations</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Hover Animations</h2>
+            <div class="code-block">
+<span class="comment">/* Animation on hover */</span>
+<span class="selector">.hover-element</span> {
+    <span class="property">transition</span>: <span class="value">all 0.3s ease</span>;
+}
+
+<span class="selector">.hover-element:hover</span> {
+    <span class="property">animation</span>: <span class="value">bounce 0.5s ease-in-out</span>;
+}
+
+<span class="comment">/* Continuous animation that pauses on hover */</span>
+<span class="selector">.continuous-animation</span> {
+    <span class="property">animation</span>: <span class="value">rotate 2s linear infinite</span>;
+}
+
+<span class="selector">.continuous-animation:hover</span> {
+    <span class="property">animation-play-state</span>: <span class="value">paused</span>;
+}
+
+<span class="comment">/* Animation that starts on hover */</span>
+<span class="selector">.hover-start</span> {
+    <span class="property">transition</span>: <span class="value">all 0.3s ease</span>;
+}
+
+<span class="selector">.hover-start:hover</span> {
+    <span class="property">animation</span>: <span class="value">pulse 1s ease-in-out infinite</span>;
+}
+            </div>
+            <div class="result">
+                <div class="animation-box hover-animation">Hover me</div>
+                <p><small>Bounce animation on hover</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Animation Control</h2>
+            <div class="code-block">
+<span class="comment">/* Play state */</span>
+<span class="selector">.paused-animation</span> {
+    <span class="property">animation-play-state</span>: <span class="value">paused</span>;
+}
+
+<span class="selector">.running-animation</span> {
+    <span class="property">animation-play-state</span>: <span class="value">running</span>;
+}
+
+<span class="comment">/* Animation delay */</span>
+<span class="selector">.delayed-animation</span> {
+    <span class="property">animation-delay</span>: <span class="value">2s</span>;
+}
+
+<span class="comment">/* Multiple animations */</span>
+<span class="selector">.multiple-animations</span> {
+    <span class="property">animation</span>: <span class="value">rotate 2s linear infinite, pulse 1s ease-in-out infinite</span>;
+}
+
+<span class="comment">/* Animation shorthand */</span>
+<span class="selector">.animation-shorthand</span> {
+    <span class="property">animation</span>: <span class="value">slideIn 2s ease-in-out 0s 1 normal forwards</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Performance Considerations</h2>
+            <div class="code-block">
+<span class="comment">/* Use transform and opacity for better performance */</span>
+<span class="key">@keyframes</span> <span class="value">performant</span> {
+    <span class="property">0%</span>, <span class="property">100%</span> {
+        <span class="property">transform</span>: <span class="value">translateX(0)</span>;
+        <span class="property">opacity</span>: <span class="value">1</span>;
+    }
+    <span class="property">50%</span> {
+        <span class="property">transform</span>: <span class="value">translateX(100px)</span>;
+        <span class="property">opacity</span>: <span class="value">0.5</span>;
+    }
+}
+
+<span class="comment">/* Avoid animating these properties */</span>
+<span class="comment">/* width, height, padding, margin, left, top */</span>
+
+<span class="comment">/* Use will-change for complex animations */</span>
+<span class="selector">.will-change-element</span> {
+    <span class="property">will-change</span>: <span class="value">transform, opacity</span>;
+}
+
+<span class="comment">/* Remove will-change after animation */</span>
+<span class="selector">.animation-complete</span> {
+    <span class="property">will-change</span>: <span class="value">auto</span>;
+}
+
+<span class="comment">/* Use hardware acceleration */</span>
+<span class="selector">.hardware-accelerated</span> {
+    <span class="property">transform</span>: <span class="value">translateZ(0)</span>;
+    <span class="property">backface-visibility</span>: <span class="value">hidden</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Best Practices</h2>
+            <div class="code-block">
+<span class="comment">/* Keep animations short and purposeful */</span>
+<span class="selector">.good-animation</span> {
+    <span class="property">animation-duration</span>: <span class="value">0.3s</span>;
+}
+
+<span class="comment">/* Use consistent timing across your site */</span>
+<span class="selector">:root</span> {
+    <span class="property">--animation-fast</span>: <span class="value">0.15s ease</span>;
+    <span class="property">--animation-normal</span>: <span class="value">0.3s ease</span>;
+    <span class="property">--animation-slow</span>: <span class="value">0.5s ease</span>;
+}
+
+<span class="comment">/* Consider accessibility */</span>
+<span class="selector">@media (prefers-reduced-motion: reduce)</span> {
+    <span class="selector">*</span> {
+        <span class="property">animation</span>: <span class="value">none !important</span>;
+        <span class="property">transition</span>: <span class="value">none !important</span>;
+    }
+}
+
+<span class="comment">/* Add meaningful animations */</span>
+<span class="selector">.meaningful-animation</span> {
+    <span class="property">animation</span>: <span class="value">slideIn 0.3s ease-out</span>; <span class="comment">/* Indicates entrance */</span>
+}
+
+<span class="comment">/* Test on mobile devices */</span>
+<span class="selector">.mobile-friendly</span> {
+    <span class="property">animation</span>: <span class="value">pulse 2s ease-in-out infinite</span>; <span class="comment">/* Works well on touch */</span>
+}
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+</body>
+</html>

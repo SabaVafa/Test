@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Formatting - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .tag { color: #e83e8c; }
+        .attribute { color: #0066cc; }
+        .value { color: #28a745; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HTML Text Formatting</h1>
+        <p>This page demonstrates various HTML text formatting tags and their effects.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Headings</h2>
+            <div class="code-block">
+<span class="tag">&lt;h1&gt;</span>Heading 1<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;h2&gt;</span>Heading 2<span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;h3&gt;</span>Heading 3<span class="tag">&lt;/h3&gt;</span>
+<span class="tag">&lt;h4&gt;</span>Heading 4<span class="tag">&lt;/h4&gt;</span>
+<span class="tag">&lt;h5&gt;</span>Heading 5<span class="tag">&lt;/h5&gt;</span>
+<span class="tag">&lt;h6&gt;</span>Heading 6<span class="tag">&lt;/h6&gt;</span>
+            </div>
+            <div class="result">
+                <h1>Heading 1</h1>
+                <h2>Heading 2</h2>
+                <h3>Heading 3</h3>
+                <h4>Heading 4</h4>
+                <h5>Heading 5</h5>
+                <h6>Heading 6</h6>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Basic Text Formatting</h2>
+            <div class="code-block">
+<span class="tag">&lt;p&gt;</span>This is <span class="tag">&lt;strong&gt;</span>bold text<span class="tag">&lt;/strong&gt;</span> using strong tag.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>This is <span class="tag">&lt;b&gt;</span>bold text<span class="tag">&lt;/b&gt;</span> using b tag.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>This is <span class="tag">&lt;em&gt;</span>italic text<span class="tag">&lt;/em&gt;</span> using em tag.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>This is <span class="tag">&lt;i&gt;</span>italic text<span class="tag">&lt;/i&gt;</span> using i tag.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>This is <span class="tag">&lt;u&gt;</span>underlined text<span class="tag">&lt;/u&gt;</span>.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>This is <span class="tag">&lt;mark&gt;</span>highlighted text<span class="tag">&lt;/mark&gt;</span>.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>This is <span class="tag">&lt;del&gt;</span>deleted text<span class="tag">&lt;/del&gt;</span>.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>This is <span class="tag">&lt;ins&gt;</span>inserted text<span class="tag">&lt;/ins&gt;</span>.<span class="tag">&lt;/p&gt;</span>
+            </div>
+            <div class="result">
+                <p>This is <strong>bold text</strong> using strong tag.</p>
+                <p>This is <b>bold text</b> using b tag.</p>
+                <p>This is <em>italic text</em> using em tag.</p>
+                <p>This is <i>italic text</i> using i tag.</p>
+                <p>This is <u>underlined text</u>.</p>
+                <p>This is <mark>highlighted text</mark>.</p>
+                <p>This is <del>deleted text</del>.</p>
+                <p>This is <ins>inserted text</ins>.</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Superscript and Subscript</h2>
+            <div class="code-block">
+<span class="tag">&lt;p&gt;</span>E = mc<span class="tag">&lt;sup&gt;</span>2<span class="tag">&lt;/sup&gt;</span> (Einstein's equation)<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>The chemical formula for water is H<span class="tag">&lt;sub&gt;</span>2<span class="tag">&lt;/sub&gt;</span>O<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span>2<span class="tag">&lt;sup&gt;</span>nd<span class="tag">&lt;/sup&gt;</span> place and 3<span class="tag">&lt;sup&gt;</span>rd<span class="tag">&lt;/sup&gt;</span> place<span class="tag">&lt;/p&gt;</span>
+            </div>
+            <div class="result">
+                <p>E = mc<sup>2</sup> (Einstein's equation)</p>
+                <p>The chemical formula for water is H<sub>2</sub>O</p>
+                <p>2<sup>nd</sup> place and 3<sup>rd</sup> place</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Code and Preformatted Text</h2>
+            <div class="code-block">
+<span class="tag">&lt;p&gt;</span>Use the <span class="tag">&lt;code&gt;</span>console.log()<span class="tag">&lt;/code&gt;</span> function to output to console.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;pre&gt;</span>
+function greet(name) {
+    console.log("Hello, " + name + "!");
+}
+<span class="tag">&lt;/pre&gt;</span>
+            </div>
+            <div class="result">
+                <p>Use the <code>console.log()</code> function to output to console.</p>
+                <pre>function greet(name) {
+    console.log("Hello, " + name + "!");
+}</pre>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Quotations</h2>
+            <div class="code-block">
+<span class="tag">&lt;p&gt;</span>HTML stands for <span class="tag">&lt;abbr</span> <span class="attribute">title</span>=<span class="value">"HyperText Markup Language"</span><span class="tag">&gt;</span>HTML<span class="tag">&lt;/abbr&gt;</span>.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span><span class="tag">&lt;q&gt;</span>To be or not to be, that is the question.<span class="tag">&lt;/q&gt;</span> - Shakespeare<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;blockquote&gt;</span>
+    <span class="tag">&lt;p&gt;</span>The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle.<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;cite&gt;</span>- Steve Jobs<span class="tag">&lt;/cite&gt;</span>
+<span class="tag">&lt;/blockquote&gt;</span>
+<span class="tag">&lt;p&gt;</span>The <span class="tag">&lt;cite&gt;</span>HTML5 Specification<span class="tag">&lt;/cite&gt;</span> defines modern web standards.<span class="tag">&lt;/p&gt;</span>
+            </div>
+            <div class="result">
+                <p>HTML stands for <abbr title="HyperText Markup Language">HTML</abbr>.</p>
+                <p><q>To be or not to be, that is the question.</q> - Shakespeare</p>
+                <blockquote>
+                    <p>The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle.</p>
+                    <cite>- Steve Jobs</cite>
+                </blockquote>
+                <p>The <cite>HTML5 Specification</cite> defines modern web standards.</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Text Direction and BDO</h2>
+            <div class="code-block">
+<span class="tag">&lt;p&gt;</span><span class="tag">&lt;bdo</span> <span class="attribute">dir</span>=<span class="value">"rtl"</span><span class="tag">&gt;</span>This text will be displayed right-to-left<span class="tag">&lt;/bdo&gt;</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span><span class="tag">&lt;ruby&gt;</span>HTML<span class="tag">&lt;rt&gt;</span>HyperText Markup Language<span class="tag">&lt;/rt&gt;</span><span class="tag">&lt;/ruby&gt;</span><span class="tag">&lt;/p&gt;</span>
+            </div>
+            <div class="result">
+                <p><bdo dir="rtl">This text will be displayed right-to-left</bdo></p>
+                <p><ruby>HTML<rt>HyperText Markup Language</rt></ruby></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Line Breaks and Horizontal Rules</h2>
+            <div class="code-block">
+<span class="tag">&lt;p&gt;</span>
+First line of text.<span class="tag">&lt;br&gt;</span>
+Second line of text.<span class="tag">&lt;br&gt;</span>
+Third line of text.
+<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;hr&gt;</span>
+<span class="tag">&lt;p&gt;</span>Text after horizontal rule.<span class="tag">&lt;/p&gt;</span>
+            </div>
+            <div class="result">
+                <p>
+                First line of text.<br>
+                Second line of text.<br>
+                Third line of text.
+                </p>
+                <hr>
+                <p>Text after horizontal rule.</p>
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+</body>
+</html>

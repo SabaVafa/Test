@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Transforms - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .selector { color: #d73a49; }
+        .property { color: #0066cc; }
+        .value { color: #28a745; }
+        .comment { color: #6c757d; font-style: italic; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+        
+        /* Transform demo styles */
+        .transform-box {
+            width: 100px;
+            height: 100px;
+            background: #2196f3;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin: 20px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .transform-3d-box {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #2196f3, #ff9800);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin: 20px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .translate-x {
+            transform: translateX(50px);
+        }
+        
+        .translate-y {
+            transform: translateY(50px);
+        }
+        
+        .translate-xy {
+            transform: translate(50px, 50px);
+        }
+        
+        .scale-x {
+            transform: scaleX(1.5);
+        }
+        
+        .scale-y {
+            transform: scaleY(1.5);
+        }
+        
+        .scale-xy {
+            transform: scale(1.5);
+        }
+        
+        .rotate-45 {
+            transform: rotate(45deg);
+        }
+        
+        .rotate-90 {
+            transform: rotate(90deg);
+        }
+        
+        .skew-x {
+            transform: skewX(20deg);
+        }
+        
+        .skew-y {
+            transform: skewY(20deg);
+        }
+        
+        .skew-xy {
+            transform: skew(20deg, 10deg);
+        }
+        
+        .rotate3d-x {
+            transform: rotateX(45deg);
+        }
+        
+        .rotate3d-y {
+            transform: rotateY(45deg);
+        }
+        
+        .rotate3d-z {
+            transform: rotateZ(45deg);
+        }
+        
+        .rotate3d-custom {
+            transform: rotate3d(1, 1, 1, 45deg);
+        }
+        
+        .translate3d {
+            transform: translate3d(20px, 20px, 20px);
+        }
+        
+        .scale3d {
+            transform: scale3d(1.2, 1.2, 1.2);
+        }
+        
+        .perspective-container {
+            perspective: 1000px;
+            margin: 20px 0;
+        }
+        
+        .preserve-3d {
+            transform-style: preserve-3d;
+        }
+        
+        .card-3d {
+            width: 200px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            margin: 20px auto;
+        }
+        
+        .card-3d:hover {
+            transform: rotateY(180deg);
+        }
+        
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .card-front {
+            background: linear-gradient(45deg, #2196f3, #1976d2);
+        }
+        
+        .card-back {
+            background: linear-gradient(45deg, #ff9800, #f57c00);
+            transform: rotateY(180deg);
+        }
+        
+        .cube-container {
+            width: 200px;
+            height: 200px;
+            perspective: 800px;
+            margin: 40px auto;
+        }
+        
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-20deg) rotateY(-20deg);
+            animation: rotateCube 10s infinite linear;
+        }
+        
+        @keyframes rotateCube {
+            from { transform: rotateX(-20deg) rotateY(0deg); }
+            to { transform: rotateX(-20deg) rotateY(360deg); }
+        }
+        
+        .cube-face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            opacity: 0.9;
+        }
+        
+        .cube-front {
+            background: rgba(33, 150, 243, 0.8);
+            transform: translateZ(100px);
+        }
+        
+        .cube-back {
+            background: rgba(255, 152, 0, 0.8);
+            transform: rotateY(180deg) translateZ(100px);
+        }
+        
+        .cube-right {
+            background: rgba(76, 175, 80, 0.8);
+            transform: rotateY(90deg) translateZ(100px);
+        }
+        
+        .cube-left {
+            background: rgba(244, 67, 54, 0.8);
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+        
+        .cube-top {
+            background: rgba(156, 39, 176, 0.8);
+            transform: rotateX(90deg) translateZ(100px);
+        }
+        
+        .cube-bottom {
+            background: rgba(0, 188, 212, 0.8);
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+        
+        .transform-origin-demo {
+            width: 100px;
+            height: 100px;
+            background: #4caf50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin: 20px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .origin-center {
+            transform-origin: center;
+        }
+        
+        .origin-top-left {
+            transform-origin: top left;
+        }
+        
+        .origin-bottom-right {
+            transform-origin: bottom right;
+        }
+        
+        .origin-custom {
+            transform-origin: 25% 75%;
+        }
+        
+        .matrix-demo {
+            width: 100px;
+            height: 100px;
+            background: #9c27b0;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin: 20px;
+            font-weight: bold;
+        }
+        
+        .matrix-translate {
+            transform: matrix(1, 0, 0, 1, 50, 50);
+        }
+        
+        .matrix-scale {
+            transform: matrix(1.5, 0, 0, 1.5, 0, 0);
+        }
+        
+        .matrix-rotate {
+            transform: matrix(0.707, 0.707, -0.707, 0.707, 0, 0);
+        }
+        
+        .matrix-complex {
+            transform: matrix(1.2, 0.3, -0.2, 1.1, 30, 20);
+        }
+        
+        .transform-combo {
+            transform: translate(20px, 20px) scale(1.2) rotate(45deg);
+        }
+        
+        .hover-transform:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .interactive-transform {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .interactive-transform:active {
+            transform: scale(0.95);
+        }
+        
+        .transform-controls {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .transform-slider {
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        .transform-slider-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS Transforms</h1>
+        <p>This page demonstrates CSS transforms for 2D and 3D transformations of elements.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">2D Transforms</h2>
+            <div class="code-block">
+<span class="comment">/* Translation */</span>
+<span class="selector">.translate-x</span> {
+    <span class="property">transform</span>: <span class="value">translateX(50px)</span>;
+}
+
+<span class="selector">.translate-y</span> {
+    <span class="property">transform</span>: <span class="value">translateY(50px)</span>;
+}
+
+<span class="selector">.translate-xy</span> {
+    <span class="property">transform</span>: <span class="value">translate(50px, 50px)</span>;
+}
+
+<span class="comment">/* Scaling */</span>
+<span class="selector">.scale-x</span> {
+    <span class="property">transform</span>: <span class="value">scaleX(1.5)</span>;
+}
+
+<span class="selector">.scale-y</span> {
+    <span class="property">transform</span>: <span class="value">scaleY(1.5)</span>;
+}
+
+<span class="selector">.scale-xy</span> {
+    <span class="property">transform</span>: <span class="value">scale(1.5)</span>;
+}
+
+<span class="comment">/* Rotation */</span>
+<span class="selector">.rotate</span> {
+    <span class="property">transform</span>: <span class="value">rotate(45deg)</span>;
+}
+
+<span class="comment">/* Skewing */</span>
+<span class="selector">.skew-x</span> {
+    <span class="property">transform</span>: <span class="value">skewX(20deg)</span>;
+}
+
+<span class="selector">.skew-y</span> {
+    <span class="property">transform</span>: <span class="value">skewY(20deg)</span>;
+}
+
+<span class="selector">.skew-xy</span> {
+    <span class="property">transform</span>: <span class="value">skew(20deg, 10deg)</span>;
+}
+            </div>
+            <div class="result">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                    <div>
+                        <div class="transform-box translate-x">Translate X</div>
+                        <small>translateX(50px)</small>
+                    </div>
+                    <div>
+                        <div class="transform-box translate-y">Translate Y</div>
+                        <small>translateY(50px)</small>
+                    </div>
+                    <div>
+                        <div class="transform-box translate-xy">Translate XY</div>
+                        <small>translate(50px, 50px)</small>
+                    </div>
+                    <div>
+                        <div class="transform-box scale-x">Scale X</div>
+                        <small>scaleX(1.5)</small>
+                    </div>
+                    <div>
+                        <div class="transform-box scale-y">Scale Y</div>
+                        <small>scaleY(1.5)</small>
+                    </div>
+                    <div>
+                        <div class="transform-box scale-xy">Scale XY</div>
+                        <small>scale(1.5)</small>
+                    </div>
+                    <div>
+                        <div class="transform-box rotate-45">Rotate 45°</div>
+                        <small>rotate(45deg)</small>
+                    </div>
+                    <div>
+                        <div class="transform-box skew-x">Skew X</div>
+                        <small>skewX(20deg)</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">3D Transforms</h2>
+            <div class="code-block">
+<span class="comment">/* 3D Rotation */</span>
+<span class="selector">.rotate-x</span> {
+    <span class="property">transform</span>: <span class="value">rotateX(45deg)</span>;
+}
+
+<span class="selector">.rotate-y</span> {
+    <span class="property">transform</span>: <span class="value">rotateY(45deg)</span>;
+}
+
+<span class="selector">.rotate-z</span> {
+    <span class="property">transform</span>: <span class="value">rotateZ(45deg)</span>;
+}
+
+<span class="selector">.rotate3d</span> {
+    <span class="property">transform</span>: <span class="value">rotate3d(1, 1, 1, 45deg)</span>;
+}
+
+<span class="comment">/* 3D Translation */</span>
+<span class="selector">.translate3d</span> {
+    <span class="property">transform</span>: <span class="value">translate3d(20px, 20px, 20px)</span>;
+}
+
+<span class="comment">/* 3D Scaling */</span>
+<span class="selector">.scale3d</span> {
+    <span class="property">transform</span>: <span class="value">scale3d(1.2, 1.2, 1.2)</span>;
+}
+
+<span class="comment">/* Perspective */</span>
+<span class="selector">.perspective-container</span> {
+    <span class="property">perspective</span>: <span class="value">1000px</span>;
+}
+
+<span class="comment">/* Transform style */</span>
+<span class="selector">.preserve-3d</span> {
+    <span class="property">transform-style</span>: <span class="value">preserve-3d</span>;
+}
+            </div>
+            <div class="result">
+                <div class="perspective-container">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                        <div>
+                            <div class="transform-3d-box rotate3d-x">Rotate X</div>
+                            <small>rotateX(45deg)</small>
+                        </div>
+                        <div>
+                            <div class="transform-3d-box rotate3d-y">Rotate Y</div>
+                            <small>rotateY(45deg)</small>
+                        </div>
+                        <div>
+                            <div class="transform-3d-box rotate3d-z">Rotate Z</div>
+                            <small>rotateZ(45deg)</small>
+                        </div>
+                        <div>
+                            <div class="transform-3d-box rotate3d-custom">Rotate 3D</div>
+                            <small>rotate3d(1,1,1,45deg)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Transform Origin</h2>
+            <div class="code-block">
+<span class="selector">.origin-center</span> {
+    <span class="property">transform-origin</span>: <span class="value">center</span>;
+    <span class="property">transform</span>: <span class="value">rotate(45deg)</span>;
+}
+
+<span class="selector">.origin-top-left</span> {
+    <span class="property">transform-origin</span>: <span class="value">top left</span>;
+    <span class="property">transform</span>: <span class="value">rotate(45deg)</span>;
+}
+
+<span class="selector">.origin-bottom-right</span> {
+    <span class="property">transform-origin</span>: <span class="value">bottom right</span>;
+    <span class="property">transform</span>: <span class="value">rotate(45deg)</span>;
+}
+
+<span class="selector">.origin-custom</span> {
+    <span class="property">transform-origin</span>: <span class="value">25% 75%</span>;
+    <span class="property">transform</span>: <span class="value">rotate(45deg)</span>;
+}
+
+<span class="comment">/* 3D transform origin */</span>
+<span class="selector">.origin-3d</span> {
+    <span class="property">transform-origin</span>: <span class="value">50% 50% 50px</span>;
+    <span class="property">transform</span>: <span class="value">rotateY(45deg)</span>;
+}
+            </div>
+            <div class="result">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                    <div>
+                        <div class="transform-origin-demo origin-center" style="transform: rotate(45deg);">Center</div>
+                        <small>transform-origin: center</small>
+                    </div>
+                    <div>
+                        <div class="transform-origin-demo origin-top-left" style="transform: rotate(45deg);">Top Left</div>
+                        <small>transform-origin: top left</small>
+                    </div>
+                    <div>
+                        <div class="transform-origin-demo origin-bottom-right" style="transform: rotate(45deg);">Bottom Right</div>
+                        <small>transform-origin: bottom right</small>
+                    </div>
+                    <div>
+                        <div class="transform-origin-demo origin-custom" style="transform: rotate(45deg);">Custom</div>
+                        <small>transform-origin: 25% 75%</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Matrix Transforms</h2>
+            <div class="code-block">
+<span class="comment">/* 2D Matrix: matrix(a, b, c, d, e, f) */</span>
+<span class="comment">/* a = scale-x, b = skew-y, c = skew-x, d = scale-y */</span>
+<span class="comment">/* e = translate-x, f = translate-y */</span>
+
+<span class="selector">.matrix-translate</span> {
+    <span class="property">transform</span>: <span class="value">matrix(1, 0, 0, 1, 50, 50)</span>;
+}
+
+<span class="selector">.matrix-scale</span> {
+    <span class="property">transform</span>: <span class="value">matrix(1.5, 0, 0, 1.5, 0, 0)</span>;
+}
+
+<span class="selector">.matrix-rotate</span> {
+    <span class="property">transform</span>: <span class="value">matrix(0.707, 0.707, -0.707, 0.707, 0, 0)</span>;
+}
+
+<span class="comment">/* 3D Matrix: matrix3d(a1, b1, c1, d1, a2, b2, c2, d2, a3, b3, c3, d3, a4, b4, c4, d4) */</span>
+<span class="selector">.matrix3d</span> {
+    <span class="property">transform</span>: <span class="value">matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 50, 50, 0, 1)</span>;
+}
+            </div>
+            <div class="result">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                    <div>
+                        <div class="matrix-demo matrix-translate">Translate</div>
+                        <small>matrix(1,0,0,1,50,50)</small>
+                    </div>
+                    <div>
+                        <div class="matrix-demo matrix-scale">Scale</div>
+                        <small>matrix(1.5,0,0,1.5,0,0)</small>
+                    </div>
+                    <div>
+                        <div class="matrix-demo matrix-rotate">Rotate</div>
+                        <small>matrix(0.707,0.707,-0.707,0.707,0,0)</small>
+                    </div>
+                    <div>
+                        <div class="matrix-demo matrix-complex">Complex</div>
+                        <small>matrix(1.2,0.3,-0.2,1.1,30,20)</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Multiple Transforms</h2>
+            <div class="code-block">
+<span class="selector">.transform-combo</span> {
+    <span class="property">transform</span>: <span class="value">translate(20px, 20px) scale(1.2) rotate(45deg)</span>;
+}
+
+<span class="selector">.transform-order-1</span> {
+    <span class="property">transform</span>: <span class="value">translate(50px) rotate(45deg)</span>;
+}
+
+<span class="selector">.transform-order-2</span> {
+    <span class="property">transform</span>: <span class="value">rotate(45deg) translate(50px)</span>;
+}
+
+<span class="comment">/* Order matters! */</span>
+<span class="comment">/* First: translate, then rotate */</span>
+<span class="comment">/* Second: rotate, then translate */</span>
+
+<span class="selector">.transform-3d-combo</span> {
+    <span class="property">transform</span>: <span class="value">translate3d(20px, 20px, 20px) scale3d(1.2, 1.2, 1.2) rotate3d(1, 1, 0, 45deg)</span>;
+}
+            </div>
+            <div class="result">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                    <div>
+                        <div class="transform-box transform-combo">Combo</div>
+                        <small>translate + scale + rotate</small>
+                    </div>
+                    <div>
+                        <div class="transform-box" style="transform: translate(50px) rotate(45deg);">T then R</div>
+                        <small>translate then rotate</small>
+                    </div>
+                    <div>
+                        <div class="transform-box" style="transform: rotate(45deg) translate(50px);">R then T</div>
+                        <small>rotate then translate</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">3D Card Flip</h2>
+            <div class="code-block">
+<span class="selector">.card-3d</span> {
+    <span class="property">position</span>: <span class="value">relative</span>;
+    <span class="property">transform-style</span>: <span class="value">preserve-3d</span>;
+    <span class="property">transition</span>: <span class="value">transform 0.6s</span>;
+}
+
+<span class="selector">.card-3d:hover</span> {
+    <span class="property">transform</span>: <span class="value">rotateY(180deg)</span>;
+}
+
+<span class="selector">.card-face</span> {
+    <span class="property">position</span>: <span class="value">absolute</span>;
+    <span class="property">backface-visibility</span>: <span class="value">hidden</span>;
+    <span class="property">width</span>: <span class="value">100%</span>;
+    <span class="property">height</span>: <span class="value">100%</span>;
+}
+
+<span class="selector">.card-back</span> {
+    <span class="property">transform</span>: <span class="value">rotateY(180deg)</span>;
+}
+            </div>
+            <div class="result">
+                <div class="card-3d">
+                    <div class="card-face card-front">Front Side</div>
+                    <div class="card-face card-back">Back Side</div>
+                </div>
+                <p><small>Hover to flip the card</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">3D Cube</h2>
+            <div class="code-block">
+<span class="selector">.cube</span> {
+    <span class="property">width</span>: <span class="value">200px</span>;
+    <span class="property">height</span>: <span class="value">200px</span>;
+    <span class="property">position</span>: <span class="value">relative</span>;
+    <span class="property">transform-style</span>: <span class="value">preserve-3d</span>;
+    <span class="property">transform</span>: <span class="value">rotateX(-20deg) rotateY(-20deg)</span>;
+    <span class="property">animation</span>: <span class="value">rotateCube 10s infinite linear</span>;
+}
+
+<span class="selector">.cube-face</span> {
+    <span class="property">position</span>: <span class="value">absolute</span>;
+    <span class="property">width</span>: <span class="value">200px</span>;
+    <span class="property">height</span>: <span class="value">200px</span>;
+}
+
+<span class="selector">.cube-front</span> {
+    <span class="property">transform</span>: <span class="value">translateZ(100px)</span>;
+}
+
+<span class="selector">.cube-back</span> {
+    <span class="property">transform</span>: <span class="value">rotateY(180deg) translateZ(100px)</span>;
+}
+
+<span class="selector">.cube-right</span> {
+    <span class="property">transform</span>: <span class="value">rotateY(90deg) translateZ(100px)</span>;
+}
+
+<span class="selector">.cube-left</span> {
+    <span class="property">transform</span>: <span class="value">rotateY(-90deg) translateZ(100px)</span>;
+}
+
+<span class="selector">.cube-top</span> {
+    <span class="property">transform</span>: <span class="value">rotateX(90deg) translateZ(100px)</span>;
+}
+
+<span class="selector">.cube-bottom</span> {
+    <span class="property">transform</span>: <span class="value">rotateX(-90deg) translateZ(100px)</span>;
+}
+            </div>
+            <div class="result">
+                <div class="cube-container">
+                    <div class="cube">
+                        <div class="cube-face cube-front">Front</div>
+                        <div class="cube-face cube-back">Back</div>
+                        <div class="cube-face cube-right">Right</div>
+                        <div class="cube-face cube-left">Left</div>
+                        <div class="cube-face cube-top">Top</div>
+                        <div class="cube-face cube-bottom">Bottom</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Interactive Transforms</h2>
+            <div class="code-block">
+<span class="comment">/* JavaScript can update transform values */</span>
+<span class="comment">/* element.style.transform = 'scale(1.5) rotate(45deg)'; */</span>
+
+<span class="comment">/* CSS custom properties for transforms */</span>
+<span class="selector">:root</span> {
+    <span class="property">--rotate-x</span>: <span class="value">0deg</span>;
+    <span class="property">--rotate-y</span>: <span class="value">0deg</span>;
+    <span class="property">--scale</span>: <span class="value">1</span>;
+}
+
+<span class="selector">.dynamic-transform</span> {
+    <span class="property">transform</span>: <span class="value">rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) scale(var(--scale))</span>;
+}
+
+<span class="comment">/* Hover effects */</span>
+<span class="selector">.hover-transform:hover</span> {
+    <span class="property">transform</span>: <span class="value">scale(1.1) rotate(5deg)</span>;
+}
+
+<span class="comment">/* Active effects */</span>
+<span class="selector">.active-transform:active</span> {
+    <span class="property">transform</span>: <span class="value">scale(0.95)</span>;
+}
+            </div>
+            <div class="result">
+                <div class="transform-controls">
+                    <div class="transform-slider-label">Rotate X: <span id="rotateXValue">0deg</span></div>
+                    <input type="range" class="transform-slider" id="rotateXSlider" min="-180" max="180" value="0">
+                    
+                    <div class="transform-slider-label">Rotate Y: <span id="rotateYValue">0deg</span></div>
+                    <input type="range" class="transform-slider" id="rotateYSlider" min="-180" max="180" value="0">
+                    
+                    <div class="transform-slider-label">Scale: <span id="scaleValue">1</span></div>
+                    <input type="range" class="transform-slider" id="scaleSlider" min="0.5" max="2" value="1" step="0.1">
+                </div>
+                
+                <div class="transform-3d-box" id="dynamicTransform" style="width: 150px; height: 150px; margin: 20px auto;">Interactive</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Performance Considerations</h2>
+            <div class="code-block">
+<span class="comment">/* Use transform for animations (better performance) */</span>
+<span class="selector">.performant-animation</span> {
+    <span class="property">transform</span>: <span class="value">translateX(100px)</span>; <span class="comment">/* Good */</span>
+    <span class="comment">/* left: 100px; */</span> <span class="comment">/* Bad - triggers layout */</span>
+}
+
+<span class="comment">/* Use will-change for complex animations */</span>
+<span class="selector">.complex-transform</span> {
+    <span class="property">will-change</span>: <span class="value">transform</span>;
+}
+
+<span class="comment">/* Remove will-change after animation */</span>
+<span class="selector">.animation-complete</span> {
+    <span class="property">will-change</span>: <span class="value">auto</span>;
+}
+
+<span class="comment">/* Use hardware acceleration */</span>
+<span class="selector">.gpu-accelerated</span> {
+    <span class="property">transform</span>: <span class="value">translateZ(0)</span>;
+    <span class="property">backface-visibility</span>: <span class="value">hidden</span>;
+}
+
+<span class="comment">/* Avoid transforming large elements */</span>
+<span class="selector">.small-transform</span> {
+    <span class="property">transform</span>: <span class="value">scale(1.1)</span>; <span class="comment">/* Better performance */</span>
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Browser Support</h2>
+            <div class="code-block">
+<span class="comment">/* 2D transforms */</span>
+<span class="comment">/* Chrome 36+, Firefox 16+, Safari 9+, Edge 12+, IE 9+ */</span>
+
+<span class="comment">/* 3D transforms */</span>
+<span class="comment">/* Chrome 36+, Firefox 16+, Safari 9+, Edge 12+, IE 10+ */</span>
+
+<span class="comment">/* Prefixes for older browsers */</span>
+<span class="selector">.element</span> {
+    <span class="property">-webkit-transform</span>: <span class="value">rotate(45deg)</span>;
+    <span class="property">-ms-transform</span>: <span class="value">rotate(45deg)</span>;
+    <span class="property">transform</span>: <span class="value">rotate(45deg)</span>;
+}
+
+<span class="comment">/* Feature detection */</span>
+<span class="key">@supports</span> <span class="value">(transform: rotate(45deg))</span> {
+    <span class="comment">/* Transforms supported */</span>
+}
+
+<span class="key">@supports</span> <span class="value">(transform-style: preserve-3d)</span> {
+    <span class="comment">/* 3D transforms supported */</span>
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Best Practices</h2>
+            <div class="code-block">
+<span class="comment">/* Use transform for positioning and animations */</span>
+<span class="selector">.better-positioning</span> {
+    <span class="property">transform</span>: <span class="value">translateX(100px)</span>; <span class="comment">/* Better */</span>
+}
+
+<span class="comment">/* Use transform for scaling */</span>
+<span class="selector">.better-scaling</span> {
+    <span class="property">transform</span>: <span class="value">scale(1.5)</span>; <span class="comment">/* Better */</span>
+}
+
+<span class="comment">/* Combine transforms efficiently */</span>
+<span class="selector">.efficient-transform</span> {
+    <span class="property">transform</span>: <span class="value">translate(20px, 20px) scale(1.2) rotate(45deg)</span>;
+}
+
+<span class="comment">/* Consider accessibility */</span>
+<span class="key">@media</span> <span class="value">(prefers-reduced-motion: reduce)</span> {
+    <span class="selector">.animated-transform</span> {
+        <span class="property">transform</span>: <span class="value">none</span>;
+    }
+}
+
+<span class="comment">/* Test on mobile devices */</span>
+<span class="comment">/* 3D transforms can be slow on mobile */</span>
+
+<span class="comment">/* Use appropriate units */</span>
+<span class="selector">.proper-units</span> {
+    <span class="property">transform</span>: <span class="value">translate(50px, 50px) rotate(45deg) scale(1.5)</span>;
+}
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+    
+    <script>
+        // Interactive transform controls
+        const rotateXSlider = document.getElementById('rotateXSlider');
+        const rotateYSlider = document.getElementById('rotateYSlider');
+        const scaleSlider = document.getElementById('scaleSlider');
+        const dynamicTransform = document.getElementById('dynamicTransform');
+        
+        function updateTransform() {
+            const rotateX = rotateXSlider.value;
+            const rotateY = rotateYSlider.value;
+            const scale = scaleSlider.value;
+            
+            document.getElementById('rotateXValue').textContent = rotateX + 'deg';
+            document.getElementById('rotateYValue').textContent = rotateY + 'deg';
+            document.getElementById('scaleValue').textContent = scale;
+            
+            dynamicTransform.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
+        }
+        
+        rotateXSlider.addEventListener('input', updateTransform);
+        rotateYSlider.addEventListener('input', updateTransform);
+        scaleSlider.addEventListener('input', updateTransform);
+    </script>
+</body>
+</html>

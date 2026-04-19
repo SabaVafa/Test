@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Images & Links - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .tag { color: #e83e8c; }
+        .attribute { color: #0066cc; }
+        .value { color: #28a745; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+        .placeholder-img {
+            background: linear-gradient(45deg, #ddd 25%, transparent 25%), 
+                        linear-gradient(-45deg, #ddd 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #ddd 75%), 
+                        linear-gradient(-45deg, transparent 75%, #ddd 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            border: 2px solid #ccc;
+            display: inline-block;
+            text-align: center;
+            line-height: 100px;
+            color: #666;
+            font-weight: bold;
+        }
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .thumbnail {
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .thumbnail:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HTML Images & Links</h1>
+        <p>This page demonstrates how to use images and create links in HTML.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Basic Image</h2>
+            <div class="code-block">
+<span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">"image.jpg"</span> <span class="attribute">alt</span>=<span class="value">"Description of image"</span><span class="tag">&gt;</span>
+            </div>
+            <div class="result">
+                <div class="placeholder-img" style="width: 200px; height: 150px;">200x150</div>
+                <p><small>Image with alt text for accessibility</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Image with Size Attributes</h2>
+            <div class="code-block">
+<span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">"image.jpg"</span> <span class="attribute">alt</span>=<span class="value">"Description"</span> <span class="attribute">width</span>=<span class="value">"300"</span> <span class="attribute">height</span>=<span class="value">"200"</span><span class="tag">&gt;</span>
+            </div>
+            <div class="result">
+                <div class="placeholder-img" style="width: 300px; height: 200px;">300x200</div>
+                <p><small>Image with explicit width and height</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Responsive Image</h2>
+            <div class="code-block">
+<span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">"image.jpg"</span> <span class="attribute">alt</span>=<span class="value">"Description"</span> <span class="attribute">style</span>=<span class="value">"max-width: 100%; height: auto;"</span><span class="tag">&gt;</span>
+            </div>
+            <div class="result">
+                <div class="placeholder-img" style="width: 100%; max-width: 400px; height: 150px;">Responsive</div>
+                <p><small>Image that scales with viewport</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Basic Link</h2>
+            <div class="code-block">
+<span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"https://www.example.com"</span><span class="tag">&gt;</span>Visit Example.com<span class="tag">&lt;/a&gt;</span>
+            </div>
+            <div class="result">
+                <a href="https://www.example.com" target="_blank">Visit Example.com</a>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Link that Opens in New Tab</h2>
+            <div class="code-block">
+<span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"https://www.example.com"</span> <span class="attribute">target</span>=<span class="value">"_blank"</span> <span class="attribute">rel</span>=<span class="value">"noopener noreferrer"</span><span class="tag">&gt;</span>
+    Open in New Tab
+<span class="tag">&lt;/a&gt;</span>
+            </div>
+            <div class="result">
+                <a href="https://www.example.com" target="_blank" rel="noopener noreferrer">Open in New Tab</a>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Email Link</h2>
+            <div class="code-block">
+<span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"mailto:email@example.com"</span><span class="tag">&gt;</span>Send Email<span class="tag">&lt;/a&gt;</span>
+            </div>
+            <div class="result">
+                <a href="mailto:email@example.com">Send Email</a>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Phone Link</h2>
+            <div class="code-block">
+<span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"tel:+1234567890"</span><span class="tag">&gt;</span>Call +1 234-567-890<span class="tag">&lt;/a&gt;</span>
+            </div>
+            <div class="result">
+                <a href="tel:+1234567890">Call +1 234-567-890</a>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Image as Link</h2>
+            <div class="code-block">
+<span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"https://www.example.com"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">"logo.png"</span> <span class="attribute">alt</span>=<span class="value">"Company Logo"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/a&gt;</span>
+            </div>
+            <div class="result">
+                <a href="https://www.example.com" target="_blank">
+                    <div class="placeholder-img" style="width: 150px; height: 80px; border: none;">LOGO</div>
+                </a>
+                <p><small>Clickable image that opens a link</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Anchor Links (Page Navigation)</h2>
+            <div class="code-block">
+<span class="comment">&lt;!-- Link to section on same page --&gt;</span>
+<span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"#section1"</span><span class="tag">&gt;</span>Go to Section 1<span class="tag">&lt;/a&gt;</span>
+
+<span class="comment">&lt;!-- Target section --&gt;</span>
+<span class="tag">&lt;h2</span> <span class="attribute">id</span>=<span class="value">"section1"</span><span class="tag">&gt;</span>Section 1<span class="tag">&lt;/h2&gt;</span>
+            </div>
+            <div class="result">
+                <a href="#section1">Go to Section 1</a>
+                <br><br>
+                <div style="height: 200px; background: #f0f0f0; padding: 20px; border-radius: 5px;">
+                    <p>Scroll down to see the target section...</p>
+                </div>
+                <br>
+                <h2 id="section1">Section 1</h2>
+                <p>This is the target section. The link above should bring you here.</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Image Gallery with Links</h2>
+            <div class="code-block">
+<span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"image-gallery"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"image1.jpg"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">"thumb1.jpg"</span> <span class="attribute">alt</span>=<span class="value">"Image 1"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;/a&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"image2.jpg"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">"thumb2.jpg"</span> <span class="attribute">alt</span>=<span class="value">"Image 2"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+            </div>
+            <div class="result">
+                <div class="image-gallery">
+                    <a href="#image1">
+                        <div class="thumbnail">
+                            <div class="placeholder-img" style="width: 150px; height: 100px; margin: 0;">IMG 1</div>
+                        </div>
+                    </a>
+                    <a href="#image2">
+                        <div class="thumbnail">
+                            <div class="placeholder-img" style="width: 150px; height: 100px; margin: 0;">IMG 2</div>
+                        </div>
+                    </a>
+                    <a href="#image3">
+                        <div class="thumbnail">
+                            <div class="placeholder-img" style="width: 150px; height: 100px; margin: 0;">IMG 3</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Download Link</h2>
+            <div class="code-block">
+<span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"document.pdf"</span> <span class="attribute">download</span><span class="tag">&gt;</span>Download PDF<span class="tag">&lt;/a&gt;</span>
+
+<span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"document.pdf"</span> <span class="attribute">download</span>=<span class="value">"custom-filename.pdf"</span><span class="tag">&gt;</span>
+    Download with Custom Filename
+<span class="tag">&lt;/a&gt;</span>
+            </div>
+            <div class="result">
+                <a href="#" download>Download PDF</a>
+                <br><br>
+                <a href="#" download="custom-filename.pdf">Download with Custom Filename</a>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Tooltip on Link</h2>
+            <div class="code-block">
+<span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"https://www.example.com"</span> <span class="attribute">title</span>=<span class="value">"Visit Example website for more information"</span><span class="tag">&gt;</span>
+    Hover over this link
+<span class="tag">&lt;/a&gt;</span>
+            </div>
+            <div class="result">
+                <a href="https://www.example.com" target="_blank" title="Visit Example website for more information">Hover over this link</a>
+                <p><small>Hover to see the tooltip</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Picture Element (Responsive Images)</h2>
+            <div class="code-block">
+<span class="tag">&lt;picture&gt;</span>
+    <span class="tag">&lt;source</span> <span class="attribute">media</span>=<span class="value">"(min-width: 800px)"</span> <span class="attribute">srcset</span>=<span class="value">"large-image.jpg"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;source</span> <span class="attribute">media</span>=<span class="value">"(min-width: 400px)"</span> <span class="attribute">srcset</span>=<span class="value">"medium-image.jpg"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">"small-image.jpg"</span> <span class="attribute">alt</span>=<span class="value">"Responsive image"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/picture&gt;</span>
+            </div>
+            <div class="result">
+                <div class="placeholder-img" style="width: 100%; max-width: 300px; height: 120px;">Responsive Image</div>
+                <p><small>Different images load based on screen size</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Image Map (Clickable Areas)</h2>
+            <div class="code-block">
+<span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">"map.jpg"</span> <span class="attribute">alt</span>=<span class="value">"Map"</span> <span class="attribute">usemap</span>=<span class="value">"#mymap"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;map</span> <span class="attribute">name</span>=<span class="value">"mymap"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;area</span> <span class="attribute">shape</span>=<span class="value">"rect"</span> <span class="attribute">coords</span>=<span class="value">"0,0,100,100"</span> <span class="attribute">href</span>=<span class="value">"page1.html"</span> <span class="attribute">alt</span>=<span class="value">"Area 1"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;area</span> <span class="attribute">shape</span>=<span class="value">"circle"</span> <span class="attribute">coords</span>=<span class="value">"150,50,30"</span> <span class="attribute">href</span>=<span class="value">"page2.html"</span> <span class="attribute">alt</span>=<span class="value">"Area 2"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/map&gt;</span>
+            </div>
+            <div class="result">
+                <div style="position: relative; display: inline-block;">
+                    <div class="placeholder-img" style="width: 200px; height: 100px; margin: 0;">IMAGE MAP</div>
+                    <div style="position: absolute; top: 0; left: 0; width: 100px; height: 100px; border: 2px solid red; background: rgba(255,0,0,0.2);"></div>
+                    <div style="position: absolute; top: 20px; left: 150px; width: 60px; height: 60px; border: 2px solid blue; border-radius: 50%; background: rgba(0,0,255,0.2);"></div>
+                </div>
+                <p><small>Red square and blue circle are clickable areas</small></p>
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+</body>
+</html>

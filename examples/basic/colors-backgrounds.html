@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Colors & Backgrounds - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .selector { color: #d73a49; }
+        .property { color: #0066cc; }
+        .value { color: #28a745; }
+        .comment { color: #6c757d; font-style: italic; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+        .color-box {
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            margin: 5px;
+            border: 1px solid #333;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .gradient-box {
+            width: 100%;
+            height: 100px;
+            margin: 10px 0;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+        .bg-pattern {
+            width: 100%;
+            height: 80px;
+            margin: 10px 0;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS Colors & Backgrounds</h1>
+        <p>This page demonstrates various CSS color and background properties.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Color Formats</h2>
+            <div class="code-block">
+<span class="comment">/* Color formats */</span>
+<span class="selector">.color-demo</span> {
+    <span class="property">color</span>: <span class="value">red</span>; <span class="comment">/* Color name */</span>
+    <span class="property">background-color</span>: <span class="value">#ff0000</span>; <span class="comment">/* Hex */</span>
+    <span class="property">border-color</span>: <span class="value">rgb(255, 0, 0)</span>; <span class="comment">/* RGB */</span>
+    <span class="property">outline-color</span>: <span class="value">rgba(255, 0, 0, 0.5)</span>; <span class="comment">/* RGBA with alpha */</span>
+    <span class="property">text-shadow-color</span>: <span class="value">hsl(0, 100%, 50%)</span>; <span class="comment">/* HSL */</span>
+    <span class="property">box-shadow-color</span>: <span class="value">hsla(0, 100%, 50%, 0.3)</span>; <span class="comment">/* HSLA with alpha */</span>
+}
+            </div>
+            <div class="result">
+                <div class="color-box" style="background: red;">red</div>
+                <div class="color-box" style="background: #ff0000;">#ff0000</div>
+                <div class="color-box" style="background: rgb(255, 0, 0);">rgb</div>
+                <div class="color-box" style="background: rgba(255, 0, 0, 0.5);">rgba</div>
+                <div class="color-box" style="background: hsl(0, 100%, 50%);">hsl</div>
+                <div class="color-box" style="background: hsla(0, 100%, 50%, 0.3);">hsla</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Text Color</h2>
+            <div class="code-block">
+<span class="selector">.text-color-demo</span> {
+    <span class="property">color</span>: <span class="value">#333</span>; <span class="comment">/* Dark gray text */</span>
+}
+
+<span class="selector">.text-color-demo-2</span> {
+    <span class="property">color</span>: <span class="value">#0066cc</span>; <span class="comment">/* Blue text */</span>
+}
+
+<span class="selector">.text-color-demo-3</span> {
+    <span class="property">color</span>: <span class="value">#28a745</span>; <span class="comment">/* Green text */</span>
+}
+            </div>
+            <div class="result">
+                <p style="color: #333;">This text is dark gray (#333)</p>
+                <p style="color: #0066cc;">This text is blue (#0066cc)</p>
+                <p style="color: #28a745;">This text is green (#28a745)</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Background Color</h2>
+            <div class="code-block">
+<span class="selector">.bg-color-demo</span> {
+    <span class="property">background-color</span>: <span class="value">#f8f9fa</span>; <span class="comment">/* Light gray */</span>
+}
+
+<span class="selector">.bg-color-demo-2</span> {
+    <span class="property">background-color</span>: <span class="value">#e3f2fd</span>; <span class="comment">/* Light blue */</span>
+}
+
+<span class="selector">.bg-color-demo-3</span> {
+    <span class="property">background-color</span>: <span class="value">#f3e5f5</span>; <span class="comment">/* Light purple */</span>
+}
+            </div>
+            <div class="result">
+                <div style="background: #f8f9fa; padding: 10px; margin: 5px 0;">Light gray background</div>
+                <div style="background: #e3f2fd; padding: 10px; margin: 5px 0;">Light blue background</div>
+                <div style="background: #f3e5f5; padding: 10px; margin: 5px 0;">Light purple background</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Background Image</h2>
+            <div class="code-block">
+<span class="selector">.bg-image-demo</span> {
+    <span class="property">background-image</span>: <span class="value">url('pattern.jpg')</span>;
+    <span class="property">background-repeat</span>: <span class="value">repeat</span>;
+    <span class="property">background-position</span>: <span class="value">center center</span>;
+    <span class="property">background-size</span>: <span class="value">cover</span>;
+}
+
+<span class="comment">/* Multiple background images */</span>
+<span class="selector">.multiple-bg</span> {
+    <span class="property">background-image</span>: <span class="value">url('image1.jpg'), url('image2.jpg')</span>;
+    <span class="property">background-position</span>: <span class="value">top left, bottom right</span>;
+    <span class="property">background-repeat</span>: <span class="value">no-repeat, repeat</span>;
+}
+            </div>
+            <div class="result">
+                <div class="bg-pattern" style="background: linear-gradient(45deg, #ddd 25%, transparent 25%), linear-gradient(-45deg, #ddd 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ddd 75%), linear-gradient(-45deg, transparent 75%, #ddd 75%); background-size: 20px 20px; background-position: 0 0, 0 10px, 10px -10px, -10px 0px;">Pattern background</div>
+                <div class="bg-pattern" style="background: radial-gradient(circle, #667eea 0%, #764ba2 100%);">Gradient background</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Background Repeat</h2>
+            <div class="code-block">
+<span class="selector">.bg-repeat</span> {
+    <span class="property">background-repeat</span>: <span class="value">repeat</span>; <span class="comment">/* Default */</span>
+}
+
+<span class="selector">.bg-repeat-x</span> {
+    <span class="property">background-repeat</span>: <span class="value">repeat-x</span>;
+}
+
+<span class="selector">.bg-repeat-y</span> {
+    <span class="property">background-repeat</span>: <span class="value">repeat-y</span>;
+}
+
+<span class="selector">.bg-no-repeat</span> {
+    <span class="property">background-repeat</span>: <span class="value">no-repeat</span>;
+}
+
+<span class="selector">.bg-space</span> {
+    <span class="property">background-repeat</span>: <span class="value">space</span>;
+}
+
+<span class="selector">.bg-round</span> {
+    <span class="property">background-repeat</span>: <span class="value">round</span>;
+}
+            </div>
+            <div class="result">
+                <div class="bg-pattern" style="background: repeating-linear-gradient(45deg, #ddd, #ddd 10px, white 10px, white 20px);">repeat</div>
+                <div class="bg-pattern" style="background: repeating-linear-gradient(90deg, #ddd, #ddd 10px, white 10px, white 20px);">repeat-x</div>
+                <div class="bg-pattern" style="background: repeating-linear-gradient(0deg, #ddd, #ddd 10px, white 10px, white 20px);">repeat-y</div>
+                <div class="bg-pattern" style="background: linear-gradient(45deg, #ddd 25%, transparent 25%), linear-gradient(-45deg, #ddd 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ddd 75%), linear-gradient(-45deg, transparent 75%, #ddd 75%); background-size: 40px 40px; background-position: 0 0, 0 20px, 20px -20px, -20px 0px; background-repeat: no-repeat;">no-repeat</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Background Position</h2>
+            <div class="code-block">
+<span class="selector">.bg-position</span> {
+    <span class="property">background-position</span>: <span class="value">center center</span>;
+}
+
+<span class="selector">.bg-position-2</span> {
+    <span class="property">background-position</span>: <span class="value">top left</span>;
+}
+
+<span class="selector">.bg-position-3</span> {
+    <span class="property">background-position</span>: <span class="value">bottom right</span>;
+}
+
+<span class="selector">.bg-position-4</span> {
+    <span class="property">background-position</span>: <span class="value">50% 25%</span>;
+}
+
+<span class="selector">.bg-position-5</span> {
+    <span class="property">background-position</span>: <span class="value">100px 50px</span>;
+}
+            </div>
+            <div class="result">
+                <div class="bg-pattern" style="background: radial-gradient(circle at center, #667eea 0%, transparent 50%), linear-gradient(45deg, #ddd 25%, transparent 25%), linear-gradient(-45deg, #ddd 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ddd 75%), linear-gradient(-45deg, transparent 75%, #ddd 75%); background-size: 100px 100px, 20px 20px; background-position: center, 0 0, 0 10px, 10px -10px, -10px 0px;">center center</div>
+                <div class="bg-pattern" style="background: radial-gradient(circle at top left, #667eea 0%, transparent 50%), linear-gradient(45deg, #ddd 25%, transparent 25%), linear-gradient(-45deg, #ddd 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ddd 75%), linear-gradient(-45deg, transparent 75%, #ddd 75%); background-size: 100px 100px, 20px 20px; background-position: top left, 0 0, 0 10px, 10px -10px, -10px 0px;">top left</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Background Size</h2>
+            <div class="code-block">
+<span class="selector">.bg-size-auto</span> {
+    <span class="property">background-size</span>: <span class="value">auto</span>; <span class="comment">/* Default */</span>
+}
+
+<span class="selector">.bg-size-cover</span> {
+    <span class="property">background-size</span>: <span class="value">cover</span>; <span class="comment">/* Cover entire area */</span>
+}
+
+<span class="selector">.bg-size-contain</span> {
+    <span class="property">background-size</span>: <span class="value">contain</span>; <span class="comment">/* Fit within area */</span>
+}
+
+<span class="selector">.bg-size-custom</span> {
+    <span class="property">background-size</span>: <span class="value">200px 100px</span>; <span class="comment">/* Custom dimensions */</span>
+}
+
+<span class="selector">.bg-size-percent</span> {
+    <span class="property">background-size</span>: <span class="value">50% 50%</span>; <span class="comment">/* Percentage */</span>
+}
+            </div>
+            <div class="result">
+                <div class="bg-pattern" style="background: radial-gradient(circle, #667eea 0%, #764ba2 100%); background-size: auto;">auto</div>
+                <div class="bg-pattern" style="background: radial-gradient(circle, #667eea 0%, #764ba2 100%); background-size: cover;">cover</div>
+                <div class="bg-pattern" style="background: radial-gradient(circle, #667eea 0%, #764ba2 100%); background-size: contain;">contain</div>
+                <div class="bg-pattern" style="background: radial-gradient(circle, #667eea 0%, #764ba2 100%); background-size: 200px 100px;">200px 100px</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Background Attachment</h2>
+            <div class="code-block">
+<span class="selector">.bg-scroll</span> {
+    <span class="property">background-attachment</span>: <span class="value">scroll</span>; <span class="comment">/* Default - scrolls with page */</span>
+}
+
+<span class="selector">.bg-fixed</span> {
+    <span class="property">background-attachment</span>: <span class="value">fixed</span>; <span class="comment">/* Fixed position */</span>
+}
+
+<span class="selector">.bg-local</span> {
+    <span class="property">background-attachment</span>: <span class="value">local</span>; <span class="comment">/* Scrolls with content */</span>
+}
+            </div>
+            <div class="result">
+                <div class="bg-pattern" style="background: linear-gradient(45deg, #ddd 25%, transparent 25%), linear-gradient(-45deg, #ddd 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ddd 75%), linear-gradient(-45deg, transparent 75%, #ddd 75%); background-size: 20px 20px; background-attachment: scroll;">scroll (default)</div>
+                <div class="bg-pattern" style="background: linear-gradient(45deg, #ddd 25%, transparent 25%), linear-gradient(-45deg, #ddd 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ddd 75%), linear-gradient(-45deg, transparent 75%, #ddd 75%); background-size: 20px 20px; background-attachment: fixed;">fixed</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Linear Gradients</h2>
+            <div class="code-block">
+<span class="selector">.gradient-1</span> {
+    <span class="property">background</span>: <span class="value">linear-gradient(red, blue)</span>;
+}
+
+<span class="selector">.gradient-2</span> {
+    <span class="property">background</span>: <span class="value">linear-gradient(45deg, red, blue)</span>;
+}
+
+<span class="selector">.gradient-3</span> {
+    <span class="property">background</span>: <span class="value">linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)</span>;
+}
+
+<span class="selector">.gradient-4</span> {
+    <span class="property">background</span>: <span class="value">linear-gradient(90deg, rgba(255,0,0,0.5), rgba(0,0,255,0.5))</span>;
+}
+            </div>
+            <div class="result">
+                <div class="gradient-box" style="background: linear-gradient(red, blue);"></div>
+                <div class="gradient-box" style="background: linear-gradient(45deg, red, blue);"></div>
+                <div class="gradient-box" style="background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);"></div>
+                <div class="gradient-box" style="background: linear-gradient(90deg, rgba(255,0,0,0.5), rgba(0,0,255,0.5));"></div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Radial Gradients</h2>
+            <div class="code-block">
+<span class="selector">.radial-1</span> {
+    <span class="property">background</span>: <span class="value">radial-gradient(circle, red, blue)</span>;
+}
+
+<span class="selector">.radial-2</span> {
+    <span class="property">background</span>: <span class="value">radial-gradient(ellipse, red, blue)</span>;
+}
+
+<span class="selector">.radial-3</span> {
+    <span class="property">background</span>: <span class="value">radial-gradient(circle at top left, red, blue)</span>;
+}
+
+<span class="selector">.radial-4</span> {
+    <span class="property">background</span>: <span class="value">radial-gradient(circle, red 20%, orange 40%, yellow 60%, green 80%, blue 100%)</span>;
+}
+            </div>
+            <div class="result">
+                <div class="gradient-box" style="background: radial-gradient(circle, red, blue);"></div>
+                <div class="gradient-box" style="background: radial-gradient(ellipse, red, blue);"></div>
+                <div class="gradient-box" style="background: radial-gradient(circle at top left, red, blue);"></div>
+                <div class="gradient-box" style="background: radial-gradient(circle, red 20%, orange 40%, yellow 60%, green 80%, blue 100%);"></div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Background Shorthand</h2>
+            <div class="code-block">
+<span class="comment">/* Long form */</span>
+<span class="selector">.bg-long</span> {
+    <span class="property">background-color</span>: <span class="value">#ffffff</span>;
+    <span class="property">background-image</span>: <span class="value">url('image.jpg')</span>;
+    <span class="property">background-repeat</span>: <span class="value">no-repeat</span>;
+    <span class="property">background-position</span>: <span class="value">center center</span>;
+    <span class="property">background-size</span>: <span class="value">cover</span>;
+    <span class="property">background-attachment</span>: <span class="value">fixed</span>;
+}
+
+<span class="comment">/* Shorthand form */</span>
+<span class="selector">.bg-short</span> {
+    <span class="property">background</span>: <span class="value">#ffffff url('image.jpg') no-repeat center center/cover fixed</span>;
+}
+
+<span class="comment">/* Gradient shorthand */</span>
+<span class="selector">.bg-gradient-short</span> {
+    <span class="property">background</span>: <span class="value">linear-gradient(45deg, #667eea 0%, #764ba2 100%)</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Opacity and Transparency</h2>
+            <div class="code-block">
+<span class="selector">.opacity-demo</span> {
+    <span class="property">opacity</span>: <span class="value">0.5</span>; <span class="comment">/* 50% opacity */</span>
+}
+
+<span class="selector">.rgba-demo</span> {
+    <span class="property">background-color</span>: <span class="value">rgba(255, 0, 0, 0.3)</span>; <span class="comment">/* 30% red */</span>
+}
+
+<span class="selector">.hsla-demo</span> {
+    <span class="property">background-color</span>: <span class="value">hsla(120, 100%, 50%, 0.3)</span>; <span class="comment">/* 30% green */</span>
+}
+            </div>
+            <div class="result">
+                <div style="background: red; opacity: 0.5; padding: 10px; margin: 5px 0;">50% opacity</div>
+                <div style="background: rgba(255, 0, 0, 0.3); padding: 10px; margin: 5px 0;">30% red (rgba)</div>
+                <div style="background: hsla(120, 100%, 50%, 0.3); padding: 10px; margin: 5px 0;">30% green (hsla)</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Color Keywords and System Colors</h2>
+            <div class="code-block">
+<span class="comment">/* CSS Color Keywords */</span>
+<span class="selector">.keyword-demo</span> {
+    <span class="property">color</span>: <span class="value">currentColor</span>; <span class="comment">/* Inherits from color property */</span>
+    <span class="property">background-color</span>: <span class="value">transparent</span>; <span class="comment">/* Transparent background */</span>
+}
+
+<span class="comment">/* System Colors */</span>
+<span class="selector">.system-demo</span> {
+    <span class="property">background-color</span>: <span class="value">Window</span>;
+    <span class="property">color</span>: <span class="value">WindowText</span>;
+    <span class="property">border-color</span>: <span class="value">ButtonFace</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Best Practices</h2>
+            <div class="code-block">
+<span class="comment">/* Use semantic colors */</span>
+<span class="selector">:root</span> {
+    <span class="property">--primary-color</span>: <span class="value">#007bff</span>;
+    <span class="property">--secondary-color</span>: <span class="value">#6c757d</span>;
+    <span class="property">--success-color</span>: <span class="value">#28a745</span>;
+    <span class="property">--warning-color</span>: <span class="value">#ffc107</span>;
+    <span class="property">--danger-color</span>: <span class="value">#dc3545</span>;
+}
+
+<span class="comment">/* Ensure sufficient contrast for accessibility */</span>
+<span class="selector">.text-on-light</span> {
+    <span class="property">color</span>: <span class="value">#333</span>; <span class="comment">/* Dark text on light background */</span>
+}
+
+<span class="selector">.text-on-dark</span> {
+    <span class="property">color</span>: <span class="value">#fff</span>; <span class="comment">/* Light text on dark background */</span>
+}
+
+<span class="comment">/* Provide fallback colors */</span>
+<span class="selector">.gradient-fallback</span> {
+    <span class="property">background-color</span>: <span class="value">#667eea</span>; <span class="comment">/* Fallback */</span>
+    <span class="property">background</span>: <span class="value">linear-gradient(45deg, #667eea 0%, #764ba2 100%)</span>;
+}
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+</body>
+</html>

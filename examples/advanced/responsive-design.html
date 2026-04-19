@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .selector { color: #d73a49; }
+        .property { color: #0066cc; }
+        .value { color: #28a745; }
+        .comment { color: #6c757d; font-style: italic; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+        
+        /* Responsive demo styles */
+        .responsive-grid {
+            display: grid;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .grid-item {
+            background: #2196f3;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .flex-container {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .flex-item {
+            background: #4caf50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .responsive-text {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .responsive-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        .responsive-nav {
+            background: #333;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .responsive-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+        
+        .responsive-nav a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Mobile-first responsive styles */
+        .mobile-first {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+        }
+        
+        /* Tablet styles */
+        @media (min-width: 768px) {
+            .mobile-first {
+                width: 50%;
+                padding: 15px;
+                font-size: 16px;
+            }
+        }
+        
+        /* Desktop styles */
+        @media (min-width: 1024px) {
+            .mobile-first {
+                width: 33.333%;
+                padding: 20px;
+                font-size: 18px;
+            }
+        }
+        
+        /* Desktop-first responsive styles */
+        .desktop-first {
+            width: 33.333%;
+            padding: 20px;
+            font-size: 18px;
+        }
+        
+        @media (max-width: 1023px) {
+            .desktop-first {
+                width: 50%;
+                padding: 15px;
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .desktop-first {
+                width: 100%;
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+        
+        /* Responsive grid */
+        .responsive-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        @media (min-width: 768px) {
+            .responsive-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .responsive-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .responsive-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        /* Responsive navigation */
+        @media (max-width: 768px) {
+            .responsive-nav {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                display: none;
+                width: 100%;
+                text-align: center;
+                margin-top: 10px;
+            }
+            
+            .nav-links.active {
+                display: block;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+        }
+        
+        /* Responsive typography */
+        .responsive-typography {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            line-height: 1.6;
+        }
+        
+        /* Responsive images */
+        .responsive-image-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .responsive-image-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Container queries (modern) */
+        @container (min-width: 400px) {
+            .container-query-item {
+                font-size: 18px;
+                padding: 20px;
+            }
+        }
+        
+        @container (min-width: 600px) {
+            .container-query-item {
+                font-size: 20px;
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Responsive Design</h1>
+        <p>This page demonstrates responsive design techniques for creating websites that work across all devices.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Viewport Meta Tag</h2>
+            <div class="code-block">
+<span class="tag">&lt;meta</span> <span class="attribute">name</span>=<span class="value">"viewport"</span> <span class="attribute">content</span>=<span class="value">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+
+<span class="comment">/* Common viewport settings */</span>
+<span class="tag">&lt;meta</span> <span class="attribute">name</span>=<span class="value">"viewport"</span> <span class="attribute">content</span>=<span class="value">"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"</span><span class="tag">&gt;</span>
+
+<span class="comment">/* Viewport options */</span>
+<span class="comment">/* width: device-width | specific width */</span>
+<span class="comment">/* initial-scale: 1.0 | 0.5 | 2.0 */</span>
+<span class="comment">/* maximum-scale: 1.0 | 2.0 */</span>
+<span class="comment">/* minimum-scale: 1.0 | 0.5 */</span>
+<span class="comment">/* user-scalable: yes | no */</span>
+            </div>
+            <div class="result">
+                <p><strong>Viewport Meta Tag:</strong> Essential for responsive design. Tells the browser how to control the page's dimensions and scaling.</p>
+                <p><strong>width=device-width:</strong> Sets the viewport width to match the device's screen width.</p>
+                <p><strong>initial-scale=1.0:</strong> Sets the initial zoom level when the page is first loaded.</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Media Queries</h2>
+            <div class="code-block">
+<span class="comment">/* Mobile-first approach */</span>
+<span class="selector">.element</span> {
+    <span class="property">width</span>: <span class="value">100%</span>;
+    <span class="property">font-size</span>: <span class="value">14px</span>;
+}
+
+<span class="comment">/* Tablet */</span>
+<span class="key">@media</span> <span class="value">(min-width: 768px)</span> {
+    <span class="selector">.element</span> {
+        <span class="property">width</span>: <span class="value">50%</span>;
+        <span class="property">font-size</span>: <span class="value">16px</span>;
+    }
+}
+
+<span class="comment">/* Desktop */</span>
+<span class="key">@media</span> <span class="value">(min-width: 1024px)</span> {
+    <span class="selector">.element</span> {
+        <span class="property">width</span>: <span class="value">33.333%</span>;
+        <span class="property">font-size</span>: <span class="value">18px</span>;
+    }
+}
+
+<span class="comment">/* Desktop-first approach */</span>
+<span class="selector">.element</span> {
+    <span class="property">width</span>: <span class="value">33.333%</span>;
+    <span class="property">font-size</span>: <span class="value">18px</span>;
+}
+
+<span class="key">@media</span> <span class="value">(max-width: 1023px)</span> {
+    <span class="selector">.element</span> {
+        <span class="property">width</span>: <span class="value">50%</span>;
+        <span class="property">font-size</span>: <span class="value">16px</span>;
+    }
+}
+
+<span class="key">@media</span> <span class="value">(max-width: 767px)</span> {
+    <span class="selector">.element</span> {
+        <span class="property">width</span>: <span class="value">100%</span>;
+        <span class="property">font-size</span>: <span class="value">14px</span>;
+    }
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Common Breakpoints</h2>
+            <div class="code-block">
+<span class="comment">/* Common breakpoint ranges */</span>
+<span class="key">@media</span> <span class="value">(max-width: 575px)</span> { <span class="comment">/* Extra small devices (phones) */</span> }
+<span class="key">@media</span> <span class="value">(min-width: 576px)</span> { <span class="comment">/* Small devices (landscape phones) */</span> }
+<span class="key">@media</span> <span class="value">(min-width: 768px)</span> { <span class="comment">/* Medium devices (tablets) */</span> }
+<span class="key">@media</span> <span class="value">(min-width: 992px)</span> { <span class="comment">/* Large devices (desktops) */</span> }
+<span class="key">@media</span> <span class="value">(min-width: 1200px)</span> { <span class="comment">/* Extra large devices */</span> }
+
+<span class="comment">/* Device-specific breakpoints */</span>
+<span class="key">@media</span> <span class="value">(max-width: 320px)</span> { <span class="comment">/* iPhone SE */</span> }
+<span class="key">@media</span> <span class="value">(max-width: 375px)</span> { <span class="comment">/* iPhone X */</span> }
+<span class="key">@media</span> <span class="value">(max-width: 414px)</span> { <span class="comment">/* iPhone Plus */</span> }
+<span class="key">@media</span> <span class="value">(max-width: 768px)</span> { <span class="comment">/* iPad */</span> }
+<span class="key">@media</span> <span class="value">(max-width: 1024px)</span> { <span class="comment">/* iPad Pro */</span> }
+
+<span class="comment">/* Orientation-based queries */</span>
+<span class="key">@media</span> <span class="value">(orientation: portrait)</span> { <span class="comment">/* Portrait mode */</span> }
+<span class="key">@media</span> <span class="value">(orientation: landscape)</span> { <span class="comment">/* Landscape mode */</span> }
+
+<span class="comment">/* High DPI displays */</span>
+<span class="key">@media</span> <span class="value">(-webkit-min-device-pixel-ratio: 2)</span>, <span class="value">(min-resolution: 192dpi)</span> {
+    <span class="comment">/* Retina displays */</span>
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Responsive Grid Layout</h2>
+            <div class="code-block">
+<span class="selector">.responsive-grid</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">gap</span>: <span class="value">20px</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">1fr</span>; <span class="comment">/* Mobile: 1 column */</span>
+}
+
+<span class="key">@media</span> <span class="value">(min-width: 768px)</span> {
+    <span class="selector">.responsive-grid</span> {
+        <span class="property">grid-template-columns</span>: <span class="value">repeat(2, 1fr)</span>; <span class="comment">/* Tablet: 2 columns */</span>
+    }
+}
+
+<span class="key">@media</span> <span class="value">(min-width: 1024px)</span> {
+    <span class="selector">.responsive-grid</span> {
+        <span class="property">grid-template-columns</span>: <span class="value">repeat(3, 1fr)</span>; <span class="comment">/* Desktop: 3 columns */</span>
+    }
+}
+
+<span class="key">@media</span> <span class="value">(min-width: 1200px)</span> {
+    <span class="selector">.responsive-grid</span> {
+        <span class="property">grid-template-columns</span>: <span class="value">repeat(4, 1fr)</span>; <span class="comment">/* Large desktop: 4 columns */</span>
+    }
+}
+
+<span class="comment">/* Auto-fit responsive grid */</span>
+<span class="selector">.auto-fit-grid</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(auto-fit, minmax(250px, 1fr))</span>;
+    <span class="property">gap</span>: <span class="value">20px</span>;
+}
+
+<span class="comment">/* Auto-fill responsive grid */</span>
+<span class="selector">.auto-fill-grid</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(auto-fill, minmax(200px, 1fr))</span>;
+    <span class="property">gap</span>: <span class="value">20px</span>;
+}
+            </div>
+            <div class="result">
+                <div class="responsive-grid">
+                    <div class="grid-item">Grid Item 1</div>
+                    <div class="grid-item">Grid Item 2</div>
+                    <div class="grid-item">Grid Item 3</div>
+                    <div class="grid-item">Grid Item 4</div>
+                </div>
+                <p><small>Resize your browser window to see the grid layout change</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Responsive Flexbox</h2>
+            <div class="code-block">
+<span class="selector">.responsive-flex</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+    <span class="property">flex-direction</span>: <span class="value">column</span>; <span class="comment">/* Mobile: column layout */</span>
+    <span class="property">gap</span>: <span class="value">20px</span>;
+}
+
+<span class="key">@media</span> <span class="value">(min-width: 768px)</span> {
+    <span class="selector">.responsive-flex</span> {
+        <span class="property">flex-direction</span>: <span class="value">row</span>; <span class="comment">/* Tablet+: row layout */</span>
+        <span class="property">flex-wrap</span>: <span class="value">wrap</span>;
+    }
+}
+
+<span class="selector">.flex-item</span> {
+    <span class="property">flex</span>: <span class="value">1</span>;
+    <span class="property">min-width</span>: <span class="value">200px</span>; <span class="comment">/* Minimum width before wrapping */</span>
+}
+
+<span class="comment">/* Responsive navigation with flexbox */</span>
+<span class="selector">.responsive-nav</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+    <span class="property">justify-content</span>: <span class="value">space-between</span>;
+    <span class="property">align-items</span>: <span class="value">center</span>;
+    <span class="property">flex-wrap</span>: <span class="value">wrap</span>;
+}
+
+<span class="key">@media</span> <span class="value">(max-width: 768px)</span> {
+    <span class="selector">.responsive-nav</span> {
+        <span class="property">flex-direction</span>: <span class="value">column</span>;
+    }
+}
+            </div>
+            <div class="result">
+                <div class="flex-container">
+                    <div class="flex-item">Flex Item 1</div>
+                    <div class="flex-item">Flex Item 2</div>
+                    <div class="flex-item">Flex Item 3</div>
+                </div>
+                <p><small>Flexbox layout that adapts to screen size</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Responsive Typography</h2>
+            <div class="code-block">
+<span class="comment">/* Fluid typography with clamp() */</span>
+<span class="selector">.fluid-text</span> {
+    <span class="property">font-size</span>: <span class="value">clamp(1rem, 2.5vw, 1.5rem)</span>;
+    <span class="property">line-height</span>: <span class="value">1.6</span>;
+}
+
+<span class="comment">/* Responsive font sizes */</span>
+<span class="selector">.responsive-text</span> {
+    <span class="property">font-size</span>: <span class="value">14px</span>; <span class="comment">/* Mobile */</span>
+}
+
+<span class="key">@media</span> <span class="value">(min-width: 768px)</span> {
+    <span class="selector">.responsive-text</span> {
+        <span class="property">font-size</span>: <span class="value">16px</span>; <span class="comment">/* Tablet */</span>
+    }
+}
+
+<span class="key">@media</span> <span class="value">(min-width: 1024px)</span> {
+    <span class="selector">.responsive-text</span> {
+        <span class="property">font-size</span>: <span class="value">18px</span>; <span class="comment">/* Desktop */</span>
+    }
+}
+
+<span class="comment">/* Responsive line height */</span>
+<span class="selector">.responsive-line-height</span> {
+    <span class="property">line-height</span>: <span class="value">1.4</span>; <span class="comment">/* Mobile */</span>
+}
+
+<span class="key">@media</span> <span class="value">(min-width: 768px)</span> {
+    <span class="selector">.responsive-line-height</span> {
+        <span class="property">line-height</span>: <span class="value">1.6</span>; <span class="comment">/* Tablet+ */</span>
+    }
+}
+
+<span class="comment">/* Viewport units for typography */</span>
+<span class="selector">.viewport-text</span> {
+    <span class="property">font-size</span>: <span class="value">4vw</span>; <span class="comment">/* 4% of viewport width */</span>
+}
+
+<span class="comment">/* Calc for typography */</span>
+<span class="selector">.calc-text</span> {
+    <span class="property">font-size</span>: <span class="value">calc(14px + 1vw)</span>;
+}
+            </div>
+            <div class="result">
+                <div class="responsive-typography">
+                    <h3>Responsive Typography</h3>
+                    <p>This text uses clamp() for fluid sizing between 1rem and 1.5rem, based on 2.5% of viewport width.</p>
+                </div>
+                <p><small>Resize browser to see text size change smoothly</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Responsive Images</h2>
+            <div class="code-block">
+<span class="comment">/* Responsive images */</span>
+<span class="selector">.responsive-image</span> {
+    <span class="property">max-width</span>: <span class="value">100%</span>;
+    <span class="property">height</span>: <span class="value">auto</span>;
+}
+
+<span class="comment">/* Responsive image containers */</span>
+<span class="selector">.image-container</span> {
+    <span class="property">position</span>: <span class="value">relative</span>;
+    <span class="property">width</span>: <span class="value">100%</span>;
+    <span class="property">padding-bottom</span>: <span class="value">56.25%</span>; <span class="comment">/* 16:9 aspect ratio */</span>
+    <span class="property">overflow</span>: <span class="value">hidden</span>;
+}
+
+<span class="selector">.image-container img</span> {
+    <span class="property">position</span>: <span class="value">absolute</span>;
+    <span class="property">top</span>: <span class="value">0</span>;
+    <span class="property">left</span>: <span class="value">0</span>;
+    <span class="property">width</span>: <span class="value">100%</span>;
+    <span class="property">height</span>: <span class="value">100%</span>;
+    <span class="property">object-fit</span>: <span class="value">cover</span>;
+}
+
+<span class="comment">/* Picture element for responsive images */</span>
+<span class="tag">&lt;picture&gt;</span>
+    <span class="tag">&lt;source</span> <span class="attribute">media</span>=<span class="value">"(min-width: 1024px)"</span> <span class="attribute">srcset</span>=<span class="value">"large.jpg"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;source</span> <span class="attribute">media</span>=<span class="value">"(min-width: 768px)"</span> <span class="attribute">srcset</span>=<span class="value">"medium.jpg"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">"small.jpg"</span> <span class="attribute">alt</span>=<span class="value">"Description"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/picture&gt;</span>
+
+<span class="comment">/* Srcset for different resolutions */</span>
+<span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">"image.jpg"</span> 
+     <span class="attribute">srcset</span>=<span class="value">"image-small.jpg 480w, image-medium.jpg 768w, image-large.jpg 1024w"</span>
+     <span class="attribute">sizes</span>=<span class="value">"(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"</span>
+     <span class="attribute">alt</span>=<span class="value">"Description"</span><span class="tag">&gt;</span>
+            </div>
+            <div class="result">
+                <div class="responsive-image-container">
+                    <div style="background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                        16:9 Aspect Ratio
+                    </div>
+                </div>
+                <p><small>Responsive image container with 16:9 aspect ratio</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Responsive Navigation</h2>
+            <div class="code-block">
+<span class="selector">.responsive-nav</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+    <span class="property">justify-content</span>: <span class="value">space-between</span>;
+    <span class="property">align-items</span>: <span class="value">center</span>;
+    <span class="property">background</span>: <span class="value">#333</span>;
+    <span class="property">padding</span>: <span class="value">15px</span>;
+}
+
+<span class="selector">.nav-links</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+    <span class="property">gap</span>: <span class="value">20px</span>;
+}
+
+<span class="selector">.hamburger</span> {
+    <span class="property">display</span>: <span class="value">none</span>;
+    <span class="property">flex-direction</span>: <span class="value">column</span>;
+    <span class="property">cursor</span>: <span class="value">pointer</span>;
+}
+
+<span class="key">@media</span> <span class="value">(max-width: 768px)</span> {
+    <span class="selector">.responsive-nav</span> {
+        <span class="property">flex-direction</span>: <span class="value">column</span>;
+    }
+    
+    <span class="selector">.nav-links</span> {
+        <span class="property">display</span>: <span class="value">none</span>;
+        <span class="property">width</span>: <span class="value">100%</span>;
+        <span class="property">text-align</span>: <span class="value">center</span>;
+        <span class="property">margin-top</span>: <span class="value">10px</span>;
+    }
+    
+    <span class="selector">.nav-links.active</span> {
+        <span class="property">display</span>: <span class="value">block</span>;
+    }
+    
+    <span class="selector">.hamburger</span> {
+        <span class="property">display</span>: <span class="value">flex</span>;
+    }
+}
+            </div>
+            <div class="result">
+                <div class="responsive-nav">
+                    <div style="color: white; font-weight: bold;">Logo</div>
+                    <div class="nav-links">
+                        <a href="#" style="color: white; text-decoration: none;">Home</a>
+                        <a href="#" style="color: white; text-decoration: none;">About</a>
+                        <a href="#" style="color: white; text-decoration: none;">Contact</a>
+                    </div>
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <p><small>Navigation that adapts to mobile screens (resize to see changes)</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Modern CSS Features</h2>
+            <div class="code-block">
+<span class="comment">/* CSS Container Queries (experimental) */</span>
+<span class="selector">.card-container</span> {
+    <span class="property">container-type</span>: <span class="value">inline-size</span>;
+}
+
+<span class="key">@container</span> <span class="value">(min-width: 400px)</span> {
+    <span class="selector">.card</span> {
+        <span class="property">display</span>: <span class="value">flex</span>;
+        <span class="property">flex-direction</span>: <span class="value">row</span>;
+    }
+}
+
+<span class="comment">/* CSS Grid with auto-fit */</span>
+<span class="selector">.modern-grid</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(auto-fit, minmax(300px, 1fr))</span>;
+    <span class="property">gap</span>: <span class="value">20px</span>;
+}
+
+<span class="comment">/* CSS Custom Properties for responsive design */</span>
+<span class="selector">:root</span> {
+    <span class="property">--mobile-padding</span>: <span class="value">10px</span>;
+    <span class="property">--tablet-padding</span>: <span class="value">20px</span>;
+    <span class="property">--desktop-padding</span>: <span class="value">30px</span>;
+}
+
+<span class="key">@media</span> <span class="value">(min-width: 768px)</span> {
+    <span class="selector">:root</span> {
+        <span class="property">--container-padding</span>: <span class="value">var(--tablet-padding)</span>;
+    }
+}
+
+<span class="key">@media</span> <span class="value">(min-width: 1024px)</span> {
+    <span class="selector">:root</span> {
+        <span class="property">--container-padding</span>: <span class="value">var(--desktop-padding)</span>;
+    }
+}
+
+<span class="selector">.container</span> {
+    <span class="property">padding</span>: <span class="value">var(--container-padding, var(--mobile-padding))</span>;
+}
+
+<span class="comment">/* Aspect ratio for responsive media */</span>
+<span class="selector">.responsive-media</span> {
+    <span class="property">aspect-ratio</span>: <span class="value">16 / 9</span>;
+    <span class="property">width</span>: <span class="value">100%</span>;
+    <span class="property">object-fit</span>: <span class="value">cover</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Testing Responsive Design</h2>
+            <div class="code-block">
+<span class="comment">/* Browser Developer Tools */</span>
+<span class="comment">/* 1. Open DevTools (F12) */</span>
+<span class="comment">/* 2. Click device toggle or Ctrl+Shift+M */</span>
+<span class="comment">/* 3. Select device from dropdown */</span>
+<span class="comment">/* 4. Test different screen sizes */</span>
+
+<span class="comment">/* Online testing tools */</span>
+<span class="comment">/* - Chrome DevTools Device Mode */</span>
+<span class="comment">/* - Firefox Responsive Design Mode */</span>
+<span class="comment">/* - Safari Responsive Design Mode */</span>
+<span class="comment">/* - BrowserStack */</span>
+<span class="comment">/* - Responsively App */</span>
+
+<span class="comment">/* Real device testing */</span>
+<span class="comment">/* - Test on actual devices */</span>
+<span class="comment">/* - Use browser developer tools remote debugging */</span>
+<span class="comment">/* - Test touch interactions */</span>
+<span class="comment">/* - Test performance on slower devices */</span>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Best Practices</h2>
+            <div class="code-block">
+<span class="comment">/* Mobile-first approach */</span>
+<span class="selector">.element</span> {
+    <span class="comment">/* Base styles for mobile */</span>
+    <span class="property">width</span>: <span class="value">100%</span>;
+    <span class="property">padding</span>: <span class="value">10px</span>;
+}
+
+<span class="key">@media</span> <span class="value">(min-width: 768px)</span> {
+    <span class="selector">.element</span> {
+        <span class="comment">/* Enhancements for larger screens */</span>
+        <span class="property">width</span>: <span class="value">50%</span>;
+        <span class="property">padding</span>: <span class="value">20px</span>;
+    }
+}
+
+<span class="comment">/* Use relative units */</span>
+<span class="selector">.responsive-element</span> {
+    <span class="property">width</span>: <span class="value">100%</span>;
+    <span class="property">max-width</span>: <span class="value">1200px</span>;
+    <span class="property">margin</span>: <span class="value">0 auto</span>;
+    <span class="property">padding</span>: <span class="value">0 1rem</span>;
+}
+
+<span class="comment">/* Optimize images */</span>
+<span class="selector">img</span> {
+    <span class="property">max-width</span>: <span class="value">100%</span>;
+    <span class="property">height</span>: <span class="value">auto</span>;
+    <span class="property">loading</span>: <span class="value">lazy</span>;
+}
+
+<span class="comment">/* Touch-friendly targets */</span>
+<span class="selector">button, .click-target</span> {
+    <span class="property">min-height</span>: <span class="value">44px</span>;
+    <span class="property">min-width</span>: <span class="value">44px</span>;
+}
+
+<span class="comment">/* Performance considerations */</span>
+<span class="selector">.performant-animation</span> {
+    <span class="property">transform</span>: <span class="value">translateX(100px)</span>; <span class="comment">/* Better than left */</span>
+    <span class="property">will-change</span>: <span class="value">transform</span>; <span class="comment">/* Use sparingly */</span>
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Common Responsive Patterns</h2>
+            <div class="code-block">
+<span class="comment">/* Holy Grail Layout */</span>
+<span class="selector">.holy-grail</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-areas</span>: 
+        <span class="value">"header header header"</span>
+        <span class="value">"nav main aside"</span>
+        <span class="value">"footer footer footer"</span>;
+    <span class="property">gap</span>: <span class="value">20px</span>;
+}
+
+<span class="key">@media</span> <span class="value">(max-width: 768px)</span> {
+    <span class="selector">.holy-grail</span> {
+        <span class="property">grid-template-areas</span>: 
+            <span class="value">"header"</span>
+            <span class="value">"nav"</span>
+            <span class="value">"main"</span>
+            <span class="value">"aside"</span>
+            <span class="value">"footer"</span>;
+    }
+}
+
+<span class="comment">/* Card Layout */</span>
+<span class="selector">.card-layout</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(auto-fit, minmax(300px, 1fr))</span>;
+    <span class="property">gap</span>: <span class="value">20px</span>;
+}
+
+<span class="comment">/* Sidebar Layout */</span>
+<span class="selector">.sidebar-layout</span> {
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">1fr</span>;
+    <span class="property">gap</span>: <span class="value">20px</span>;
+}
+
+<span class="key">@media</span> <span class="value">(min-width: 1024px)</span> {
+    <span class="selector">.sidebar-layout</span> {
+        <span class="property">grid-template-columns</span>: <span class="value">250px 1fr</span>;
+    }
+}
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+</body>
+</html>

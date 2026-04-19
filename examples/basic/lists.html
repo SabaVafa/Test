@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Lists - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .tag {
+            color: #e83e8c;
+        }
+
+        .attribute {
+            color: #0066cc;
+        }
+
+        .value {
+            color: #28a745;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        h2 {
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 10px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back-link:hover {
+            background: #0052a3;
+        }
+
+        .styled-list {
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>HTML Lists</h1>
+        <p>This page demonstrates various types of HTML lists and their usage.</p>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Unordered List (Bullet Points)</h2>
+            <div class="code-block">
+                <span class="tag">&lt;ul&gt;</span>
+                <span class="tag">&lt;li&gt;</span>First item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Second item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Third item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;/ul&gt;</span>
+            </div>
+            <div class="result">
+                <ul>
+                    <li>First item</li>
+                    <li>Second item</li>
+                    <li>Third item</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Ordered List (Numbered)</h2>
+            <div class="code-block">
+                <span class="tag">&lt;ol&gt;</span>
+                <span class="tag">&lt;li&gt;</span>First step<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Second step<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Third step<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;/ol&gt;</span>
+            </div>
+            <div class="result">
+                <ol>
+                    <li>First step</li>
+                    <li>Second step</li>
+                    <li>Third step</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Nested Lists</h2>
+            <div class="code-block">
+                <span class="tag">&lt;ul&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Fruits
+                <span class="tag">&lt;ul&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Apple<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Banana<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Orange<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;/ul&gt;</span>
+                <span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Vegetables
+                <span class="tag">&lt;ul&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Carrot<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Broccoli<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;/ul&gt;</span>
+                <span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;/ul&gt;</span>
+            </div>
+            <div class="result">
+                <ul>
+                    <li>Fruits
+                        <ul>
+                            <li>Apple</li>
+                            <li>Banana</li>
+                            <li>Orange</li>
+                        </ul>
+                    </li>
+                    <li>Vegetables
+                        <ul>
+                            <li>Carrot</li>
+                            <li>Broccoli</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Description List</h2>
+            <div class="code-block">
+                <span class="tag">&lt;dl&gt;</span>
+                <span class="tag">&lt;dt&gt;</span>HTML<span class="tag">&lt;/dt&gt;</span>
+                <span class="tag">&lt;dd&gt;</span>HyperText Markup Language - used for structuring web content<span
+                    class="tag">&lt;/dd&gt;</span>
+                <span class="tag">&lt;dt&gt;</span>CSS<span class="tag">&lt;/dt&gt;</span>
+                <span class="tag">&lt;dd&gt;</span>Cascading Style Sheets - used for styling web content<span
+                    class="tag">&lt;/dd&gt;</span>
+                <span class="tag">&lt;dt&gt;</span>JavaScript<span class="tag">&lt;/dt&gt;</span>
+                <span class="tag">&lt;dd&gt;</span>Programming language for adding interactivity to web pages<span
+                    class="tag">&lt;/dd&gt;</span>
+                <span class="tag">&lt;/dl&gt;</span>
+            </div>
+            <div class="result">
+                <dl>
+                    <dt>HTML</dt>
+                    <dd>HyperText Markup Language - used for structuring web content</dd>
+                    <dt>CSS</dt>
+                    <dd>Cascading Style Sheets - used for styling web content</dd>
+                    <dt>JavaScript</dt>
+                    <dd>Programming language for adding interactivity to web pages</dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Ordered List with Different Numbering</h2>
+            <div class="code-block">
+                <span class="tag">&lt;h3&gt;</span>Default (Decimal)<span class="tag">&lt;/h3&gt;</span>
+                <span class="tag">&lt;ol&gt;</span>
+                <span class="tag">&lt;li&gt;</span>First item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Second item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Third item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;/ol&gt;</span>
+
+                <span class="tag">&lt;h3&gt;</span>Alphabetical (Uppercase)<span class="tag">&lt;/h3&gt;</span>
+                <span class="tag">&lt;ol</span> <span class="attribute">type</span>=<span class="value">"A"</span><span
+                    class="tag">&gt;</span>
+                <span class="tag">&lt;li&gt;</span>First item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Second item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Third item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;/ol&gt;</span>
+
+                <span class="tag">&lt;h3&gt;</span>Roman Numerals (Uppercase)<span class="tag">&lt;/h3&gt;</span>
+                <span class="tag">&lt;ol</span> <span class="attribute">type</span>=<span class="value">"I"</span><span
+                    class="tag">&gt;</span>
+                <span class="tag">&lt;li&gt;</span>First item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Second item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Third item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;/ol&gt;</span>
+            </div>
+            <div class="result">
+                <h3>Default (Decimal)</h3>
+                <ol>
+                    <li>First item</li>
+                    <li>Second item</li>
+                    <li>Third item</li>
+                </ol>
+
+                <h3>Alphabetical (Uppercase)</h3>
+                <ol type="A">
+                    <li>First item</li>
+                    <li>Second item</li>
+                    <li>Third item</li>
+                </ol>
+
+                <h3>Roman Numerals (Uppercase)</h3>
+                <ol type="I">
+                    <li>First item</li>
+                    <li>Second item</li>
+                    <li>Third item</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Unordered List with Different Bullet Styles</h2>
+            <div class="code-block">
+                <span class="tag">&lt;h3&gt;</span>Default (Disc)<span class="tag">&lt;/h3&gt;</span>
+                <span class="tag">&lt;ul&gt;</span>
+                <span class="tag">&lt;li&gt;</span>First item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Second item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;/ul&gt;</span>
+
+                <span class="tag">&lt;h3&gt;</span>Circle<span class="tag">&lt;/h3&gt;</span>
+                <span class="tag">&lt;ul</span> <span class="attribute">type</span>=<span
+                    class="value">"circle"</span><span class="tag">&gt;</span>
+                <span class="tag">&lt;li&gt;</span>First item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Second item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;/ul&gt;</span>
+
+                <span class="tag">&lt;h3&gt;</span>Square<span class="tag">&lt;/h3&gt;</span>
+                <span class="tag">&lt;ul</span> <span class="attribute">type</span>=<span
+                    class="value">"square"</span><span class="tag">&gt;</span>
+                <span class="tag">&lt;li&gt;</span>First item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Second item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;/ul&gt;</span>
+            </div>
+            <div class="result">
+                <h3>Default (Disc)</h3>
+                <ul>
+                    <li>First item</li>
+                    <li>Second item</li>
+                </ul>
+
+                <h3>Circle</h3>
+                <ul type="circle">
+                    <li>First item</li>
+                    <li>Second item</li>
+                </ul>
+
+                <h3>Square</h3>
+                <ul type="square">
+                    <li>First item</li>
+                    <li>Second item</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Advanced List Features</h2>
+            <div class="code-block">
+                <span class="tag">&lt;h3&gt;</span>Starting Number and Reversed Order<span
+                    class="tag">&lt;/h3&gt;</span>
+                <span class="tag">&lt;ol</span> <span class="attribute">start</span>=<span class="value">"5"</span>
+                <span class="attribute">reversed</span><span class="tag">&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Fifth item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Sixth item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Seventh item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;/ol&gt;</span>
+
+                <span class="tag">&lt;h3&gt;</span>List with Custom Value<span class="tag">&lt;/h3&gt;</span>
+                <span class="tag">&lt;ol&gt;</span>
+                <span class="tag">&lt;li</span> <span class="attribute">value</span>=<span
+                    class="value">"10"</span><span class="tag">&gt;</span>Tenth item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Eleventh item<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li</span> <span class="attribute">value</span>=<span
+                    class="value">"20"</span><span class="tag">&gt;</span>Twentieth item<span
+                    class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;/ol&gt;</span>
+            </div>
+            <div class="result">
+                <h3>Starting Number and Reversed Order</h3>
+                <ol start="5" reversed>
+                    <li>Fifth item</li>
+                    <li>Sixth item</li>
+                    <li>Seventh item</li>
+                </ol>
+
+                <h3>List with Custom Value</h3>
+                <ol>
+                    <li value="10">Tenth item</li>
+                    <li>Eleventh item</li>
+                    <li value="20">Twentieth item</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Menu and Navigation Lists</h2>
+            <div class="code-block">
+                <span class="tag">&lt;h3&gt;</span>Menu List<span class="tag">&lt;/h3&gt;</span>
+                <span class="tag">&lt;menu&gt;</span>
+                <span class="tag">&lt;li&gt;</span>File<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>Edit<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span>View<span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;/menu&gt;</span>
+
+                <span class="tag">&lt;h3&gt;</span>Navigation List<span class="tag">&lt;/h3&gt;</span>
+                <span class="tag">&lt;nav&gt;</span>
+                <span class="tag">&lt;ul&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span
+                    class="attribute">href</span>=<span class="value">"#home"</span><span
+                    class="tag">&gt;</span>Home<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span
+                    class="attribute">href</span>=<span class="value">"#about"</span><span
+                    class="tag">&gt;</span>About<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span
+                    class="attribute">href</span>=<span class="value">"#contact"</span><span
+                    class="tag">&gt;</span>Contact<span class="tag">&lt;/a&gt;</span><span
+                    class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;/ul&gt;</span>
+                <span class="tag">&lt;/nav&gt;</span>
+            </div>
+            <div class="result">
+                <h3>Menu List</h3>
+                <menu>
+                    <li>File</li>
+                    <li>Edit</li>
+                    <li>View</li>
+                </menu>
+
+                <h3>Navigation List</h3>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+</body>
+
+</html>

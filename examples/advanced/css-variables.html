@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Variables - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .selector { color: #d73a49; }
+        .property { color: #0066cc; }
+        .value { color: #28a745; }
+        .comment { color: #6c757d; font-style: italic; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+        
+        /* CSS Variables Demo Styles */
+        :root {
+            --primary-color: #2196f3;
+            --secondary-color: #ff9800;
+            --success-color: #4caf50;
+            --danger-color: #f44336;
+            --warning-color: #ffc107;
+            --info-color: #00bcd4;
+            
+            --font-size-base: 16px;
+            --font-size-large: 24px;
+            --font-size-small: 14px;
+            
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --border-radius-lg: 12px;
+            --border-radius-full: 50%;
+            
+            --box-shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --box-shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --box-shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+        
+        .theme-default {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --border-color: #dddddd;
+        }
+        
+        .theme-dark {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --border-color: #444444;
+        }
+        
+        .theme-ocean {
+            --bg-primary: #e3f2fd;
+            --bg-secondary: #bbdefb;
+            --text-primary: #0d47a1;
+            --text-secondary: #1565c0;
+            --border-color: #90caf9;
+        }
+        
+        .theme-forest {
+            --bg-primary: #e8f5e8;
+            --bg-secondary: #c8e6c9;
+            --text-primary: #1b5e20;
+            --text-secondary: #2e7d32;
+            --border-color: #81c784;
+        }
+        
+        .variable-demo {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius-md);
+            font-size: var(--font-size-base);
+            margin: var(--spacing-md) 0;
+            box-shadow: var(--box-shadow-md);
+            transition: var(--transition-normal);
+        }
+        
+        .variable-demo:hover {
+            box-shadow: var(--box-shadow-lg);
+            transform: translateY(-2px);
+        }
+        
+        .button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--border-radius-md);
+            font-size: var(--font-size-base);
+            cursor: pointer;
+            transition: var(--transition-normal);
+            margin: var(--spacing-sm);
+        }
+        
+        .button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow-md);
+        }
+        
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-md) 0;
+            box-shadow: var(--box-shadow-sm);
+        }
+        
+        .card h3 {
+            color: var(--primary-color);
+            font-size: var(--font-size-large);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .card p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+        }
+        
+        .alert {
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius-md);
+            margin: var(--spacing-md) 0;
+            font-weight: bold;
+        }
+        
+        .alert-success {
+            background: var(--success-color);
+            color: white;
+        }
+        
+        .alert-danger {
+            background: var(--danger-color);
+            color: white;
+        }
+        
+        .alert-warning {
+            background: var(--warning-color);
+            color: #333;
+        }
+        
+        .alert-info {
+            background: var(--info-color);
+            color: white;
+        }
+        
+        .theme-switcher {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin: var(--spacing-lg) 0;
+            flex-wrap: wrap;
+        }
+        
+        .theme-btn {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 2px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .theme-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .theme-btn.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+        
+        .component-library {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+        }
+        
+        .component-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .component-item h4 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .component-item p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+        }
+        
+        .dynamic-demo {
+            --dynamic-color: #2196f3;
+            --dynamic-size: 100px;
+            --dynamic-radius: 8px;
+            
+            width: var(--dynamic-size);
+            height: var(--dynamic-size);
+            background: var(--dynamic-color);
+            border-radius: var(--dynamic-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin: var(--spacing-md) auto;
+            transition: var(--transition-normal);
+        }
+        
+        .dynamic-demo:hover {
+            --dynamic-color: #ff9800;
+            --dynamic-size: 120px;
+            --dynamic-radius: 50%;
+        }
+        
+        .inheritance-demo {
+            --component-bg: #f0f0f0;
+            --component-text: #333;
+            --component-padding: 20px;
+        }
+        
+        .parent-component {
+            background: var(--component-bg);
+            color: var(--component-text);
+            padding: var(--component-padding);
+            border-radius: var(--border-radius-md);
+        }
+        
+        .child-component {
+            --component-bg: #e0e0e0;
+            --component-text: #555;
+            --component-padding: 15px;
+            margin: var(--spacing-sm);
+            border-radius: var(--border-radius-sm);
+        }
+        
+        .fallback-demo {
+            --supported-color: #2196f3;
+            --unsupported-color: #666;
+            background: var(--supported-color, var(--unsupported-color));
+            color: white;
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius-md);
+            margin: var(--spacing-md) 0;
+        }
+    </style>
+</head>
+<body class="theme-default">
+    <div class="container">
+        <h1>CSS Variables (Custom Properties)</h1>
+        <p>This page demonstrates CSS variables for creating maintainable and dynamic styles.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Basic CSS Variables</h2>
+            <div class="code-block">
+<span class="comment">/* Define variables */</span>
+<span class="selector">:root</span> {
+    <span class="property">--primary-color</span>: <span class="value">#2196f3</span>;
+    <span class="property">--font-size-base</span>: <span class="value">16px</span>;
+    <span class="property">--spacing-md</span>: <span class="value">16px</span>;
+    <span class="property">--border-radius</span>: <span class="value">8px</span>;
+}
+
+<span class="comment">/* Use variables */</span>
+<span class="selector">.button</span> {
+    <span class="property">background</span>: <span class="value">var(--primary-color)</span>;
+    <span class="property">font-size</span>: <span class="value">var(--font-size-base)</span>;
+    <span class="property">padding</span>: <span class="value">var(--spacing-md)</span>;
+    <span class="property">border-radius</span>: <span class="value">var(--border-radius)</span>;
+}
+
+<span class="comment">/* Variables with fallback values */</span>
+<span class="selector">.element</span> {
+    <span class="property">color</span>: <span class="value">var(--text-color, #333)</span>;
+    <span class="property">background</span>: <span class="value">var(--bg-color, var(--default-bg, #fff))</span>;
+}
+
+<span class="comment">/* Variables in calculations */</span>
+<span class="selector">.calculated</span> {
+    <span class="property">font-size</span>: <span class="value">calc(var(--font-size-base) * 1.5)</span>;
+    <span class="property">margin</span>: <span class="value">calc(var(--spacing-md) * 2)</span>;
+}
+            </div>
+            <div class="result">
+                <div class="variable-demo">
+                    <h3>Variable Demo Box</h3>
+                    <p>This box uses CSS variables for colors, spacing, typography, and effects.</p>
+                </div>
+                <button class="button">Variable Button</button>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Theme Switching</h2>
+            <div class="code-block">
+<span class="comment">/* Default theme */</span>
+<span class="selector">.theme-default</span> {
+    <span class="property">--bg-primary</span>: <span class="value">#ffffff</span>;
+    <span class="property">--text-primary</span>: <span class="value">#333333</span>;
+    <span class="property">--border-color</span>: <span class="value">#dddddd</span>;
+}
+
+<span class="comment">/* Dark theme */</span>
+<span class="selector">.theme-dark</span> {
+    <span class="property">--bg-primary</span>: <span class="value">#1a1a1a</span>;
+    <span class="property">--text-primary</span>: <span class="value">#ffffff</span>;
+    <span class="property">--border-color</span>: <span class="value">#444444</span>;
+}
+
+<span class="comment">/* Ocean theme */</span>
+<span class="selector">.theme-ocean</span> {
+    <span class="property">--bg-primary</span>: <span class="value">#e3f2fd</span>;
+    <span class="property">--text-primary</span>: <span class="value">#0d47a1</span>;
+    <span class="property">--border-color</span>: <span class="value">#90caf9</span>;
+}
+
+<span class="comment">/* Forest theme */</span>
+<span class="selector">.theme-forest</span> {
+    <span class="property">--bg-primary</span>: <span class="value">#e8f5e8</span>;
+    <span class="property">--text-primary</span>: <span class="value">#1b5e20</span>;
+    <span class="property">--border-color</span>: <span class="value">#81c784</span>;
+}
+
+<span class="comment">/* Apply theme variables */</span>
+<span class="selector">.themed-element</span> {
+    <span class="property">background</span>: <span class="value">var(--bg-primary)</span>;
+    <span class="property">color</span>: <span class="value">var(--text-primary)</span>;
+    <span class="property">border</span>: <span class="value">1px solid var(--border-color)</span>;
+}
+            </div>
+            <div class="result">
+                <div class="theme-switcher">
+                    <button class="theme-btn active" onclick="document.body.className='theme-default'">Default</button>
+                    <button class="theme-btn" onclick="document.body.className='theme-dark'">Dark</button>
+                    <button class="theme-btn" onclick="document.body.className='theme-ocean'">Ocean</button>
+                    <button class="theme-btn" onclick="document.body.className='theme-forest'">Forest</button>
+                </div>
+                
+                <div class="card">
+                    <h3>Theme Demo</h3>
+                    <p>Click the theme buttons above to see how CSS variables can completely change the appearance of the page. All elements using variables will update automatically.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Component Library</h2>
+            <div class="code-block">
+<span class="comment">/* Component variables */</span>
+<span class="selector">:root</span> {
+    <span class="property">--component-padding</span>: <span class="value">16px</span>;
+    <span class="property">--component-border-radius</span>: <span class="value">8px</span>;
+    <span class="property">--component-shadow</span>: <span class="value">0 2px 4px rgba(0,0,0,0.1)</span>;
+    <span class="property">--component-transition</span>: <span class="value">0.3s ease</span>;
+}
+
+<span class="comment">/* Base component */</span>
+<span class="selector">.component</span> {
+    <span class="property">padding</span>: <span class="value">var(--component-padding)</span>;
+    <span class="property">border-radius</span>: <span class="value">var(--component-border-radius)</span>;
+    <span class="property">box-shadow</span>: <span class="value">var(--component-shadow)</span>;
+    <span class="property">transition</span>: <span class="value">var(--component-transition)</span>;
+}
+
+<span class="comment">/* Component variants */</span>
+<span class="selector">.component-large</span> {
+    <span class="property">--component-padding</span>: <span class="value">24px</span>;
+    <span class="property">--component-border-radius</span>: <span class="value">12px</span>;
+}
+
+<span class="selector">.component-small</span> {
+    <span class="property">--component-padding</span>: <span class="value">8px</span>;
+    <span class="property">--component-border-radius</span>: <span class="value">4px</span>;
+}
+            </div>
+            <div class="result">
+                <div class="component-library">
+                    <div class="component-item">
+                        <h4>Card Component</h4>
+                        <p>Reusable card with consistent styling using variables.</p>
+                    </div>
+                    <div class="component-item">
+                        <h4>Alert Component</h4>
+                        <p>Alert boxes with different color variants.</p>
+                    </div>
+                    <div class="component-item">
+                        <h4>Button Component</h4>
+                        <p>Buttons with consistent sizing and effects.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Dynamic Variables</h2>
+            <div class="code-block">
+<span class="comment">/* Variables that change on interaction */</span>
+<span class="selector">.interactive-element</span> {
+    <span class="property">--hover-color</span>: <span class="value">#2196f3</span>;
+    <span class="property">--hover-size</span>: <span class="value">100px</span>;
+    <span class="property">--transition-speed</span>: <span class="value">0.3s ease</span>;
+    
+    <span class="property">width</span>: <span class="value">var(--hover-size)</span>;
+    <span class="property">height</span>: <span class="value">var(--hover-size)</span>;
+    <span class="property">background</span>: <span class="value">var(--hover-color)</span>;
+    <span class="property">transition</span>: <span class="value">var(--transition-speed)</span>;
+}
+
+<span class="selector">.interactive-element:hover</span> {
+    <span class="property">--hover-color</span>: <span class="value">#ff9800</span>;
+    <span class="property">--hover-size</span>: <span class="value">120px</span>;
+}
+
+<span class="comment">/* JavaScript can update variables */</span>
+<span class="comment">/* element.style.setProperty('--variable-name', 'value'); */</span>
+            </div>
+            <div class="result">
+                <div class="dynamic-demo">Hover Me</div>
+                <p><small>Hover over the box to see variables change dynamically</small></p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Variable Inheritance</h2>
+            <div class="code-block">
+<span class="comment">/* Parent component variables */</span>
+<span class="selector">.parent-component</span> {
+    <span class="property">--component-bg</span>: <span class="value">#f0f0f0</span>;
+    <span class="property">--component-text</span>: <span class="value">#333</span>;
+    <span class="property">--component-padding</span>: <span class="value">20px</span>;
+    
+    <span class="property">background</span>: <span class="value">var(--component-bg)</span>;
+    <span class="property">color</span>: <span class="value">var(--component-text)</span>;
+    <span class="property">padding</span>: <span class="value">var(--component-padding)</span>;
+}
+
+<span class="comment">/* Child component can override variables */</span>
+<span class="selector">.child-component</span> {
+    <span class="property">--component-bg</span>: <span class="value">#e0e0e0</span>;
+    <span class="property">--component-text</span>: <span class="value">#555</span>;
+    <span class="property">--component-padding</span>: <span class="value">15px</span>;
+    
+    <span class="comment">/* Inherits or overrides parent variables */</span>
+    <span class="property">background</span>: <span class="value">var(--component-bg)</span>;
+    <span class="property">color</span>: <span class="value">var(--component-text)</span>;
+    <span class="property">padding</span>: <span class="value">var(--component-padding)</span>;
+}
+            </div>
+            <div class="result">
+                <div class="inheritance-demo">
+                    <div class="parent-component">
+                        <h4>Parent Component</h4>
+                        <p>This parent defines the base variables.</p>
+                        <div class="child-component">
+                            <h5>Child Component</h5>
+                            <p>This child overrides some variables while inheriting others.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Variable Fallbacks</h2>
+            <div class="code-block">
+<span class="comment">/* Single fallback */</span>
+<span class="selector">.element</span> {
+    <span class="property">color</span>: <span class="value">var(--text-color, #333)</span>;
+}
+
+<span class="comment">/* Multiple fallbacks */</span>
+<span class="selector">.element</span> {
+    <span class="property">background</span>: <span class="value">var(--bg-color, var(--default-bg, #fff))</span>;
+}
+
+<span class="comment">/* Fallback for invalid values */</span>
+<span class="selector">.element</span> {
+    <span class="property">font-size</span>: <span class="value">var(--invalid-size, 16px)</span>;
+}
+
+<span class="comment">/* Using fallbacks for browser support */</span>
+<span class="selector">.modern-browser</span> {
+    <span class="property">color</span>: <span class="value">var(--supported-color, var(--fallback-color, #666))</span>;
+}
+            </div>
+            <div class="result">
+                <div class="fallback-demo">
+                    <h3>Fallback Demo</h3>
+                    <p>This element uses variables with fallback values for compatibility.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Variable Scopes</h2>
+            <div class="code-block">
+<span class="comment">/* Global scope (root) */</span>
+<span class="selector">:root</span> {
+    <span class="property">--global-color</span>: <span class="value">#2196f3</span>;
+    <span class="property">--global-size</span>: <span class="value">16px</span>;
+}
+
+<span class="comment">/* Component scope */</span>
+<span class="selector">.component</span> {
+    <span class="property">--component-color</span>: <span class="value">#4caf50</span>;
+    <span class="property">--component-size</span>: <span class="value">14px</span>;
+    
+    <span class="property">color</span>: <span class="value">var(--component-color, var(--global-color))</span>;
+    <span class="property">font-size</span>: <span class="value">var(--component-size, var(--global-size))</span>;
+}
+
+<span class="comment">/* Local scope */</span>
+<span class="selector">.element</span> {
+    <span class="property">--local-color</span>: <span class="value">#ff9800</span>;
+    <span class="property">color</span>: <span class="value">var(--local-color)</span>;
+}
+
+<span class="comment">/* Inline scope */</span>
+<span class="comment">/* style="--local-color: #f44336;" */
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Advanced Techniques</h2>
+            <div class="code-block">
+<span class="comment">/* Variables in media queries */</span>
+<span class="key">@media</span> <span class="value">(prefers-color-scheme: dark)</span> {
+    <span class="selector">:root</span> {
+        <span class="property">--bg-color</span>: <span class="value">#1a1a1a</span>;
+        <span class="property">--text-color</span>: <span class="value">#ffffff</span>;
+    }
+}
+
+<span class="comment">/* Variables with calc() */</span>
+<span class="selector">.responsive-element</span> {
+    <span class="property">font-size</span>: <span class="value">calc(var(--base-size) * var(--scale-factor, 1))</span>;
+    <span class="property">margin</span>: <span class="value">calc(var(--spacing) * 2)</span>;
+}
+
+<span class="comment">/* Variables for animations */</span>
+<span class="selector">.animated-element</span> {
+    <span class="property">--animation-duration</span>: <span class="value">0.3s</span>;
+    <span class="property">--animation-timing</span>: <span class="value">ease</span>;
+    <span class="property">transition</span>: <span class="value">all var(--animation-duration) var(--animation-timing)</span>;
+}
+
+<span class="comment">/* Variables for grid layouts */</span>
+<span class="selector">.grid-layout</span> {
+    <span class="property">--grid-columns</span>: <span class="value">3</span>;
+    <span class="property">--grid-gap</span>: <span class="value">20px</span>;
+    
+    <span class="property">display</span>: <span class="value">grid</span>;
+    <span class="property">grid-template-columns</span>: <span class="value">repeat(var(--grid-columns), 1fr)</span>;
+    <span class="property">gap</span>: <span class="value">var(--grid-gap)</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">JavaScript Integration</h2>
+            <div class="code-block">
+<span class="comment">/* Get variable value */</span>
+<span class="comment">// const value = getComputedStyle(element).getPropertyValue('--variable-name');</span>
+
+<span class="comment">/* Set variable value */</span>
+<span class="comment">// element.style.setProperty('--variable-name', 'value');</span>
+
+<span class="comment">// Example: Dynamic theme switcher</span>
+<span class="comment">function switchTheme(theme) {</span>
+<span class="comment">    const root = document.documentElement;</span>
+<span class="comment">    const themes = {</span>
+<span class="comment">        light: {</span>
+<span class="comment">            '--bg-color': '#ffffff',</span>
+<span class="comment">            '--text-color': '#333333'</span>
+<span class="comment">        },</span>
+<span class="comment">        dark: {</span>
+<span class="comment">            '--bg-color': '#1a1a1a',</span>
+<span class="comment">            '--text-color': '#ffffff'</span>
+<span class="comment">        }</span>
+<span class="comment">    };</span>
+<span class="comment">    </span>
+<span class="comment">    Object.entries(themes[theme]).forEach(([key, value]) => {</span>
+<span class="comment">        root.style.setProperty(key, value);</span>
+<span class="comment">    });</span>
+<span class="comment">}</span>
+
+<span class="comment">/* Example: Dynamic sizing */</span>
+<span class="comment">function updateSize(size) {</span>
+<span class="comment">    document.documentElement.style.setProperty('--dynamic-size', size + 'px');</span>
+<span class="comment">}</span>
+
+<span class="comment">/* Example: Color picker */</span>
+<span class="comment">function updateColor(color) {</span>
+<span class="comment">    document.documentElement.style.setProperty('--primary-color', color);</span>
+<span class="comment">}</span>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Best Practices</h2>
+            <div class="code-block">
+<span class="comment">/* Use semantic naming */</span>
+<span class="selector">:root</span> {
+    <span class="property">--color-primary</span>: <span class="value">#2196f3</span>; <span class="comment">/* Good */</span>
+    <span class="property">--color-blue</span>: <span class="value">#2196f3</span>; <span class="comment">/* Avoid - ties to specific color */</span>
+    
+    <span class="property">--spacing-medium</span>: <span class="value">16px</span>; <span class="comment">/* Good */</span>
+    <span class="property">--spacing-16px</span>: <span class="value">16px</span>; <span class="comment">/* Avoid - ties to specific value */</span>
+}
+
+<span class="comment">/* Group related variables */</span>
+<span class="selector">:root</span> {
+    <span class="comment">/* Colors */</span>
+    <span class="property">--color-primary</span>: <span class="value">#2196f3</span>;
+    <span class="property">--color-secondary</span>: <span class="value">#ff9800</span>;
+    <span class="property">--color-success</span>: <span class="value">#4caf50</span>;
+    
+    <span class="comment">/* Typography */</span>
+    <span class="property">--font-family-base</span>: <span class="value">Arial, sans-serif</span>;
+    <span class="property">--font-size-base</span>: <span class="value">16px</span>;
+    <span class="property">--line-height-base</span>: <span class="value">1.5</span>;
+    
+    <span class="comment">/* Spacing */</span>
+    <span class="property">--spacing-xs</span>: <span class="value">4px</span>;
+    <span class="property">--spacing-sm</span>: <span class="value">8px</span>;
+    <span class="property">--spacing-md</span>: <span class="value">16px</span>;
+}
+
+<span class="comment">/* Provide fallbacks for older browsers */</span>
+<span class="selector">.element</span> {
+    <span class="property">color</span>: <span class="value">#333</span>; <span class="comment">/* Fallback */</span>
+    <span class="property">color</span>: <span class="value">var(--text-color, #333)</span>; <span class="comment">/* Variable with fallback */</span>
+}
+
+<span class="comment">/* Use variables for consistent theming */</span>
+<span class="selector">.alert</span> {
+    <span class="property">padding</span>: <span class="value">var(--spacing-md)</span>;
+    <span class="property">border-radius</span>: <span class="value">var(--border-radius-md)</span>;
+    <span class="property">font-weight</span>: <span class="value">var(--font-weight-bold)</span>;
+}
+
+<span class="selector">.alert-success</span> {
+    <span class="property">--alert-bg</span>: <span class="value">var(--color-success)</span>;
+    <span class="property">background</span>: <span class="value">var(--alert-bg)</span>;
+    <span class="property">color</span>: <span class="value">white</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Browser Support</h2>
+            <div class="code-block">
+<span class="comment">/* CSS Variables are supported in: */</span>
+<span class="comment">/* - Chrome 49+ */</span>
+<span class="comment">/* - Firefox 31+ */</span>
+<span class="comment">/* - Safari 9.1+ */</span>
+<span class="comment">/* - Edge 16+ */</span>
+<span class="comment">/* - Opera 36+ */</span>
+
+<span class="comment">/* Not supported in: */</span>
+<span class="comment">/* - Internet Explorer (all versions) */</span>
+
+<span class="comment">/* Feature detection */</span>
+<span class="key">@supports</span> <span class="value">(background: var(--test))</span> {
+    <span class="comment">/* Variables supported */</span>
+    <span class="selector">.modern-styles</span> {
+        <span class="property">background</span>: <span class="value">var(--primary-color)</span>;
+    }
+}
+
+<span class="comment">/* Fallback for older browsers */</span>
+<span class="selector">.legacy-styles</span> {
+    <span class="property">background</span>: <span class="value">#2196f3</span>; <span class="comment">/* Fallback */</span>
+}
+
+<span class="key">@supports</span> <span class="value">(background: var(--test))</span> {
+    <span class="selector">.legacy-styles</span> {
+        <span class="property">background</span>: <span class="value">var(--primary-color)</span>;
+    }
+}
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+</body>
+</html>

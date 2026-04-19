@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Forms - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .tag { color: #e83e8c; }
+        .attribute { color: #0066cc; }
+        .value { color: #28a745; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        input[type="date"],
+        input[type="time"],
+        input[type="color"],
+        input[type="tel"],
+        input[type="url"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        button {
+            background: #0066cc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background: #0052a3;
+        }
+        .radio-group,
+        .checkbox-group {
+            margin: 10px 0;
+        }
+        .radio-group label,
+        .checkbox-group label {
+            display: inline-block;
+            margin-right: 15px;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HTML Forms</h1>
+        <p>This page demonstrates various HTML form elements and their usage.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Basic Form Structure</h2>
+            <div class="code-block">
+<span class="tag">&lt;form</span> <span class="attribute">action</span>=<span class="value">"/submit"</span> <span class="attribute">method</span>=<span class="value">"post"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"name"</span><span class="tag">&gt;</span>Name:<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"name"</span> <span class="attribute">name</span>=<span class="value">"name"</span><span class="tag">&gt;</span>
+    
+    <span class="tag">&lt;button</span> <span class="attribute">type</span>=<span class="value">"submit"</span><span class="tag">&gt;</span>Submit<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/form&gt;</span>
+            </div>
+            <div class="result">
+                <form action="/submit" method="post">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name">
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Text Input Fields</h2>
+            <div class="code-block">
+<span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"fullname"</span><span class="tag">&gt;</span>Full Name:<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"fullname"</span> <span class="attribute">name</span>=<span class="value">"fullname"</span> <span class="attribute">placeholder</span>=<span class="value">"Enter your name"</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"email"</span><span class="tag">&gt;</span>Email:<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"email"</span> <span class="attribute">id</span>=<span class="value">"email"</span> <span class="attribute">name</span>=<span class="value">"email"</span> <span class="attribute">required</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"password"</span><span class="tag">&gt;</span>Password:<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"password"</span> <span class="attribute">id</span>=<span class="value">"password"</span> <span class="attribute">name</span>=<span class="value">"password"</span> <span class="attribute">minlength</span>=<span class="value">"8"</span><span class="tag">&gt;</span>
+            </div>
+            <div class="result">
+                <div class="form-group">
+                    <label for="fullname">Full Name:</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" minlength="8">
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Number and Date Inputs</h2>
+            <div class="code-block">
+<span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"age"</span><span class="tag">&gt;</span>Age:<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"number"</span> <span class="attribute">id</span>=<span class="value">"age"</span> <span class="attribute">name</span>=<span class="value">"age"</span> <span class="attribute">min</span>=<span class="value">"1"</span> <span class="attribute">max</span>=<span class="value">"120"</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"birthdate"</span><span class="tag">&gt;</span>Birth Date:<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"date"</span> <span class="attribute">id</span>=<span class="value">"birthdate"</span> <span class="attribute">name</span>=<span class="value">"birthdate"</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"appointment"</span><span class="tag">&gt;</span>Appointment Time:<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"time"</span> <span class="attribute">id</span>=<span class="value">"appointment"</span> <span class="attribute">name</span>=<span class="value">"appointment"</span><span class="tag">&gt;</span>
+            </div>
+            <div class="result">
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" min="1" max="120">
+                </div>
+                <div class="form-group">
+                    <label for="birthdate">Birth Date:</label>
+                    <input type="date" id="birthdate" name="birthdate">
+                </div>
+                <div class="form-group">
+                    <label for="appointment">Appointment Time:</label>
+                    <input type="time" id="appointment" name="appointment">
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Special Input Types</h2>
+            <div class="code-block">
+<span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"website"</span><span class="tag">&gt;</span>Website:<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"url"</span> <span class="attribute">id</span>=<span class="value">"website"</span> <span class="attribute">name</span>=<span class="value">"website"</span> <span class="attribute">placeholder</span>=<span class="value">"https://example.com"</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"phone"</span><span class="tag">&gt;</span>Phone:<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"tel"</span> <span class="attribute">id</span>=<span class="value">"phone"</span> <span class="attribute">name</span>=<span class="value">"phone"</span> <span class="attribute">pattern</span>=<span class="value">"[0-9]{3}-[0-9]{3}-[0-9]{4}"</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"color"</span><span class="tag">&gt;</span>Favorite Color:<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"color"</span> <span class="attribute">id</span>=<span class="value">"color"</span> <span class="attribute">name</span>=<span class="value">"color"</span><span class="tag">&gt;</span>
+            </div>
+            <div class="result">
+                <div class="form-group">
+                    <label for="website">Website:</label>
+                    <input type="url" id="website" name="website" placeholder="https://example.com">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890">
+                </div>
+                <div class="form-group">
+                    <label for="color">Favorite Color:</label>
+                    <input type="color" id="color" name="color">
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Radio Buttons</h2>
+            <div class="code-block">
+<span class="tag">&lt;fieldset&gt;</span>
+    <span class="tag">&lt;legend&gt;</span>Gender:<span class="tag">&lt;/legend&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"radio-group"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"radio"</span> <span class="attribute">id</span>=<span class="value">"male"</span> <span class="attribute">name</span>=<span class="value">"gender"</span> <span class="attribute">value</span>=<span class="value">"male"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"male"</span><span class="tag">&gt;</span>Male<span class="tag">&lt;/label&gt;</span>
+        
+        <span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"radio"</span> <span class="attribute">id</span>=<span class="value">"female"</span> <span class="attribute">name</span>=<span class="value">"gender"</span> <span class="attribute">value</span>=<span class="value">"female"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"female"</span><span class="tag">&gt;</span>Female<span class="tag">&lt;/label&gt;</span>
+        
+        <span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"radio"</span> <span class="attribute">id</span>=<span class="value">"other"</span> <span class="attribute">name</span>=<span class="value">"gender"</span> <span class="attribute">value</span>=<span class="value">"other"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"other"</span><span class="tag">&gt;</span>Other<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/fieldset&gt;</span>
+            </div>
+            <div class="result">
+                <fieldset>
+                    <legend>Gender:</legend>
+                    <div class="radio-group">
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">Male</label>
+                        
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Female</label>
+                        
+                        <input type="radio" id="other" name="gender" value="other">
+                        <label for="other">Other</label>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Checkboxes</h2>
+            <div class="code-block">
+<span class="tag">&lt;fieldset&gt;</span>
+    <span class="tag">&lt;legend&gt;</span>Interests:<span class="tag">&lt;/legend&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute">class</span>=<span class="value">"checkbox-group"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">id</span>=<span class="value">"sports"</span> <span class="attribute">name</span>=<span class="value">"interests"</span> <span class="attribute">value</span>=<span class="value">"sports"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"sports"</span><span class="tag">&gt;</span>Sports<span class="tag">&lt;/label&gt;</span>
+        
+        <span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">id</span>=<span class="value">"music"</span> <span class="attribute">name</span>=<span class="value">"interests"</span> <span class="attribute">value</span>=<span class="value">"music"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"music"</span><span class="tag">&gt;</span>Music<span class="tag">&lt;/label&gt;</span>
+        
+        <span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">id</span>=<span class="value">"reading"</span> <span class="attribute">name</span>=<span class="value">"interests"</span> <span class="attribute">value</span>=<span class="value">"reading"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"reading"</span><span class="tag">&gt;</span>Reading<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/fieldset&gt;</span>
+            </div>
+            <div class="result">
+                <fieldset>
+                    <legend>Interests:</legend>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="sports" name="interests" value="sports">
+                        <label for="sports">Sports</label>
+                        
+                        <input type="checkbox" id="music" name="interests" value="music">
+                        <label for="music">Music</label>
+                        
+                        <input type="checkbox" id="reading" name="interests" value="reading">
+                        <label for="reading">Reading</label>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Select Dropdown</h2>
+            <div class="code-block">
+<span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"country"</span><span class="tag">&gt;</span>Country:<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;select</span> <span class="attribute">id</span>=<span class="value">"country"</span> <span class="attribute">name</span>=<span class="value">"country"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;option</span> <span class="attribute">value</span>=<span class="value">""</span><span class="tag">&gt;</span>Select a country<span class="tag">&lt;/option&gt;</span>
+    <span class="tag">&lt;option</span> <span class="attribute">value</span>=<span class="value">"usa"</span><span class="tag">&gt;</span>United States<span class="tag">&lt;/option&gt;</span>
+    <span class="tag">&lt;option</span> <span class="attribute">value</span>=<span class="value">"uk"</span><span class="tag">&gt;</span>United Kingdom<span class="tag">&lt;/option&gt;</span>
+    <span class="tag">&lt;option</span> <span class="attribute">value</span>=<span class="value">"canada"</span><span class="tag">&gt;</span>Canada<span class="tag">&lt;/option&gt;</span>
+    <span class="tag">&lt;/select&gt;</span>
+
+<span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"skills"</span><span class="tag">&gt;</span>Skills (multiple):<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;select</span> <span class="attribute">id</span>=<span class="value">"skills"</span> <span class="attribute">name</span>=<span class="value">"skills"</span> <span class="attribute">multiple</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;option</span> <span class="attribute">value</span>=<span class="value">"html"</span><span class="tag">&gt;</span>HTML<span class="tag">&lt;/option&gt;</span>
+    <span class="tag">&lt;option</span> <span class="attribute">value</span>=<span class="value">"css"</span><span class="tag">&gt;</span>CSS<span class="tag">&lt;/option&gt;</span>
+    <span class="tag">&lt;option</span> <span class="attribute">value</span>=<span class="value">"javascript"</span><span class="tag">&gt;</span>JavaScript<span class="tag">&lt;/option&gt;</span>
+    <span class="tag">&lt;/select&gt;</span>
+            </div>
+            <div class="result">
+                <div class="form-group">
+                    <label for="country">Country:</label>
+                    <select id="country" name="country">
+                        <option value="">Select a country</option>
+                        <option value="usa">United States</option>
+                        <option value="uk">United Kingdom</option>
+                        <option value="canada">Canada</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="skills">Skills (multiple):</label>
+                    <select id="skills" name="skills" multiple size="3">
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="javascript">JavaScript</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Textarea</h2>
+            <div class="code-block">
+<span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"message"</span><span class="tag">&gt;</span>Message:<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;textarea</span> <span class="attribute">id</span>=<span class="value">"message"</span> <span class="attribute">name</span>=<span class="value">"message"</span> <span class="attribute">rows</span>=<span class="value">"4"</span> <span class="attribute">cols</span>=<span class="value">"50"</span> <span class="attribute">placeholder</span>=<span class="value">"Enter your message here..."</span><span class="tag">&gt;</span><span class="tag">&lt;/textarea&gt;</span>
+            </div>
+            <div class="result">
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Enter your message here..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Range Slider</h2>
+            <div class="code-block">
+<span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"volume"</span><span class="tag">&gt;</span>Volume: <span class="tag">&lt;span</span> <span class="attribute">id</span>=<span class="value">"volumeValue"</span><span class="tag">&gt;</span>50<span class="tag">&lt;/span&gt;</span><span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"range"</span> <span class="attribute">id</span>=<span class="value">"volume"</span> <span class="attribute">name</span>=<span class="value">"volume"</span> <span class="attribute">min</span>=<span class="value">"0"</span> <span class="attribute">max</span>=<span class="value">"100"</span> <span class="attribute">value</span>=<span class="value">"50"</span><span class="tag">&gt;</span>
+            </div>
+            <div class="result">
+                <div class="form-group">
+                    <label for="volume">Volume: <span id="volumeValue">50</span></label>
+                    <input type="range" id="volume" name="volume" min="0" max="100" value="50" oninput="document.getElementById('volumeValue').textContent = this.value">
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">File Upload</h2>
+            <div class="code-block">
+<span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"avatar"</span><span class="tag">&gt;</span>Upload Avatar:<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"file"</span> <span class="attribute">id</span>=<span class="value">"avatar"</span> <span class="attribute">name</span>=<span class="value">"avatar"</span> <span class="attribute">accept</span>=<span class="value">"image/*"</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"documents"</span><span class="tag">&gt;</span>Upload Documents:<span class="tag">&lt;/label&gt;</span>
+<span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"file"</span> <span class="attribute">id</span>=<span class="value">"documents"</span> <span class="attribute">name</span>=<span class="value">"documents"</span> <span class="attribute">multiple</span><span class="tag">&gt;</span>
+            </div>
+            <div class="result">
+                <div class="form-group">
+                    <label for="avatar">Upload Avatar:</label>
+                    <input type="file" id="avatar" name="avatar" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="documents">Upload Documents:</label>
+                    <input type="file" id="documents" name="documents" multiple>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Form Buttons</h2>
+            <div class="code-block">
+<span class="tag">&lt;button</span> <span class="attribute">type</span>=<span class="value">"submit"</span><span class="tag">&gt;</span>Submit<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;button</span> <span class="attribute">type</span>=<span class="value">"reset"</span><span class="tag">&gt;</span>Reset<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;button</span> <span class="attribute">type</span>=<span class="value">"button"</span><span class="tag">&gt;</span>Just a Button<span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"submit"</span> <span class="attribute">value</span>=<span class="value">"Submit Form"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"reset"</span> <span class="attribute">value</span>=<span class="value">"Clear Form"</span><span class="tag">&gt;</span>
+            </div>
+            <div class="result">
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+                <button type="button">Just a Button</button>
+                <br><br>
+                <input type="submit" value="Submit Form">
+                <input type="reset" value="Clear Form">
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Complete Registration Form</h2>
+            <div class="code-block">
+<span class="tag">&lt;form</span> <span class="attribute">action</span>=<span class="value">"/register"</span> <span class="attribute">method</span>=<span class="value">"post"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;h3&gt;</span>Registration Form<span class="tag">&lt;/h3&gt;</span>
+    
+    <span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"username"</span><span class="tag">&gt;</span>Username:<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"username"</span> <span class="attribute">name</span>=<span class="value">"username"</span> <span class="attribute">required</span><span class="tag">&gt;</span>
+    
+    <span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"email"</span><span class="tag">&gt;</span>Email:<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"email"</span> <span class="attribute">id</span>=<span class="value">"email"</span> <span class="attribute">name</span>=<span class="value">"email"</span> <span class="attribute">required</span><span class="tag">&gt;</span>
+    
+    <span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"password"</span><span class="tag">&gt;</span>Password:<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"password"</span> <span class="attribute">id</span>=<span class="value">"password"</span> <span class="attribute">name</span>=<span class="value">"password"</span> <span class="attribute">required</span><span class="tag">&gt;</span>
+    
+    <span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"birthdate"</span><span class="tag">&gt;</span>Birth Date:<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"date"</span> <span class="attribute">id</span>=<span class="value">"birthdate"</span> <span class="attribute">name</span>=<span class="value">"birthdate"</span><span class="tag">&gt;</span>
+    
+    <span class="tag">&lt;fieldset&gt;</span>
+        <span class="tag">&lt;legend&gt;</span>Account Type:<span class="tag">&lt;/legend&gt;</span>
+        <span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"radio"</span> <span class="attribute">id</span>=<span class="value">"personal"</span> <span class="attribute">name</span>=<span class="value">"account"</span> <span class="attribute">value</span>=<span class="value">"personal"</span> <span class="attribute">checked</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"personal"</span><span class="tag">&gt;</span>Personal<span class="tag">&lt;/label&gt;</span>
+        <span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"radio"</span> <span class="attribute">id</span>=<span class="value">"business"</span> <span class="attribute">name</span>=<span class="value">"account"</span> <span class="attribute">value</span>=<span class="value">"business"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"business"</span><span class="tag">&gt;</span>Business<span class="tag">&lt;/label&gt;</span>
+    <span class="tag">&lt;/fieldset&gt;</span>
+    
+    <span class="tag">&lt;input</span> <span class="attribute">type</span>=<span class="value">"checkbox"</span> <span class="attribute">id</span>=<span class="value">"terms"</span> <span class="attribute">name</span>=<span class="value">"terms"</span> <span class="attribute">required</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;label</span> <span class="attribute">for</span>=<span class="value">"terms"</span><span class="tag">&gt;</span>I agree to the terms and conditions<span class="tag">&lt;/label&gt;</span>
+    
+    <span class="tag">&lt;button</span> <span class="attribute">type</span>=<span class="value">"submit"</span><span class="tag">&gt;</span>Register<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/form&gt;</span>
+            </div>
+            <div class="result">
+                <form action="/register" method="post">
+                    <h3>Registration Form</h3>
+                    
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birthdate">Birth Date:</label>
+                        <input type="date" id="birthdate" name="birthdate">
+                    </div>
+                    
+                    <fieldset>
+                        <legend>Account Type:</legend>
+                        <div class="radio-group">
+                            <input type="radio" id="personal" name="account" value="personal" checked>
+                            <label for="personal">Personal</label>
+                            <input type="radio" id="business" name="account" value="business">
+                            <label for="business">Business</label>
+                        </div>
+                    </fieldset>
+                    
+                    <div class="form-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms" style="display: inline; font-weight: normal;">I agree to the terms and conditions</label>
+                    </div>
+                    
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+</body>
+</html>

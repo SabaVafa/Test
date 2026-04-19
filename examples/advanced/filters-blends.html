@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Filters & Blends - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .demo-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        .demo-title {
+            color: #0066cc;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 5px;
+        }
+        .code-block {
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .selector { color: #d73a49; }
+        .property { color: #0066cc; }
+        .value { color: #28a745; }
+        .comment { color: #6c757d; font-style: italic; }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-link:hover {
+            background: #0052a3;
+        }
+        
+        /* Filter demo styles */
+        .filter-demo {
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+            display: inline-block;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .original-image {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .filter-grayscale {
+            filter: grayscale(100%);
+        }
+        
+        .filter-sepia {
+            filter: sepia(100%);
+        }
+        
+        .filter-blur {
+            filter: blur(5px);
+        }
+        
+        .filter-brightness {
+            filter: brightness(1.5);
+        }
+        
+        .filter-contrast {
+            filter: contrast(2);
+        }
+        
+        .filter-hue-rotate {
+            filter: hue-rotate(90deg);
+        }
+        
+        .filter-invert {
+            filter: invert(100%);
+        }
+        
+        .filter-saturate {
+            filter: saturate(200%);
+        }
+        
+        .filter-opacity {
+            filter: opacity(0.5);
+        }
+        
+        .filter-combination {
+            filter: contrast(1.2) brightness(1.1) saturate(1.3);
+        }
+        
+        .filter-drop-shadow {
+            filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.5));
+        }
+        
+        /* Blend mode demo */
+        .blend-demo {
+            width: 300px;
+            height: 200px;
+            margin: 20px;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .blend-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .blend-layer-1 {
+            background: linear-gradient(45deg, #ff6b6b 0%, #4ecdc4 100%);
+        }
+        
+        .blend-layer-2 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            mix-blend-mode: multiply;
+        }
+        
+        .blend-layer-3 {
+            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+            mix-blend-mode: screen;
+        }
+        
+        .blend-multiply {
+            mix-blend-mode: multiply;
+        }
+        
+        .blend-screen {
+            mix-blend-mode: screen;
+        }
+        
+        .blend-overlay {
+            mix-blend-mode: overlay;
+        }
+        
+        .blend-darken {
+            mix-blend-mode: darken;
+        }
+        
+        .blend-lighten {
+            mix-blend-mode: lighten;
+        }
+        
+        .blend-color-dodge {
+            mix-blend-mode: color-dodge;
+        }
+        
+        .blend-color-burn {
+            mix-blend-mode: color-burn;
+        }
+        
+        .blend-hard-light {
+            mix-blend-mode: hard-light;
+        }
+        
+        .blend-soft-light {
+            mix-blend-mode: soft-light;
+        }
+        
+        .blend-difference {
+            mix-blend-mode: difference;
+        }
+        
+        .blend-exclusion {
+            mix-blend-mode: exclusion;
+        }
+        
+        .blend-hue {
+            mix-blend-mode: hue;
+        }
+        
+        .blend-saturation {
+            mix-blend-mode: saturation;
+        }
+        
+        .blend-color {
+            mix-blend-mode: color;
+        }
+        
+        .blend-luminosity {
+            mix-blend-mode: luminosity;
+        }
+        
+        .blend-normal {
+            mix-blend-mode: normal;
+        }
+        
+        /* Background blend demo */
+        .bg-blend-demo {
+            width: 300px;
+            height: 200px;
+            margin: 20px;
+            border-radius: 8px;
+            background: 
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23ff6b6b" x="0" y="0" width="50" height="50"/><rect fill="%234ecdc4" x="50" y="0" width="50" height="50"/><rect fill="%234ecdc4" x="0" y="50" width="50" height="50"/><rect fill="%23ff6b6b" x="50" y="50" width="50" height="50"/></svg>'),
+                linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            background-blend-mode: multiply;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* Interactive demos */
+        .filter-controls {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .filter-slider {
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        .filter-slider-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            transition: filter 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            filter: brightness(1.2) contrast(1.1) saturate(1.2);
+        }
+        
+        .text-effects {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .text-shadow-filter {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            filter: drop-shadow(2px 2px 4px rgba(255,0,0,0.5));
+        }
+        
+        .backdrop-filter-demo {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            margin: 20px auto;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .backdrop-filter-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle fill="%23667eea" cx="25" cy="25" r="20"/><circle fill="%23764ba2" cx="75" cy="75" r="20"/><circle fill="%23ff6b6b" cx="75" cy="25" r="20"/><circle fill="%234ecdc4" cx="25" cy="75" r="20"/></svg>');
+            background-size: cover;
+        }
+        
+        .backdrop-filter-content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(5px);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS Filters & Blends</h1>
+        <p>This page demonstrates CSS filters and blend modes for creating visual effects and image processing.</p>
+        
+        <div class="demo-section">
+            <h2 class="demo-title">Basic Filters</h2>
+            <div class="code-block">
+<span class="selector">.filter-grayscale</span> {
+    <span class="property">filter</span>: <span class="value">grayscale(100%)</span>;
+}
+
+<span class="selector">.filter-sepia</span> {
+    <span class="property">filter</span>: <span class="value">sepia(100%)</span>;
+}
+
+<span class="selector">.filter-blur</span> {
+    <span class="property">filter</span>: <span class="value">blur(5px)</span>;
+}
+
+<span class="selector">.filter-brightness</span> {
+    <span class="property">filter</span>: <span class="value">brightness(1.5)</span>;
+}
+
+<span class="selector">.filter-contrast</span> {
+    <span class="property">filter</span>: <span class="value">contrast(2)</span>;
+}
+
+<span class="selector">.filter-hue-rotate</span> {
+    <span class="property">filter</span>: <span class="value">hue-rotate(90deg)</span>;
+}
+
+<span class="selector">.filter-invert</span> {
+    <span class="property">filter</span>: <span class="value">invert(100%)</span>;
+}
+
+<span class="selector">.filter-saturate</span> {
+    <span class="property">filter</span>: <span class="value">saturate(200%)</span>;
+}
+
+<span class="selector">.filter-opacity</span> {
+    <span class="property">filter</span>: <span class="value">opacity(0.5)</span>;
+}
+            </div>
+            <div class="result">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div class="filter-demo original-image">Original</div>
+                    <div class="filter-demo filter-grayscale original-image">Grayscale</div>
+                    <div class="filter-demo filter-sepia original-image">Sepia</div>
+                    <div class="filter-demo filter-blur original-image">Blur</div>
+                    <div class="filter-demo filter-brightness original-image">Brightness</div>
+                    <div class="filter-demo filter-contrast original-image">Contrast</div>
+                    <div class="filter-demo filter-hue-rotate original-image">Hue Rotate</div>
+                    <div class="filter-demo filter-invert original-image">Invert</div>
+                    <div class="filter-demo filter-saturate original-image">Saturate</div>
+                    <div class="filter-demo filter-opacity original-image">Opacity</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Filter Combinations</h2>
+            <div class="code-block">
+<span class="selector">.filter-combination</span> {
+    <span class="property">filter</span>: <span class="value">contrast(1.2) brightness(1.1) saturate(1.3)</span>;
+}
+
+<span class="selector">.filter-vintage</span> {
+    <span class="property">filter</span>: <span class="value">sepia(0.5) contrast(1.2) brightness(0.9)</span>;
+}
+
+<span class="selector">.filter-dramatic</span> {
+    <span class="property">filter</span>: <span class="value">contrast(1.5) saturate(1.5) brightness(1.1)</span>;
+}
+
+<span class="selector">.filter-cold</span> {
+    <span class="property">filter</span>: <span class="value">hue-rotate(180deg) saturate(0.8)</span>;
+}
+
+<span class="selector">.filter-warm</span> {
+    <span class="property">filter</span>: <span class="value">hue-rotate(30deg) saturate(1.2) brightness(1.1)</span>;
+}
+            </div>
+            <div class="result">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div class="filter-demo filter-combination original-image">Combination</div>
+                    <div class="filter-demo filter-vintage original-image">Vintage</div>
+                    <div class="filter-demo filter-dramatic original-image">Dramatic</div>
+                    <div class="filter-demo filter-cold original-image">Cold</div>
+                    <div class="filter-demo filter-warm original-image">Warm</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Drop Shadow Filter</h2>
+            <div class="code-block">
+<span class="selector">.filter-drop-shadow</span> {
+    <span class="property">filter</span>: <span class="value">drop-shadow(5px 5px 10px rgba(0,0,0,0.5))</span>;
+}
+
+<span class="comment">/* Different from box-shadow */</span>
+<span class="selector">.box-shadow</span> {
+    <span class="property">box-shadow</span>: <span class="value">5px 5px 10px rgba(0,0,0,0.5)</span>;
+}
+
+<span class="comment">/* Drop shadow follows transparent areas */</span>
+<span class="selector">.text-shadow</span> {
+    <span class="property">text-shadow</span>: <span class="value">2px 2px 4px rgba(0,0,0,0.5)</span>;
+}
+
+<span class="selector">.text-filter-shadow</span> {
+    <span class="property">filter</span>: <span class="value">drop-shadow(2px 2px 4px rgba(255,0,0,0.5))</span>;
+}
+            </div>
+            <div class="result">
+                <div class="filter-demo filter-drop-shadow original-image">Drop Shadow</div>
+                <div class="text-effects text-shadow-filter">Text Shadow</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Mix Blend Modes</h2>
+            <div class="code-block">
+<span class="selector">.blend-multiply</span> {
+    <span class="property">mix-blend-mode</span>: <span class="value">multiply</span>;
+}
+
+<span class="selector">.blend-screen</span> {
+    <span class="property">mix-blend-mode</span>: <span class="value">screen</span>;
+}
+
+<span class="selector">.blend-overlay</span> {
+    <span class="property">mix-blend-mode</span>: <span class="value">overlay</span>;
+}
+
+<span class="selector">.blend-darken</span> {
+    <span class="property">mix-blend-mode</span>: <span class="value">darken</span>;
+}
+
+<span class="selector">.blend-lighten</span> {
+    <span class="property">mix-blend-mode</span>: <span class="value">lighten</span>;
+}
+
+<span class="selector">.blend-color-dodge</span> {
+    <span class="property">mix-blend-mode</span>: <span class="value">color-dodge</span>;
+}
+
+<span class="selector">.blend-color-burn</span> {
+    <span class="property">mix-blend-mode</span>: <span class="value">color-burn</span>;
+}
+
+<span class="selector">.blend-hard-light</span> {
+    <span class="property">mix-blend-mode</span>: <span class="value">hard-light</span>;
+}
+
+<span class="selector">.blend-soft-light</span> {
+    <span class="property">mix-blend-mode</span>: <span class="value">soft-light</span>;
+}
+
+<span class="selector">.blend-difference</span> {
+    <span class="property">mix-blend-mode</span>: <span class="value">difference</span>;
+}
+
+<span class="selector">.blend-exclusion</span> {
+    <span class="property">mix-blend-mode</span>: <span class="value">exclusion</span>;
+}
+            </div>
+            <div class="result">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div class="blend-demo">
+                        <div class="blend-layer blend-layer-1"></div>
+                        <div class="blend-layer blend-layer-2 blend-multiply"></div>
+                        <div style="position: relative; z-index: 2; padding: 10px; color: white; text-align: center;">Multiply</div>
+                    </div>
+                    <div class="blend-demo">
+                        <div class="blend-layer blend-layer-1"></div>
+                        <div class="blend-layer blend-layer-2 blend-screen"></div>
+                        <div style="position: relative; z-index: 2; padding: 10px; color: white; text-align: center;">Screen</div>
+                    </div>
+                    <div class="blend-demo">
+                        <div class="blend-layer blend-layer-1"></div>
+                        <div class="blend-layer blend-layer-2 blend-overlay"></div>
+                        <div style="position: relative; z-index: 2; padding: 10px; color: white; text-align: center;">Overlay</div>
+                    </div>
+                    <div class="blend-demo">
+                        <div class="blend-layer blend-layer-1"></div>
+                        <div class="blend-layer blend-layer-2 blend-difference"></div>
+                        <div style="position: relative; z-index: 2; padding: 10px; color: white; text-align: center;">Difference</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Background Blend Modes</h2>
+            <div class="code-block">
+<span class="selector">.bg-blend-multiply</span> {
+    <span class="property">background-blend-mode</span>: <span class="value">multiply</span>;
+    <span class="property">background</span>: 
+        <span class="value">url('image1.jpg'),</span>
+        <span class="value">url('image2.jpg')</span>;
+}
+
+<span class="selector">.bg-blend-screen</span> {
+    <span class="property">background-blend-mode</span>: <span class="value">screen</span>;
+    <span class="property">background</span>: 
+        <span class="value">linear-gradient(45deg, red, blue),</span>
+        <span class="value">linear-gradient(45deg, green, yellow)</span>;
+}
+
+<span class="selector">.bg-blend-overlay</span> {
+    <span class="property">background-blend-mode</span>: <span class="value">overlay</span>;
+    <span class="property">background</span>: 
+        <span class="value">url('pattern.png'),</span>
+        <span class="value">#ff0000</span>;
+}
+            </div>
+            <div class="result">
+                <div class="bg-blend-demo">Background Blend</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Backdrop Filter</h2>
+            <div class="code-block">
+<span class="selector">.backdrop-filter-blur</span> {
+    <span class="property">backdrop-filter</span>: <span class="value">blur(5px)</span>;
+}
+
+<span class="selector">.backdrop-filter-grayscale</span> {
+    <span class="property">backdrop-filter</span>: <span class="value">grayscale(100%)</span>;
+}
+
+<span class="selector">.backdrop-filter-brightness</span> {
+    <span class="property">backdrop-filter</span>: <span class="value">brightness(0.5)</span>;
+}
+
+<span class="selector">.backdrop-filter-contrast</span> {
+    <span class="property">backdrop-filter</span>: <span class="value">contrast(2)</span>;
+}
+
+<span class="selector">.backdrop-filter-combination</span> {
+    <span class="property">backdrop-filter</span>: <span class="value">blur(5px) brightness(0.8) saturate(0.8)</span>;
+}
+
+<span class="comment">/* Frosted glass effect */</span>
+<span class="selector">.frosted-glass</span> {
+    <span class="property">background</span>: <span class="value">rgba(255,255,255,0.1)</span>;
+    <span class="property">backdrop-filter</span>: <span class="value">blur(10px)</span>;
+    <span class="property">border</span>: <span class="value">1px solid rgba(255,255,255,0.2)</span>;
+}
+            </div>
+            <div class="result">
+                <div class="backdrop-filter-demo">
+                    <div class="backdrop-filter-bg"></div>
+                    <div class="backdrop-filter-content">Frosted Glass Effect</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Interactive Filter Controls</h2>
+            <div class="code-block">
+<span class="comment">/* JavaScript can update filter values */</span>
+<span class="comment">/* element.style.filter = 'blur(5px) brightness(1.2)'; */</span>
+
+<span class="comment">/* CSS custom properties for filters */</span>
+<span class="selector">:root</span> {
+    <span class="property">--blur-amount</span>: <span class="value">0px</span>;
+    <span class="property">--brightness-amount</span>: <span class="value">1</span>;
+    <span class="property">--contrast-amount</span>: <span class="value">1</span>;
+    <span class="property">--saturation-amount</span>: <span class="value">1</span>;
+}
+
+<span class="selector">.dynamic-filter</span> {
+    <span class="property">filter</span>: <span class="value">blur(var(--blur-amount)) brightness(var(--brightness-amount)) contrast(var(--contrast-amount)) saturate(var(--saturation-amount))</span>;
+}
+            </div>
+            <div class="result">
+                <div class="filter-controls">
+                    <div class="filter-slider-label">Blur: <span id="blurValue">0px</span></div>
+                    <input type="range" class="filter-slider" id="blurSlider" min="0" max="10" value="0" step="0.1">
+                    
+                    <div class="filter-slider-label">Brightness: <span id="brightnessValue">1</span></div>
+                    <input type="range" class="filter-slider" id="brightnessSlider" min="0" max="2" value="1" step="0.1">
+                    
+                    <div class="filter-slider-label">Contrast: <span id="contrastValue">1</span></div>
+                    <input type="range" class="filter-slider" id="contrastSlider" min="0" max="2" value="1" step="0.1">
+                    
+                    <div class="filter-slider-label">Saturation: <span id="saturationValue">1</span></div>
+                    <input type="range" class="filter-slider" id="saturationSlider" min="0" max="2" value="1" step="0.1">
+                </div>
+                
+                <div class="filter-demo original-image" id="dynamicFilter" style="width: 300px; height: 200px;">Dynamic Filter</div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Practical Examples</h2>
+            <div class="code-block">
+<span class="comment">/* Hover effects with filters */</span>
+<span class="selector">.image-hover img</span> {
+    <span class="property">transition</span>: <span class="value">filter 0.3s ease</span>;
+}
+
+<span class="selector">.image-hover:hover img</span> {
+    <span class="property">filter</span>: <span class="value">brightness(1.2) contrast(1.1) saturate(1.2)</span>;
+}
+
+<span class="comment">/* Loading state with blur */</span>
+<span class="selector">.loading</span> {
+    <span class="property">filter</span>: <span class="value">blur(2px)</span>;
+    <span class="property">transition</span>: <span class="value">filter 0.3s ease</span>;
+}
+
+<span class="selector">.loading.loaded</span> {
+    <span class="property">filter</span>: <span class="value">none</span>;
+}
+
+<span class="comment">/* Disabled state with grayscale */</span>
+<span class="selector">.disabled</span> {
+    <span class="property">filter</span>: <span class="value">grayscale(100%) opacity(0.5)</span>;
+}
+
+<span class="comment">/* Focus state with brightness */</span>
+<span class="selector">.card:focus</span> {
+    <span class="property">filter</span>: <span class="value">brightness(1.1)</span>;
+}
+            </div>
+            <div class="result">
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <div class="filter-demo original-image" style="width: 100%; height: 150px;">Hover Effect</div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="filter-demo filter-grayscale original-image" style="width: 100%; height: 150px;">Disabled</div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="filter-demo filter-blur original-image" style="width: 100%; height: 150px;">Loading</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Performance Considerations</h2>
+            <div class="code-block">
+<span class="comment">/* Filters are GPU-accelerated in modern browsers */</span>
+<span class="comment">/* But can be expensive for complex operations */</span>
+
+<span class="comment">/* Use transform instead of filters when possible */</span>
+<span class="selector">.better-performance</span> {
+    <span class="property">transform</span>: <span class="value">scale(1.1)</span>; <span class="comment">/* Better than filter brightness */</span>
+}
+
+<span class="comment">/* Avoid animating filters on large elements */</span>
+<span class="selector">.expensive-animation</span> {
+    <span class="property">filter</span>: <span class="value">blur(5px)</span>;
+    <span class="property">transition</span>: <span class="value">filter 0.3s ease</span>; <span class="comment">/* Can be slow */</span>
+}
+
+<span class="comment">/* Use will-change for complex filter animations */</span>
+<span class="selector">.complex-filter-animation</span> {
+    <span class="property">will-change</span>: <span class="value">filter</span>;
+}
+
+<span class="comment">/* Remove will-change after animation */</span>
+<span class="selector">.animation-complete</span> {
+    <span class="property">will-change</span>: <span class="value">auto</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Browser Support</h2>
+            <div class="code-block">
+<span class="comment">/* Filter support */</span>
+<span class="comment">/* Chrome 18+, Firefox 35+, Safari 6+, Edge 12+, IE 13+ */</span>
+
+<span class="comment">/* Mix blend mode support */</span>
+<span class="comment">/* Chrome 41+, Firefox 32+, Safari 8+, Edge 12+, IE 13+ */</span>
+
+<span class="comment">/* Background blend mode support */</span>
+<span class="comment">/* Chrome 41+, Firefox 30+, Safari 8+, Edge 12+, IE 13+ */</span>
+
+<span class="comment">/* Backdrop filter support */</span>
+<span class="comment">/* Chrome 76+, Firefox 103+, Safari 14+, Edge 79+, IE 13+ */</span>
+
+<span class="comment">/* Prefixes for older browsers */</span>
+<span class="selector">.element</span> {
+    <span class="property">-webkit-filter</span>: <span class="value">blur(5px)</span>;
+    <span class="property">filter</span>: <span class="value">blur(5px)</span>;
+}
+
+<span class="comment">/* Feature detection */</span>
+<span class="key">@supports</span> <span class="value">(filter: blur(2px))</span> {
+    <span class="comment">/* Filters supported */</span>
+}
+
+<span class="key">@supports</span> <span class="value">(backdrop-filter: blur(2px))</span> {
+    <span class="comment">/* Backdrop filter supported */</span>
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">Best Practices</h2>
+            <div class="code-block">
+<span class="comment">/* Use filters for visual effects, not layout */</span>
+<span class="comment">/* Use transform for positioning and scaling */</span>
+
+<span class="comment">/* Provide fallbacks for older browsers */</span>
+<span class="selector">.fallback-filter</span> {
+    <span class="property">background</span>: <span class="value">rgba(0,0,0,0.5)</span>; <span class="comment">/* Fallback */</span>
+}
+
+<span class="key">@supports</span> <span class="value">(backdrop-filter: blur(5px))</span> {
+    <span class="selector">.fallback-filter</span> {
+        <span class="property">background</span>: <span class="value">rgba(255,255,255,0.1)</span>;
+        <span class="property">backdrop-filter</span>: <span class="value">blur(5px)</span>;
+    }
+}
+
+<span class="comment">/* Use filters sparingly for performance */</span>
+<span class="selector">.performant</span> {
+    <span class="property">filter</span>: <span class="value">brightness(1.1)</span>; <span class="comment">/* Lightweight */</span>
+}
+
+<span class="comment">/* Test on mobile devices */</span>
+<span class="comment">/* Some filters can be slow on mobile */</span>
+
+<span class="comment">/* Consider accessibility */</span>
+<span class="key">@media</span> <span class="value">(prefers-reduced-motion: reduce)</span> {
+    <span class="selector">.animated-filter</span> {
+        <span class="property">filter</span>: <span class="value">none</span>;
+    }
+}
+            </div>
+        </div>
+
+        <a href="../index.html" class="back-link">Back to Learning Path</a>
+    </div>
+    
+    <script>
+        // Interactive filter controls
+        const blurSlider = document.getElementById('blurSlider');
+        const brightnessSlider = document.getElementById('brightnessSlider');
+        const contrastSlider = document.getElementById('contrastSlider');
+        const saturationSlider = document.getElementById('saturationSlider');
+        const dynamicFilter = document.getElementById('dynamicFilter');
+        
+        function updateFilter() {
+            const blur = blurSlider.value;
+            const brightness = brightnessSlider.value;
+            const contrast = contrastSlider.value;
+            const saturation = saturationSlider.value;
+            
+            document.getElementById('blurValue').textContent = blur + 'px';
+            document.getElementById('brightnessValue').textContent = brightness;
+            document.getElementById('contrastValue').textContent = contrast;
+            document.getElementById('saturationValue').textContent = saturation;
+            
+            dynamicFilter.style.filter = `blur(${blur}px) brightness(${brightness}) contrast(${contrast}) saturate(${saturation})`;
+        }
+        
+        blurSlider.addEventListener('input', updateFilter);
+        brightnessSlider.addEventListener('input', updateFilter);
+        contrastSlider.addEventListener('input', updateFilter);
+        saturationSlider.addEventListener('input', updateFilter);
+    </script>
+</body>
+</html>

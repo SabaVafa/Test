@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Document Structure - Learning Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .tag { color: #e83e8c; }
+        .attribute { color: #0066cc; }
+        .value { color: #28a745; }
+        .comment { color: #6c757d; font-style: italic; }
+        .explanation {
+            background: #e7f3ff;
+            border-left: 4px solid #0066cc;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        h1, h2 { color: #333; }
+        h2 { border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HTML Document Structure</h1>
+        
+        <h2>Basic HTML Document</h2>
+        <div class="code-block">
+<span class="comment">&lt;!-- DOCTYPE declaration --&gt;</span>
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="comment">&lt;!-- HTML element with language attribute --&gt;</span>
+<span class="tag">&lt;html</span> <span class="attribute">lang</span>=<span class="value">"en"</span><span class="tag">&gt;</span>
+    <span class="comment">&lt;!-- Head section contains metadata --&gt;</span>
+    <span class="tag">&lt;head&gt;</span>
+        <span class="tag">&lt;meta</span> <span class="attribute">charset</span>=<span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;meta</span> <span class="attribute">name</span>=<span class="value">"viewport"</span> <span class="attribute">content</span>=<span class="value">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;title&gt;</span>Page Title<span class="tag">&lt;/title&gt;</span>
+    <span class="tag">&lt;/head&gt;</span>
+    <span class="comment">&lt;!-- Body section contains visible content --&gt;</span>
+    <span class="tag">&lt;body&gt;</span>
+        <span class="tag">&lt;h1&gt;</span>Main Heading<span class="tag">&lt;/h1&gt;</span>
+        <span class="tag">&lt;p&gt;</span>This is a paragraph.<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span>
+        </div>
+
+        <div class="explanation">
+            <h3>Key Elements Explained:</h3>
+            <ul>
+                <li><strong>&lt;!DOCTYPE html&gt;</strong> - Declares the document type as HTML5</li>
+                <li><strong>&lt;html&gt;</strong> - Root element that wraps all content</li>
+                <li><strong>&lt;head&gt;</strong> - Contains metadata (not visible on page)</li>
+                <li><strong>&lt;meta&gt;</strong> - Provides metadata about the document</li>
+                <li><strong>&lt;title&gt;</strong> - Sets the browser tab title</li>
+                <li><strong>&lt;body&gt;</strong> - Contains all visible content</li>
+            </ul>
+        </div>
+
+        <h2>Semantic HTML5 Elements</h2>
+        <div class="code-block">
+<span class="tag">&lt;header&gt;</span>
+    <span class="tag">&lt;nav&gt;</span>
+        <span class="tag">&lt;ul&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"#home"</span><span class="tag">&gt;</span>Home<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"#about"</span><span class="tag">&gt;</span>About<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+        <span class="tag">&lt;/ul&gt;</span>
+    <span class="tag">&lt;/nav&gt;</span>
+<span class="tag">&lt;/header&gt;</span>
+
+<span class="tag">&lt;main&gt;</span>
+    <span class="tag">&lt;article&gt;</span>
+        <span class="tag">&lt;h1&gt;</span>Article Title<span class="tag">&lt;/h1&gt;</span>
+        <span class="tag">&lt;section&gt;</span>
+            <span class="tag">&lt;h2&gt;</span>Section Title<span class="tag">&lt;/h2&gt;</span>
+            <span class="tag">&lt;p&gt;</span>Content goes here...<span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;/section&gt;</span>
+    <span class="tag">&lt;/article&gt;</span>
+
+    <span class="tag">&lt;aside&gt;</span>
+        <span class="tag">&lt;h3&gt;</span>Sidebar<span class="tag">&lt;/h3&gt;</span>
+        <span class="tag">&lt;p&gt;</span>Related content...<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/aside&gt;</span>
+<span class="tag">&lt;/main&gt;</span>
+
+<span class="tag">&lt;footer&gt;</span>
+    <span class="tag">&lt;p&gt;</span>&copy; 2024 Your Website<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/footer&gt;</span>
+        </div>
+
+        <div class="explanation">
+            <h3>Semantic Elements:</h3>
+            <ul>
+                <li><strong>&lt;header&gt;</strong> - Header section of the page</li>
+                <li><strong>&lt;nav&gt;</strong> - Navigation links</li>
+                <li><strong>&lt;main&gt;</strong> - Main content area</li>
+                <li><strong>&lt;article&gt;</strong> - Independent content</li>
+                <li><strong>&lt;section&gt;</strong> - Thematic grouping of content</li>
+                <li><strong>&lt;aside&gt;</strong> - Sidebar or related content</li>
+                <li><strong>&lt;footer&gt;</strong> - Footer section</li>
+            </ul>
+        </div>
+
+        <h2>Common Attributes</h2>
+        <div class="code-block">
+<span class="tag">&lt;div</span> <span class="attribute">id</span>=<span class="value">"unique-id"</span> <span class="attribute">class</span>=<span class="value">"class-name"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;p</span> <span class="attribute">style</span>=<span class="value">"color: red;"</span><span class="tag">&gt;</span>Styled paragraph<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;img</span> <span class="attribute">src</span>=<span class="value">"image.jpg"</span> <span class="attribute">alt</span>=<span class="value">"Description"</span><span class="attribute">title</span>=<span class="value">"Tooltip text"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;a</span> <span class="attribute">href</span>=<span class="value">"https://example.com"</span> <span class="attribute">target</span>=<span class="value">"_blank"</span><span class="tag">&gt;</span>Link<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+        </div>
+
+        <div class="explanation">
+            <h3>Attribute Types:</h3>
+            <ul>
+                <li><strong>id</strong> - Unique identifier for an element</li>
+                <li><strong>class</strong> - One or more class names for styling</li>
+                <li><strong>style</strong> - Inline CSS styles</li>
+                <li><strong>src</strong> - Source URL for images, scripts, etc.</li>
+                <li><strong>alt</strong> - Alternative text for images</li>
+                <li><strong>href</strong> - URL for links</li>
+                <li><strong>target</strong> - Where to open the link</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
